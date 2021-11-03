@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\sebastian\Documents\Unreal Projects\websockets\socketio-client-ue4-example\Chat-App-Flask-SocketIO\venv"
+VIRTUAL_ENV="C:\Users\sebastian\Documents\Unreal Projects\websockets\socketio-client-ue4-example\FLASK_SocketIO\flask_websockets_soketIO\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
