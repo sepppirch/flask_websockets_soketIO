@@ -32,6 +32,10 @@ app.debug = False
 app.config['SECRET_KEY'] = 'secret'
 app.config['SESSION_TYPE'] = 'filesystem'
 
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 Session(app)
 
 socketio = SocketIO(app, manage_session=False)
@@ -42,7 +46,6 @@ socketio = SocketIO(app, manage_session=False)
 @app.route('/flask', methods=['GET', 'POST'])
 def wsreceiver():
     if request.method == 'POST':
-        #data = request.form
         data =request.get_json()
     else:
         data = request.args
@@ -51,18 +54,14 @@ def wsreceiver():
     idata = data
     print(bcolors.WARNING + data['usr']  + "says: " + data['mes'] + bcolors.ENDC)
 
-### Send it back to node wich multicasts it to ue4 clients
-    
-
-### Multicast to connected web clients (not UE4!)
     outstr = data['usr'] +' : ' + data['mes']
+### Multicast to connected web clients (not UE4!)
     socketio.emit('message', {'msg': outstr}, namespace = '/chat' , room='1')
+
+### Send it back to node wich multicasts it to ue4 clients
     sendUE4('http://127.0.0.1:3000/in', data)
-    
 
-
-    return "ok" 
-    
+    return
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -108,6 +107,18 @@ def text(message):
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
     sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
+@socketio.on('test', namespace='/chat')
+def test(message):
+    #room = session.get('room')
+    print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
+    #emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+    #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
+
+@socketio.on('sl1', namespace='/chat')
+def test(message):
+    room = session.get('room')
+    #print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
+    emit('sl1', message , room=room)
 
 @socketio.on('left', namespace='/chat')
 def left(message):
