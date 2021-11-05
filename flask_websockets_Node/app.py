@@ -1,12 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
+import requests
 import json
-
-app = Flask(__name__)
-app.debug = True
-app.config['SECRET_KEY'] = 'secret'
-app.config['SESSION_TYPE'] = 'filesystem'
 
 
 class bcolors:
@@ -20,10 +16,53 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+def sendUE4(adress, data):
+    # The POST request to our node server
+    res = requests.post('http://127.0.0.1:3000/in', json=data) 
+    # Convert response data to json
+    #returned_data = res.json() 
+    #print(returned_data)
+
+idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
+
+
+app = Flask(__name__)
+app.debug = True
+app.config['SECRET_KEY'] = 'secret'
+app.config['SESSION_TYPE'] = 'filesystem'
+
+
+
 
 Session(app)
 
 socketio = SocketIO(app, manage_session=False)
+
+
+
+###RECEIVE INCOMING WEBSOCKET MSG FROM NODE.JS 
+@app.route('/flask', methods=['GET', 'POST'])
+def wsreceiver():
+    if request.method == 'POST':
+        #data = request.form
+        data =request.get_json()
+    else:
+        data = request.args
+
+    global idata
+    idata = data
+    print(idata)
+
+
+    #data["tag"] = "flask"
+    #astring = data["usr"]
+    #print(data)
+
+    sendUE4('http://127.0.0.1:3000/in', data)
+
+
+    return 
+    
 
 
 @app.route('/', methods=['GET', 'POST'])
