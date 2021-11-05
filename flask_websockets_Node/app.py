@@ -19,7 +19,7 @@ class bcolors:
 def sendUE4(adress, data):
     # The POST request to our node server
     res = requests.post('http://127.0.0.1:3000/in', json=data)
-    return
+    #return
     # Convert response data to json
     #returned_data = res.json() 
     #print(returned_data)
@@ -32,12 +32,9 @@ app.debug = False
 app.config['SECRET_KEY'] = 'secret'
 app.config['SESSION_TYPE'] = 'filesystem'
 
-
-
-
 Session(app)
 
-socketio = SocketIO(app, manage_session=True)
+socketio = SocketIO(app, manage_session=False)
 
 
 
@@ -58,7 +55,8 @@ def wsreceiver():
     
 
 ### Multicast to connected web clients (not UE4!)
-    socketio.emit('message', {'msg': data['mes']}, namespace = '/chat' , room='1')
+    outstr = data['usr'] +' : ' + data['mes']
+    socketio.emit('message', {'msg': outstr}, namespace = '/chat' , room='1')
     sendUE4('http://127.0.0.1:3000/in', data)
     
 
