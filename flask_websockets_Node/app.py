@@ -20,6 +20,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 Session(app)
 
 socketio = SocketIO(app, manage_session=False)

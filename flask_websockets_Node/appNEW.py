@@ -2,13 +2,23 @@ from flask import Flask, jsonify, request,g, render_template
 from flask import Flask, flash, request, redirect, url_for
 from flask import Flask, session
 import json
+import requests
 
-import sendRequest as sreq
+def sendUE4(adress, data):
+    # The POST request to our node server
+    res = requests.post('http://127.0.0.1:3000/in', json=data) 
+    # Convert response data to json
+    #returned_data = res.json() 
+    #print(returned_data)
 
 idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    
+    return render_template("index.html")
 
 ###RECEIVE INCOMING WEBSOCKET MSG FROM NODE.JS 
 @app.route('/flask', methods=['GET', 'POST'])
@@ -28,15 +38,15 @@ def wsreceiver():
     #astring = data["usr"]
     #print(data)
 
-    sreq.send('http://127.0.0.1:3000/in', data)
+    sendUE4.send('http://127.0.0.1:3000/in', data)
 
 
     return 
     
-@app.route('/')
-def index():
+@app.route('/chat')
+def chat():
     
-    return render_template("index.html", data=idata)
+    return render_template("chat.html")  #, data=idata
 
 
 if __name__ == "__main__":
