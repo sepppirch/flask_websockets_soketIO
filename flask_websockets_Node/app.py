@@ -18,7 +18,8 @@ class bcolors:
 
 def sendUE4(adress, data):
     # The POST request to our node server
-    res = requests.post('http://127.0.0.1:3000/in', json=data) 
+    res = requests.post('http://127.0.0.1:3000/in', json=data)
+    return
     # Convert response data to json
     #returned_data = res.json() 
     #print(returned_data)
@@ -27,7 +28,7 @@ idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
 
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 app.config['SECRET_KEY'] = 'secret'
 app.config['SESSION_TYPE'] = 'filesystem'
 
@@ -36,7 +37,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 Session(app)
 
-socketio = SocketIO(app, manage_session=False)
+socketio = SocketIO(app, manage_session=True)
 
 
 
@@ -51,17 +52,18 @@ def wsreceiver():
 
     global idata
     idata = data
-    print(idata)
+    print(bcolors.WARNING + data['usr']  + "says: " + data['mes'] + bcolors.ENDC)
 
+### Send it back to node wich multicasts it to ue4 clients
+    
 
-    #data["tag"] = "flask"
-    #astring = data["usr"]
-    #print(data)
-
+### Multicast to connected web clients (not UE4!)
+    socketio.emit('message', {'msg': data['mes']}, namespace = '/chat' , room='1')
     sendUE4('http://127.0.0.1:3000/in', data)
+    
 
 
-    return 
+    return "ok" 
     
 
 
@@ -104,9 +106,9 @@ def join(message):
 @socketio.on('text', namespace='/chat')
 def text(message):
     room = session.get('room')
-    
     print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+    sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
 
 @socketio.on('left', namespace='/chat')

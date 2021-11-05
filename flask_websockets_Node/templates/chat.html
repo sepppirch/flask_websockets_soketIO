@@ -22,11 +22,13 @@
                 socket.on('message', function(data) {
                     $('#chat').val($('#chat').val() + data.msg + '\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                    console.log(data);
                 });
                 $('#send').click(function(e) {
                         text = $('#text').val();
                         $('#text').val('');
                         socket.emit('text', {msg: text});
+                        console.log({msg: text});
                 });
             });
             function leave_room() {
