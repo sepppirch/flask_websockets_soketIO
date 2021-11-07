@@ -58,6 +58,13 @@
                     min: 0,
                     max: 255,
                     value: 128,
+                    change: function (event, ui) {
+                        if (event.originalEvent) {
+
+                                socket.emit('sl1', {msg: ui.value.toString()});
+
+                        };
+                    },
                     slide: function (event, ui) {
                         if (event.originalEvent) {
                             var nsize = {"nsize":ui.value};
@@ -68,14 +75,8 @@
                             };
 
                         };
-                    },
-                    change: function (event, ui) {
-                        if (event.originalEvent) {
-
-                                socket.emit('sl1', {msg: ui.value.toString()});
-
-                        };
                     }
+
                 });
             });
             function leave_room() {

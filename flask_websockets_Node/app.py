@@ -25,7 +25,8 @@ def sendUE4(adress, data):
     #print(returned_data)
 
 idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
-
+pairs = [("a", "1"), ("b", "2"), ("c", "3")]
+sliders = [("ddfd", "1"), ("bfsd", "2"), ("cdfsdf", "3")]
 
 app = Flask(__name__)
 app.debug = False
@@ -51,6 +52,7 @@ def wsreceiver():
         data = request.args
 
     global idata
+
     idata = data
     print(bcolors.WARNING + data['usr']  + "says: " + data['mes'] + bcolors.ENDC)
 
@@ -68,6 +70,9 @@ def wsreceiver():
 def index():
     return render_template('index.html')
 
+
+
+
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     if(request.method=='POST'):
@@ -83,6 +88,7 @@ def chat():
         else:
             return redirect(url_for('index'))
 
+
 @app.route('/Test')
 def test():
     if 'username' in session:
@@ -90,6 +96,16 @@ def test():
         return 'Logged in as ' + username + '<br>' + "<b><a href = '/logout'>click here to log out</a></b>"
     return "You are not logged in <br><a href = '/'>" + "click here to log in</a>"
 
+@app.route('/Test1')
+def test1():
+    
+    return render_template('test.html', data = idata, pairs = pairs, sliders = sliders)
+
+
+@app.route('/Test2')
+def test2():
+    
+    return render_template('scroll.html', data = idata, pairs = pairs, sliders = sliders)
 
 
 @socketio.on('join', namespace='/chat')

@@ -1,0 +1,61 @@
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+    {{data['usr'] }} 
+
+</ul>
+
+<ul>
+    {% for pair in pairs %}
+        <li><a href={{pair[0]}}>{{ pair[1] }}</a></li>
+    {% endfor %}
+</ul>
+<div class="buttons"></div>
+    <ul>
+        {% for pair in pairs %}
+            <button><a>{{ pair[1] }}</a></button>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<div class="content-section">
+    
+        <fieldset class="form-group">
+            {% for slider in sliders %}
+            <div class="slidecontainer">
+                <p>{{ slider['name'] }}</p>
+                <input type="range" min=0 max=128 class="slider" id="{{ slider['slider_id'] }}" name="{{ slider['name'] }}">
+                <p>Value: <span id="{{ slider['value_id'] }}"></span></p>
+            </div>
+
+        {% endfor %}
+        </fieldset>
+
+
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function(){
+
+        $('.buttons').on('click', 'button', function(){
+            console.log('reeeeeee')
+        });
+    });
+</script>
