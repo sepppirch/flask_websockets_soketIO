@@ -50,11 +50,9 @@
         var container2 = $('#scrollbox2');
   
         // Setting the value of scrollbar
-        
-
         $(container).on('scroll', function() {
-            offset = $(container).scrollTop();
-            container2.scrollTop(offset);
+            container2.scrollTop($(container).scrollTop());
+            container2.scrollLeft($(container).scrollLeft());
             console.log('scrolling '+ offset + ' : ' + $(container).scrollLeft());
         });
 
