@@ -19,18 +19,19 @@
 
 </ul>
 
-<ul>
-    {% for pair in pairs %}
-        <li><a href={{pair[0]}}>{{ pair[1] }}</a></li>
-    {% endfor %}
-</ul>
+
+<div class="display">
+    <input type="number" class="text">
+</div>
+
 <div class="buttons"></div>
     <ul>
         {% for pair in pairs %}
-            <button><a>{{ pair[1] }}</a></button>
+        <input type="button" value='{{ pair[1] }}' class="btn" id ='{{ pair[0] }}'>
         {% endfor %}
     </ul>
 </div>
+
 
 
 <div class="content-section">
@@ -38,9 +39,9 @@
         <fieldset class="form-group">
             {% for slider in sliders %}
             <div class="slidecontainer">
-                <p>{{ slider['name'] }}</p>
-                <input type="range" min=0 max=128 class="slider" id="{{ slider['slider_id'] }}" name="{{ slider['name'] }}">
-                <p>Value: <span id="{{ slider['value_id'] }}"></span></p>
+                
+                <input type="range" min=0 max=128 class="slider" id='{{ slider[0] }}' >{{ slider[1] }}</input>
+                
             </div>
 
         {% endfor %}
@@ -52,10 +53,32 @@
 
 <script type="text/javascript" charset="utf-8">
 
-    $(document).ready(function(){
+    const display = document.querySelector(".text"),
+            sldrs = document.querySelectorAll(".slider"),
+            btns = document.querySelectorAll(".btn");
+            
+            btns.forEach(function(btn) {
+                btn.addEventListener("click", uiChange);
+            });
+            
+            sldrs.forEach(function(slider) {
+                slider.addEventListener("change", uiChange);
+                console.log(slider.id + " " + slider.value);
+                slider.max = 32;
+                
+            });
+            
+            function uiChange() {    
+                console.log(this.id + " " + this.value);
+            };
 
-        $('.buttons').on('click', 'button', function(){
-            console.log('reeeeeee')
-        });
-    });
+            /*
+            function buttons() {
+                display.value = this.value;
+                console.log((this.id + " " + this.value));
+            };
+
+            */
 </script>
+
+

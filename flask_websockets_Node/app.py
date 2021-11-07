@@ -39,6 +39,7 @@ log.setLevel(logging.ERROR)
 
 Session(app)
 
+
 socketio = SocketIO(app, manage_session=False)
 
 
@@ -66,10 +67,11 @@ def wsreceiver():
     return
 
 
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
-
 
 
 
@@ -87,6 +89,7 @@ def chat():
             return render_template('chat.html', session = session)
         else:
             return redirect(url_for('index'))
+
 
 
 @app.route('/Test')
