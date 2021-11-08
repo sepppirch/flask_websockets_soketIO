@@ -3,7 +3,8 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 import requests
 import json
-
+import string
+import random
 
 class bcolors:
     HEADER = '\033[95m'
@@ -69,16 +70,18 @@ def wsreceiver():
 
 
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
 
-
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     if(request.method=='POST'):
-        username = request.form['username']
+
+        string.ascii_uppercase
+        username = request.form['username'] 
         room = request.form['room']
         #Store the data in session
         session['username'] = username
@@ -89,7 +92,6 @@ def chat():
             return render_template('chat.html', session = session)
         else:
             return redirect(url_for('index'))
-
 
 
 @app.route('/Test')
@@ -110,7 +112,6 @@ def test2():
     
     return render_template('scroll.html', data = idata, pairs = pairs, sliders = sliders)
 
-
 @socketio.on('join', namespace='/chat')
 def join(message):
     room = session.get('room')
@@ -125,6 +126,13 @@ def text(message):
     print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
     sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
+
+@socketio.on('ex', namespace='/chat')
+def ex(message):
+    room = session.get('room')
+    print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+    emit('ex', message, room=room)
+    #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
 @socketio.on('test', namespace='/chat')
 def test(message):
