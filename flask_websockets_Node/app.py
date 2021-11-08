@@ -80,7 +80,7 @@ def index():
 def chat():
     if(request.method=='POST'):
 
-        string.ascii_uppercase
+        
         username = request.form['username'] 
         room = request.form['room']
         #Store the data in session
@@ -89,6 +89,8 @@ def chat():
         return render_template('chat.html', session = session)
     else:
         if(session.get('username') is not None):
+            session['username'] = 'reee'
+            session['room'] = '2'
             return render_template('chat.html', session = session)
         else:
             return redirect(url_for('index'))
@@ -119,7 +121,6 @@ def join(message):
     print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
 
-
 @socketio.on('text', namespace='/chat')
 def text(message):
     room = session.get('room')
@@ -131,6 +132,8 @@ def text(message):
 def ex(message):
     room = session.get('room')
     print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+
+    
     emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
