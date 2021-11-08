@@ -131,7 +131,7 @@ def text(message):
 @socketio.on('ex', namespace='/chat')
 def ex(message):
     room = session.get('room')
-    print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+    #print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
 
     
     emit('ex', message, room=room)
