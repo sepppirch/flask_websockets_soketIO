@@ -20,7 +20,7 @@
                 
 
                 $(document).ready(function(){
-
+                    ///get input variables from JINJA
                     const obj = JSON.parse('{{data| tojson | safe}}');
 
                     for (let i = 0; i < obj.length; i++) {
