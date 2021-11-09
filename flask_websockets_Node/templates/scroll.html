@@ -22,12 +22,13 @@
                 $(document).ready(function(){
                     ///get input variables from JINJA
                     const obj = JSON.parse('{{data| tojson | safe}}');
-
+                    console.log('{{data| tojson | safe}}');
                     for (let i = 0; i < obj.length; i++) {
-                        console.log(obj[i].id) ;
+                        
+                        makeButton('#scrollbox1', obj[i].id, obj[i].msg);
                         } 
 
-
+                    ///set up and connect to socket
                     console.log('http://' + document.domain + ':' + location.port + '/chat');
                     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                     socket.on('connect', function() {
@@ -82,13 +83,8 @@
 
 
 
-
-    <div class="demo" id = scrollbox1 style = "width: 300px; height: 300px; overflow:auto">
-        {% for entry in data %}
     
-        <button id="button_{{entry.id}}" class="clickme">{{entry.msg}}</button>
-        var x = {{ 'value' }}
-        {% endfor %}
+    <div class="demo" id = scrollbox1 style = "width: 200px; height: 100px; overflow:auto">
     </div>
     <input type="text" id="text" size="30" placeholder="Enter your message here" />
     <button type="button" id="send" class="btn btn-success">ADD</button><br /><br />

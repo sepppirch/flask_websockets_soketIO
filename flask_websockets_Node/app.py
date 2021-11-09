@@ -114,11 +114,11 @@ def test1():
     
     return render_template('test.html', data = scb1Data, pairs = pairs, sliders = sliders)
 
-
 @app.route('/Test2')
 def test2():
     
     return render_template('scroll.html', data = scb1Data)
+
 
 @socketio.on('join', namespace='/chat')
 def join(message):
@@ -139,8 +139,10 @@ def ex(message):
     room = session.get('room')
     #print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
     if message['fn'] == 'mkB':
-        idata.update({message['msg']: message['id']})
-        print('add to server')
+
+        global scb1Data
+        scb1Data.append({'id': message['id'], 'msg': message['msg'] })
+        print('add to server' + message['msg'] + ' ' + message['id'] )
     
     emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
