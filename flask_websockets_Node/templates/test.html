@@ -15,7 +15,9 @@
 
 
 <ul>
-    {{data['usr'] }} 
+    {% for item in idata.values() %}
+    name of the user: {{ item.id }}
+    {% endfor %}
 
 </ul>
 

@@ -20,6 +20,14 @@
                 
 
                 $(document).ready(function(){
+
+                    const obj = JSON.parse('{{data| tojson | safe}}');
+
+                    for (let i = 0; i < obj.length; i++) {
+                        console.log(obj[i].id) ;
+                        } 
+
+
                     console.log('http://' + document.domain + ':' + location.port + '/chat');
                     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                     socket.on('connect', function() {
@@ -42,7 +50,7 @@
                             
                             
                         }
-                       // console.log("server returned: " + JSON.stringify(data));
+                       console.log("server returned: " + JSON.stringify(data));
                         
                     });
   
@@ -70,10 +78,17 @@
 </head>
   
 <body>
-    <div class="demo" id = scrollbox1 >
-        <h1>Heading</h1>
 
-        <p>paragraph</p>
+
+
+
+
+    <div class="demo" id = scrollbox1 style = "width: 300px; height: 300px; overflow:auto">
+        {% for entry in data %}
+    
+        <button id="button_{{entry.id}}" class="clickme">{{entry.msg}}</button>
+        var x = {{ 'value' }}
+        {% endfor %}
     </div>
     <input type="text" id="text" size="30" placeholder="Enter your message here" />
     <button type="button" id="send" class="btn btn-success">ADD</button><br /><br />
@@ -133,7 +148,7 @@
                     });
 
             $(parent).append(r);
-            $(parent).append('<BR>');
+
         }
 
 

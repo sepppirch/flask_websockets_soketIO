@@ -26,6 +26,11 @@ def sendUE4(adress, data):
     #print(returned_data)
 
 idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
+scb1Data = [
+  {"msg": "Tom", "id": '#button1'},
+  {"msg": "Mark", "id": '#button2'},
+  {"msg": "Pam", "id": '#button3'}
+]
 pairs = [("a", "1"), ("b", "2"), ("c", "3")]
 sliders = [("ddfd", "1"), ("bfsd", "2"), ("cdfsdf", "3")]
 
@@ -103,16 +108,17 @@ def test():
         return 'Logged in as ' + username + '<br>' + "<b><a href = '/logout'>click here to log out</a></b>"
     return "You are not logged in <br><a href = '/'>" + "click here to log in</a>"
 
+
 @app.route('/Test1')
 def test1():
     
-    return render_template('test.html', data = idata, pairs = pairs, sliders = sliders)
+    return render_template('test.html', data = scb1Data, pairs = pairs, sliders = sliders)
 
 
 @app.route('/Test2')
 def test2():
     
-    return render_template('scroll.html', data = idata, pairs = pairs, sliders = sliders)
+    return render_template('scroll.html', data = scb1Data)
 
 @socketio.on('join', namespace='/chat')
 def join(message):
@@ -132,7 +138,9 @@ def text(message):
 def ex(message):
     room = session.get('room')
     #print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
-
+    if message['fn'] == 'mkB':
+        idata.update({message['msg']: message['id']})
+        print('add to server')
     
     emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
