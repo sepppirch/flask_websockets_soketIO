@@ -17,6 +17,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 def sendUE4(adress, data):
     # The POST request to our node server
     res = requests.post('http://127.0.0.1:3000/in', json=data)
@@ -117,19 +118,18 @@ def test():
 @app.route('/Test1')
 def test1():
     
-    return render_template('test.html', data = scb1Data, pairs = pairs, sliders = sliders)
+    return render_template('custom-element.html')
 
 @app.route('/Test2')
 def test2():
     
     return render_template('scroll.html', data = scb1Data)
 
-
 @socketio.on('join', namespace='/chat')
 def join(message):
     room = session.get('room')
     join_room(room)
-    print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
+    #print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
 
 @socketio.on('text', namespace='/chat')
