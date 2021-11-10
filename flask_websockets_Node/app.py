@@ -3,8 +3,12 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 import requests
 import json
+from engineio.payload import Payload
+
 import string
 import random
+
+Payload.max_decode_packets = 50
 
 class bcolors:
     HEADER = '\033[95m'
@@ -50,6 +54,7 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
 Session(app)
+
 
 
 

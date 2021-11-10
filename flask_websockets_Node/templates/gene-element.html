@@ -6,9 +6,6 @@
 
 <style type="text/css">
 
-body {
-	margin: 0px;
-}
 
 </style>
 </head>
@@ -25,29 +22,46 @@ body {
 		font-weight: 700;
 		cursor: pointer;
 		box-sizing: border-box;
-		padding: 2px 2px;
+		padding: 5px 2px;
 		border-radius: 10px;
 		border-top: 2px solid ;
 		border-bottom: 0px solid ;
 		border-left: 0px solid;
 		border-right: 2px solid ;
-		border-color:  rgb(0, 0, 255);
+		border-color:  rgb(255, 255, 255);
 		color: rgb(255, 255, 255);
 		font-size: 18px;
 	}
 
 
 	</style>
-	<div id="container" style = "width: 200px; height: 30p0x;">
-		<button id="name" style = "width: 120px; height: 30p0x;"></button><button id="x" style = "width: 30px; height: 30p0x; background-color: #3d3d3d;">X</button>
+	<div id="container" style = "width: 120px; height: 30p0x; display: inline-block; padding: 2px 2px">
+
+		<button id="name" style = "width: 90px; height: 30p0x; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px"></button><button id="x" style = "width: 30px; height: 30p0x;border-top-left-radius: 0px; border-bottom-left-radius: 0px; background-color: #3d3d3d;">X</button>
  	</div>
 </template>
 
-<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button>
-<gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+
+
+
+
+
+
+
+<div style = 'width: 450px; height: 150px; overflow:auto;  background-color: #adadad; display: inline-block;'>
+<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button><gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
 <gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
 <gene-button id = '93' name = 'DLX' color = '#440000'></gene-button>
-
+<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button><gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
+<gene-button id = '93' name = 'DLX' color = '#440000'></gene-button>
+<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button><gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
+<gene-button id = '93' name = 'DLX' color = '#440000'></gene-button>
+<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button><gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
+<gene-button id = '93' name = 'DLX' color = '#440000'></gene-button>
+</div>
 <script>
 
 class InputGene extends HTMLElement {
