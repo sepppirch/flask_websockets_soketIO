@@ -3,7 +3,8 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 import requests
 import json
-
+import string
+import random
 
 class bcolors:
     HEADER = '\033[95m'
@@ -16,6 +17,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 def sendUE4(adress, data):
     # The POST request to our node server
     res = requests.post('http://127.0.0.1:3000/in', json=data)
@@ -25,7 +27,18 @@ def sendUE4(adress, data):
     #print(returned_data)
 
 idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
-
+scb1Data = [
+  {"msg": "TMP", "id": '#button1'},
+  {"msg": "MMU", "id": '#button2'},
+  {"msg": "PAM", "id": '#button3'},
+  {"msg": "CHR", "id": '#button3'},
+  {"msg": "OMG", "id": '#button3'},
+  {"msg": "WTF", "id": '#button3'},
+  {"msg": "HH2H", "id": '#button3'},
+  {"msg": "ASS1", "id": '#button3'}
+]
+pairs = [("a", "1"), ("b", "2"), ("c", "3")]
+sliders = [("ddfd", "1"), ("bfsd", "2"), ("cdfsdf", "3")]
 
 app = Flask(__name__)
 app.debug = False
@@ -37,6 +50,7 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
 Session(app)
+
 
 socketio = SocketIO(app, manage_session=False)
 
@@ -51,6 +65,7 @@ def wsreceiver():
         data = request.args
 
     global idata
+
     idata = data
     print(bcolors.WARNING + data['usr']  + "says: " + data['mes'] + bcolors.ENDC)
 
@@ -64,14 +79,20 @@ def wsreceiver():
     return
 
 
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
+
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     if(request.method=='POST'):
-        username = request.form['username']
+
+        
+        username = request.form['username'] 
         room = request.form['room']
         #Store the data in session
         session['username'] = username
@@ -79,9 +100,12 @@ def chat():
         return render_template('chat.html', session = session)
     else:
         if(session.get('username') is not None):
+            session['username'] = 'reee'
+            session['room'] = '2'
             return render_template('chat.html', session = session)
         else:
             return redirect(url_for('index'))
+
 
 @app.route('/Test')
 def test():
@@ -91,14 +115,22 @@ def test():
     return "You are not logged in <br><a href = '/'>" + "click here to log in</a>"
 
 
+@app.route('/Test1')
+def test1():
+    
+    return render_template('custom-element.html')
+
+@app.route('/Test2')
+def test2():
+    
+    return render_template('scroll.html', data = scb1Data)
 
 @socketio.on('join', namespace='/chat')
 def join(message):
     room = session.get('room')
     join_room(room)
-    print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
+    #print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
-
 
 @socketio.on('text', namespace='/chat')
 def text(message):
@@ -106,6 +138,19 @@ def text(message):
     print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
     sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
+
+@socketio.on('ex', namespace='/chat')
+def ex(message):
+    room = session.get('room')
+    #print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+    if message['fn'] == 'mkB':
+
+        global scb1Data
+        scb1Data.append({'id': message['id'], 'msg': message['msg'] })
+        print('add to server' + message['msg'] + ' ' + message['id'] )
+    
+    emit('ex', message, room=room)
+    #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
 @socketio.on('test', namespace='/chat')
 def test(message):
