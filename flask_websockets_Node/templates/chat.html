@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>REEEEEEEEEEE</title>
+    <title>CHAT</title>
     <!--Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
@@ -23,7 +23,7 @@
                 
                 socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                 socket.io.opts.transports = ['websocket'];
-                
+
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
@@ -108,9 +108,11 @@
       <input type="text" id="text" size="20" placeholder="Enter your message here" />
       <button type="button" id="send" class="btn btn-success">SEND</button>
     <br><br>
-    this slider also gets multicastet, but only to webclients
+    this slider also gets multicastet, but only to webclients 
       <div id="slider-1"></div>
       <center><button type="button" class="btn btn-danger" onclick=leave_room()>Leave this Chat</button></center>
+      <br>
+    NOTE: Only 5 clients can connect per browser, you can open a different browser to get 5 more
     </div>
     </div>
   </body>
