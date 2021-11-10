@@ -52,6 +52,7 @@ log.setLevel(logging.ERROR)
 Session(app)
 
 
+
 socketio = SocketIO(app, manage_session=False)
 
 
@@ -118,7 +119,7 @@ def test():
 @app.route('/Test1')
 def test1():
     
-    return render_template('custom-element.html')
+    return render_template('gene-element.html')
 
 @app.route('/Test2')
 def test2():

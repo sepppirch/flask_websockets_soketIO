@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<style type="text/css">
+
+body {
+	margin: 0px;
+}
+
+</style>
+</head>
+
+<body>
+
+<template id="gene-template" value='!!!'>
+
+	<style>
+
+	button {
+		width: 15%;
+		
+		font-weight: 700;
+		cursor: pointer;
+		box-sizing: border-box;
+		padding: 2px 2px;
+		border-radius: 10px;
+		border-top: 2px solid ;
+		border-bottom: 0px solid ;
+		border-left: 0px solid;
+		border-right: 2px solid ;
+		border-color:  rgb(0, 0, 255);
+		color: rgb(255, 255, 255);
+		font-size: 18px;
+	}
+
+
+	</style>
+	<div id="container" style = "width: 200px; height: 30p0x;">
+		<button id="name" style = "width: 120px; height: 30p0x;"></button><button id="x" style = "width: 30px; height: 30p0x; background-color: #3d3d3d;">X</button>
+ 	</div>
+</template>
+
+<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button>
+<gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
+<gene-button id = '93' name = 'DLX' color = '#440000'></gene-button>
+
+<script>
+
+class InputGene extends HTMLElement {
+
+
+	constructor() {
+		super();
+
+		let template = document.querySelector('#gene-template').content;
+      	this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+      	let name_button = this.shadowRoot.querySelector("#name");
+      	let x_button = this.shadowRoot.querySelector("#x");
+
+		name_button.textContent = this.getAttribute('name');
+		name_button.style.background=this.getAttribute('color');//("background",);
+
+      	name_button.addEventListener('click', () => {
+			console.log('select '+ this.getAttribute('id'));
+      	});
+
+      	x_button.addEventListener('click', () => {
+				  console.log('remove '+ this.getAttribute('id'));
+      	});
+	}
+
+
+
+}
+
+customElements.define('gene-button', InputGene);
+
+</script>
+
+</body>
+</html>
