@@ -4,7 +4,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
-	
+
 	<template id="gene-template" value='!!!'>
 
 		<style>
@@ -16,20 +16,20 @@
 			cursor: pointer;
 			box-sizing: border-box;
 			padding: 5px 2px;
-			border-radius: 10px;
+			border-radius: 20px;
 			border-top: 2px solid ;
 			border-bottom: 0px solid ;
 			border-left: 0px solid;
 			border-right: 2px solid ;
 			border-color:  rgb(255, 255, 255);
 			color: rgb(255, 255, 255);
-			font-size: 18px;
+			font-size: 20px;
 		}
 	
 	
 		</style>
 
-		<div id="container" style = "width: 120px; height: 30p0x; display: inline-block; padding: 2px 2px">
+		<div id="container" style = "width: 120px; height: 30p0x; display: inline-block; padding: 4px 2px">
 			<button id="name" style = "width: 90px; height: 30p0x; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px"></button><button id="x" style = "width: 30px; height: 30p0x;border-top-left-radius: 0px; border-bottom-left-radius: 0px; background-color: #3d3d3d;">X</button>
 		</div>
 	</template>
@@ -52,29 +52,29 @@
 
 
 
-	<div style = "width: 300px; height: 400px">
+<div style = "width: 300px; height: 400px;  ;">
 
 
     <h2 >CUSTOM-ELEMENTS</h2>
-	custom gene buttons made using a template
+	custom removable buttons made with HTML TEMPLATE
     <br><br>
 
 
-		<div id = 'geneBox' style = 'width: 450px; height: 150px; overflow:auto;  background-color: #adadad; display: inline-block;'>
+	<div id = 'geneBox' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
 			<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button>
 			<gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
 			<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
 
-		</div>
+	</div>
 
 </div>
+
+
+
+
 <script>
 
-
-
-
-
-class InputGene extends HTMLElement {
+class Gene_button extends HTMLElement {
 
 
 	constructor() {
@@ -103,11 +103,12 @@ class InputGene extends HTMLElement {
 
 }
 
-customElements.define('gene-button', InputGene);
+customElements.define('gene-button', Gene_button);
 
 </script>
 
 <script>
+	
 function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -124,7 +125,7 @@ $(document).ready(function() {
 	
 	for (let i = 0; i < 50; i++) {
 	
-		$("#geneBox").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 2) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
+		$("#geneBox").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
 	}
 
 //makeGeneButton('parent', 'id', 'text');
