@@ -1,0 +1,186 @@
+<html>
+  <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+
+<template id="d3-template" value='!!!'>
+  <div style ="margin: 20px">
+    <svg id="container" width="200" height="200">
+            <circle id="circle" cx="100" cy="100" r="25"  />
+    </svg>
+  </div>
+</template>
+
+
+<script>
+
+class D3DrawWidget extends HTMLElement {
+          constructor(){
+           
+          super();
+
+          let template = document.querySelector('#d3-template').content;
+          this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+          let circle = this.shadowRoot.querySelector("#circle");
+          circle.style.fill = this.getAttribute('color');
+
+          let svgCont = this.shadowRoot.querySelector("#container");
+
+
+              var width = 200
+              var  height = 200
+              var margin = 40
+
+              // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+              var radius = Math.min(width, height) / 2 - margin
+
+              // append the svg object to the div called 'my_dataviz'
+              var svg = d3.select(svgCont)
+                .append("svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                .append("g")
+                  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+              // Create dummy data
+              //var data = {a: 9, b: 20, c:30, d:8, e:12}
+              var data = this.getAttribute('data');
+
+              // set the color scale
+              var color = d3.scaleOrdinal()
+                .domain(data)
+                .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FF00BF", "#F0E08B", "#0DAE61", "#006D43", "#D53E4F", "#9E0142"])
+
+              // Compute the position of each group on the pie:
+              var pie = d3.pie()
+                .value(function(d) {return d.value; })
+              var data_ready = pie(d3.entries(data))
+
+              // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+              svg
+                .selectAll('whatever')
+                .data(data_ready)
+                .enter()
+                .append('path')
+                .attr('d', d3.arc()
+                  .innerRadius(99)         // This is the size of the donut hole
+                  .outerRadius(40)
+                )
+                .attr('fill', function(d){ return(color(d.data.key)) })
+                //.attr("stroke", "black")
+                //.style("stroke-width", "2px")
+                .style("opacity", 0.7)
+
+
+
+          circle.addEventListener('click', () => {
+          console.log('select '+ this.getAttribute('id'));
+
+
+
+
+           
+          });
+          
+          }
+
+
+}
+
+
+
+
+
+  class InputGene extends HTMLElement {
+      
+      
+    constructor() {
+      super();
+      let template = document.querySelector('#gene-template').content;
+        this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+        let name_button = this.shadowRoot.querySelector("#name");
+        let x_button = this.shadowRoot.querySelector("#x");
+  
+        name_button.textContent = this.getAttribute('name');
+        name_button.style.background=this.getAttribute('color');//("background",);
+  
+        name_button.addEventListener('click', () => {
+        console.log('select '+ this.getAttribute('id'));
+        });
+  
+        x_button.addEventListener('click', () => {
+            console.log('remove '+ this.getAttribute('id'));
+            this.remove();
+        });
+
+    }
+
+
+
+  
+
+        
+  
+
+  
+  }
+  
+  customElements.define('gene-button', InputGene);
+  customElements.define('d3draw-widget', D3DrawWidget);
+  
+  </script>
+
+
+
+
+
+
+
+<template id="d3-template" value='!!!'>
+  <svg id="container" width="50" height="50">
+    <circle id="circle" cx="25" cy="25" r="25" style fill="green" />
+  </svg>
+  </template>
+  
+  
+  
+  
+  
+  
+  
+  
+  <template id="gene-template" value='!!!'>
+  
+    <style>
+  
+    button {
+        width: 15%;
+        
+        font-weight: 700;
+        cursor: pointer;
+        box-sizing: border-box;
+        padding: 5px 2px;
+        border-radius: 10px;
+        border-top: 2px solid ;
+        border-bottom: 0px solid ;
+        border-left: 0px solid;
+        border-right: 2px solid ;
+        border-color:  rgb(255, 255, 255);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+    }
+  
+  
+    </style>
+  
+    <div id="container" style = "width: 120px; height: 30p0x; display: inline-block; padding: 2px 2px">
+        <button id="name" style = "width: 90px; height: 30p0x; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px">NAN</button><button id="x" style = "width: 30px; height: 30p0x;border-top-left-radius: 0px; border-bottom-left-radius: 0px; background-color: #3d3d3d;">X</button>
+    </div>
+  </template>
+
+
+
+
+
+
+</html>
