@@ -31,6 +31,8 @@
                     ///set up and connect to socket
                     console.log('http://' + document.domain + ':' + location.port + '/chat');
                     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+                    socket.io.opts.transports = ['websocket'];
+                    
                     socket.on('connect', function() {
                         socket.emit('join', {});
                     });

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
+
+	
+	<template id="gene-template" value='!!!'>
+
+		<style>
+	
+		button {
+			width: 15%;
+			
+			font-weight: 700;
+			cursor: pointer;
+			box-sizing: border-box;
+			padding: 5px 2px;
+			border-radius: 10px;
+			border-top: 2px solid ;
+			border-bottom: 0px solid ;
+			border-left: 0px solid;
+			border-right: 2px solid ;
+			border-color:  rgb(255, 255, 255);
+			color: rgb(255, 255, 255);
+			font-size: 18px;
+		}
+	
+	
+		</style>
+
+		<div id="container" style = "width: 120px; height: 30p0x; display: inline-block; padding: 2px 2px">
+			<button id="name" style = "width: 90px; height: 30p0x; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-right: 0px"></button><button id="x" style = "width: 30px; height: 30p0x;border-top-left-radius: 0px; border-bottom-left-radius: 0px; background-color: #3d3d3d;">X</button>
+		</div>
+	</template>
+
+
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<style type="text/css">
+
+
+</style>
+</head>
+
+<body>
+
+
+
+
+	<div style = "width: 300px; height: 400px">
+
+
+    <h2 >CUSTOM-ELEMENTS</h2>
+	custom gene buttons made using a template
+    <br><br>
+
+
+		<div id = 'geneBox' style = 'width: 450px; height: 150px; overflow:auto;  background-color: #adadad; display: inline-block;'>
+			<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button>
+			<gene-button id = '133' name = 'HLX' color = 'red'></gene-button>
+			<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>
+
+		</div>
+
+</div>
+<script>
+
+
+
+
+
+class InputGene extends HTMLElement {
+
+
+	constructor() {
+		super();
+
+		let template = document.querySelector('#gene-template').content;
+      	this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+      	let name_button = this.shadowRoot.querySelector("#name");
+      	let x_button = this.shadowRoot.querySelector("#x");
+
+		name_button.textContent = this.getAttribute('name');
+		name_button.style.background=this.getAttribute('color');//("background",);
+
+      	name_button.addEventListener('click', () => {
+			console.log('select '+ this.getAttribute('id'));
+      	});
+
+      	x_button.addEventListener('click', () => {
+				  console.log('remove '+ this.getAttribute('id'));
+				  this.remove();
+      	});
+	}
+
+
+
+}
+
+customElements.define('gene-button', InputGene);
+
+</script>
+
+<script>
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+			result += characters.charAt(Math.floor(Math.random() * 
+			charactersLength));
+		}
+    return result;
+}
+
+
+$(document).ready(function() {
+	
+	for (let i = 0; i < 50; i++) {
+	
+		$("#geneBox").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 2) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
+	}
+
+//makeGeneButton('parent', 'id', 'text');
+
+});
+
+</script>
+</body>
+</html>
