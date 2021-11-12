@@ -1,6 +1,8 @@
 
+<link rel="import" href={% include "components/myComponents.html" ignore missing %}>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -8,28 +10,14 @@
 
 
 
+<div id = 'geneBox' style = 'width: 450px; height: 150px; overflow:auto;  background-color: #adadad; display: inline-block;'>
 
-
-
-
-
-
-<ul>
-
-
-</ul>
-
-
-<div class="display">
-    <input type="number" class="text">
 </div>
 
-<div class="buttons"></div>
-    <ul>
-        {% for pair in pairs %}
-        <input type="button" value='{{ pair[1] }}' class="btn" id ='{{ pair[0] }}'>
-        {% endfor %}
-    </ul>
+
+
+<div id= "Piecharts"></div>
+ 
 </div>
 
 
@@ -82,3 +70,32 @@
 </script>
 
 
+<script>
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * 
+                charactersLength));
+            }
+        return result;
+    }
+    
+    
+    $(document).ready(function() {
+        
+        for (let i = 0; i < 50; i++) {
+        
+            $("#geneBox").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 2) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
+            
+        }
+        $("#Piecharts").append("<d3bar-widget data = '{a: 76, b: 20, c:70, d:8, e:9}'></d3bar-widget>");
+        $("#Piecharts").append("<d3draw-widget data = '{a: 9, b: 20, c:30, d:8, e:12 f:99 g:300}' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></d3draw-widget>");
+    //makeGeneButton('parent', 'id', 'text');
+    
+    });
+    
+
+    
+    </script>

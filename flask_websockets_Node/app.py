@@ -31,6 +31,7 @@ def sendUE4(adress, data):
     #print(returned_data)
 
 idata = {'mes': 'dfhdfhfh', 'usr': 'NaS7QA89nxLg9nKQAAAn', 'tag': 'flask'}
+
 scb1Data = [
   {"msg": "TMP", "id": '#button1'},
   {"msg": "MMU", "id": '#button2'},
@@ -86,8 +87,6 @@ def wsreceiver():
 
 
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -126,10 +125,16 @@ def test1():
     
     return render_template('gene-element.html')
 
+
 @app.route('/Test2')
 def test2():
     
     return render_template('scroll.html', data = scb1Data)
+
+@app.route('/Test3')
+def test3():
+    
+    return render_template('test.html')
 
 @socketio.on('join', namespace='/chat')
 def join(message):
