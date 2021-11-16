@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+<meta content="width=device-width, initial-scale=1, minimum-scale=1" name="viewport"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","errorBeacon":"bam-cell.nr-data.net","licenseKey":"c1a6d52f38","applicationID":"31165848","transactionName":"dFdfRUpeWglTQB8GDUNKWFRLHkUNWUU=","queueTime":0,"applicationTime":32,"agent":""}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam-cell.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"c1a6d52f38",applicationID:"31165848"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(10),c=t(11),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(12);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],7:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;p("lcp",[r])}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){if(t instanceof g&&!y){var e=Math.round(t.timeStamp),n={type:t.type};e<=l.now()?n.fid=l.now()-e:e>l.offset&&e<=Date.now()?(e-=l.offset,n.fid=l.now()-e):e=l.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=l.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d,p=t("handle"),l=t("loader"),v=t(9),m=t(3),g=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(h){}s=new PerformanceObserver(i);try{s.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}d=new PerformanceObserver(o);try{d.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var y=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(t){document.addEventListener(t,a,m(!1))})}v(c)}},{}],8:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],9:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],10:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],11:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],12:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){y[t]=m(t).concat(e)}function v(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:h,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(10),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!T++){var t=P.info=NREUM.info,e=g.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(O,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+P.offset],null,"api"),c("timing",["load",n]);var r=g.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=v+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===g.readyState&&o()}function o(){c("mark",["domContent",a()+P.offset],null,"api")}var a=t(5),c=t("handle"),f=t(10),u=t("ee"),s=t(8),d=t(6),p=t(2),l=t(3),v=p.getConfiguration("ssl")===!1?"http":"https",m=window,g=m.document,h="addEventListener",y="attachEvent",w=m.XMLHttpRequest,b=w&&w.prototype,E=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:w,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,O={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1212.min.js"},M=w&&b&&b[h]&&!/CriOS/.test(navigator.userAgent),P=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:M,userAgent:s,disabled:E};if(!E){t(1),t(7),g[h]?(g[h]("DOMContentLoaded",o,l(!1)),m[h]("load",r,l(!1))):(g[y]("onreadystatechange",i),m[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var T=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(11),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+<meta content="+1" property="og:title">
+<meta content="Know Your Meme" property="og:site_name">
+<meta content="https://i.kym-cdn.com/entries/icons/facebook/000/002/431/man-talking-loud.jpg" property="og:image"/>
+<meta content="600" property="og:image:width"/>
+<meta content="315" property="og:image:height"/>
+<meta content="article" property="og:type"/>
+<meta content="104675392961482" property="fb:app_id"/>
+<meta content="88519108736" property="fb:pages"/>
+<meta content="https://www.facebook.com/knowyourmeme" property="article:publisher"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@knowyourmeme" name="twitter:site"/>
+<meta content="@knowyourmeme" name="twitter:creator"/>
+<meta content="+1" name="twitter:title"/>
+<meta content="+1 (read as &quot;plus one&quot;) is a numeric sign primarily used by internet forum members to express their agreement with a preceding comment. It has also seen significant use among forum members of the internet meme database Know Your Meme to express one's opinion regarding an idea proposed by another member for consideration by the community. Despite the connotation of the positive symbol, it does not necessarily convey assent to the idea under consideration, but rather the call for a specific action suggested by the user in response to the proposed idea." name="twitter:description"/>
+<meta content="https://i.kym-cdn.com/entries/icons/facebook/000/002/431/man-talking-loud.jpg" name="twitter:image"/>
+<meta content="+1 (read as &quot;plus one&quot;) is a numeric sign primarily used by internet forum members to express their agreement with a preceding comment. It has also seen significant use among forum members of the internet meme database Know Your Meme to express one's opinion regarding an idea proposed by another member for consideration by the community. Despite the connotation of the positive symbol, it does not necessarily convey assent to the idea under consideration, but rather the call for a specific action suggested by the user in response to the proposed idea." name="description"/>
+<meta content="https://knowyourmeme.com/memes/1" property="og:url"/>
+<meta content="+1 (read as &quot;plus one&quot;) is a numeric sign primarily used by internet forum members to express their agreement with a preceding comment. It has also seen significant use among forum members of the internet meme database Know Your Meme to express one's opinion regarding an idea proposed by another member for consideration by the community. Despite the connotation of the positive symbol, it does not necessarily convey assent to the idea under consideration, but rather the call for a specific action suggested by the user in response to the proposed idea." property="og:description"/>
+<meta content="unsafe-url" name="referrer"/>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/a9cf051cf6.js"></script>
+<link href="/assets/favicons/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57"/><link href="/assets/favicons/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60"/><link href="/assets/favicons/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"/><link href="/assets/favicons/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"/><link href="/assets/favicons/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"/><link href="/assets/favicons/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"/><link href="/assets/favicons/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144"/><link href="/assets/favicons/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"/><link href="/assets/favicons/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180"/><link href="/assets/favicons/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png"/><link href="/assets/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><link href="/assets/favicons/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/><link href="/assets/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<title>+1 | Know Your Meme</title>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-15176568-9', 'auto', { 'useAmpClientId': true }); ga('set', 'dimension1', "entries-show"); ga('set', 'dimension2', "false"); ga('set', 'dimension3', "false"); ga('set', 'dimension4', "false"); ga('set', 'dimension5', "false"); ga('set', 'dimension6', "20100412"); ga('send', 'pageview'); </script>
+<link href="/newsfeed.rss" rel="alternate" title="Know Your Meme News Feed" type="application/rss+xml"/>
+<link href="/news.rss" rel="alternate" title="Know Your Meme News" type="application/rss+xml"/>
+<link href="/editorials.rss" rel="alternate" title="Know Your Meme Blog" type="application/rss+xml"/>
+<link href="/memes.rss" rel="alternate" title="Know Your Meme Latest Featured Entries" type="application/rss+xml"/>
+<link href="/memes/submissions.rss" rel="alternate" title="Know Your Meme Latest Submitted Entries" type="application/rss+xml"/>
+<link href="/photos.rss" rel="alternate" title="Know Your Meme Latest Images" type="application/rss+xml"/>
+<link href="https://knowyourmeme.com/memes/1" rel="canonical"/>
+<script type="text/javascript">
+    (function() {
+      var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
+
+      _sf_async_config.uid = 6425;
+      
+        _sf_async_config.domain = 'knowyourmeme.com';
+      _sf_async_config.useCanonical = true;
+      _sf_async_config.useCanonicalDomain = true;
+
+      _sf_async_config.flickerControl = false;
+      _sf_async_config.sections = 'Entry Pages';
+      _sf_async_config.authors = '';
+
+      var _cbq = window._cbq = (window._cbq || []);
+      _cbq.push(['_acct', 'anon']);
+
+      function loadChartbeat() {
+        var e = document.createElement('script');
+        var n = document.getElementsByTagName('script')[0];
+        e.type = 'text/javascript';
+        e.async = true;
+        e.src = '//static.chartbeat.com/js/chartbeat.js';
+        n.parentNode.insertBefore(e, n);
+      }
+
+      loadChartbeat();
+    })();
+  </script>
+<script async="" src="https://s.ntv.io/serve/load.js" type="text/javascript"></script>
+<script src="https://www.zergnet.com/zerg-inf-multi.js" type="text/javascript"></script>
+<script> (function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:1004046,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv='); </script>
+<meta content="3fa925d06e2f3c4af076ced1e6e951cf" name="p:domain_verify"/>
+<script async="true" type="text/javascript"> var elem = document.createElement('script'); elem.src = 'https://quantcast.mgr.consensu.org/cmp.js'; elem.async = true; elem.type = 'text/javascript'; var scpt = document.getElementsByTagName('script')[0]; scpt.parentNode.insertBefore(elem, scpt); (function() { var gdprAppliesGlobally = true; function addFrame() { if (!window.frames['__cmpLocator']) { if (document.body) { var body = document.body; var iframe = document.createElement('iframe'); iframe.style = 'display:none'; iframe.name = '__cmpLocator'; body.appendChild(iframe); } else { setTimeout(addFrame, 5); } } } addFrame(); function cmpMsgHandler(event) { var msgIsString = typeof event.data === 'string'; var json; if (msgIsString) { json = event.data.indexOf('__cmpCall') != -1 ? JSON.parse(event.data) : {}; } else { json = event.data; } if (json.__cmpCall) { var i = json.__cmpCall; window.__cmp(i.command, i.parameter, function(retValue, success) { var returnMsg = { '__cmpReturn': { 'returnValue': retValue, 'success': success, 'callId': i.callId } }; event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*'); }); } } window.__cmp = function(c) { var b = arguments; if (!b.length) { return __cmp.a; } else if (b[0] === 'ping') { b[2]({ 'gdprAppliesGlobally': gdprAppliesGlobally, 'cmpLoaded': false }, true); } else if (c == '__cmp') { return false; } else { if (typeof __cmp.a === 'undefined') { __cmp.a = []; } __cmp.a.push([].slice.apply(b)); } }; window.__cmp.gdprAppliesGlobally = gdprAppliesGlobally; window.__cmp.msgHandler = cmpMsgHandler; if (window.addEventListener) { window.addEventListener('message', cmpMsgHandler, false); } else { window.attachEvent('onmessage', cmpMsgHandler); } })(); window.__cmp('init', { 'Language': 'en', 'Initial Screen Reject Button Text': 'I do not accept', 'Initial Screen Accept Button Text': 'I accept', 'Purpose Screen Body Text': 'You can set your consent preferences and determine how you want your data to be used based on the purposes below. You may set your preferences for us independently from those of third-party partners. Each purpose has a description so that you know how we and partners use your data.', 'Vendor Screen Body Text': 'You can set consent preferences for each individual third-party company below. Expand each company list item to see what purposes they use data for to help make your choices. In some cases, companies may disclose that they use your data without asking for your consent, based on their legitimate interests. You can click on their privacy policies for more information and to opt out.', 'Vendor Screen Accept All Button Text': 'Accept all', 'Vendor Screen Reject All Button Text': 'Reject all', 'Initial Screen Body Text': 'We and our partners use technology such as cookies on our site to personalise content and ads, provide social media features, and analyse our traffic. Click below to consent to the use of this technology across the web. You can change your mind and change your consent choices at anytime by returning to this site.', 'Initial Screen Body Text Option': 1, 'Publisher Name': 'Know Your Meme', 'Publisher Logo': 'https://s.kym-cdn.com/assets/kym-logo-large.png', 'Publisher Purpose IDs': [1, 2, 3, 5], 'Publisher Purpose Legitimate Interest IDs': [1, 2, 5], 'Display UI': 'inEU', 'No Option': false, 'Display Persistent Consent Link': false }); </script>
+<script type="text/javascript">
+window.suggestmeyes_loaded = true;
+</script>
+</meta></meta></head>
+<link href="https://s.kym-cdn.com/assets/desktop-e1c89269ffed953ca0fdc6d5ae373378.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="https://s.kym-cdn.com/assets/desktop-5f731714f3870e4ce6d6b5731dab3d29.js" type="text/javascript"></script>
+<body class="cols guest entries entries_show production" data-ad-page-type="Entry Pages" data-controller-action="entries-show" data-demonetized="false" data-layout="desktop" data-nsfw="false">
+<div data-exclude="ugc" data-script="https://media.complex.com/common/cmnUNT.js" data-silo="s_pop" data-site="knowyourmeme" data-tier="to,t2,internal" data-zone="entry" id="complex-data"></div>
+<div data-headerscript="https://ads.blogherads.com/sk/12/122/1226456/26277/header.js" data-script="https://ads.blogherads.com/static/blogherads.js" id="shemedia-data"></div>
+<div data-sticky="kym_entry_sticky" id="dfp-data"></div>
+<div id="container">
+<div class="longcat wrap redesign">
+<div class="rel" id="omgkym">
+<section id="leaderboard"> <ul> <li data-index="1"> <article class="rel c entry" id="newsfeed_lb_14116"> <a class="photo left" href="/memes/quote-retweets-qrts" target="_self"><img alt="Twitter Quote Retweets (QRTs) Have Had A Big Year For Getting Memes Made About Them" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/116/c3a.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Twitter Quote Retweets (QRTs) Have Had A Big Year For Getting Memes Made About Them" width="198"/> <div class="info abs"> <div class="c"> Twitter Quote Retweets (QRTs) Have Had A Big Year For Getting Memes Made About Them </div> </div> </a></article> </li> <li data-index="2"> <article class="rel c entry" id="newsfeed_lb_14115"> <a class="photo left" href="/memes/whack-his-pp" target="_self"><img alt="'Bailiff, Whack His PP' Combines 1971 Cheech &amp; Chong Bit With Judge Judy For Surprising Success" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/115/363.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'Bailiff, Whack His PP' Combines 1971 Cheech &amp; Chong Bit With Judge Judy For Surprising Success" width="198"/> <div class="info abs"> <div class="c"> 'Bailiff, Whack His PP' Combines 1971 Cheech &amp; Chong Bit With Judge Judy For Surprising Success </div> </div> </a></article> </li> <li data-index="3"> <article class="rel c entry" id="newsfeed_lb_14114"> <a class="photo left" href="/memes/events/shadman-arrested-for-assault" target="_self"><img alt="Shadman's Arrest For Assault With A Deadly Weapon Is Met With Cheers From Everyone With A Ruined Childhood" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/114/8675309.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Shadman's Arrest For Assault With A Deadly Weapon Is Met With Cheers From Everyone With A Ruined Childhood" width="198"/> <div class="info abs"> <div class="c"> Shadman's Arrest For Assault With A Deadly Weapon Is Met With Cheers From Everyone With A Ruined Childhood </div> </div> </a></article> </li> <li data-index="4"> <article class="rel c entry" id="newsfeed_lb_14113"> <a class="photo left" href="/memes/lady-gaga-i-dont-believe-in-the-glorification-of-murder" target="_self"><img alt='Lady Gaga Quote About "The Empowerment Of Women" Has People Celebrating Their Problematic Favs' data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/113/lady-gaga-house-of-gucci-2.jpeg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title='Lady Gaga Quote About "The Empowerment Of Women" Has People Celebrating Their Problematic Favs' width="198"/> <div class="info abs"> <div class="c"> Lady Gaga Quote About "The Empowerment Of Women" Has People Celebrating Their Problematic Favs </div> </div> </a></article> </li> <li data-index="5"> <article class="rel c entry" id="newsfeed_lb_14112"> <a class="photo left" href="/memes/original-%E2%9E%A1-fanart" target="_self"><img alt="'Original ➡ Fan Art' Format Has Twitter Artist Reposting Their Greatest Works For Some Extra Love" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/112/a72.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'Original ➡ Fan Art' Format Has Twitter Artist Reposting Their Greatest Works For Some Extra Love" width="198"/> <div class="info abs"> <div class="c"> 'Original ➡ Fan Art' Format Has Twitter Artist Reposting Their Greatest Works For Some Extra Love </div> </div> </a></article> </li> <li data-index="6"> <article class="rel c entry" id="newsfeed_lb_14111"> <a class="photo left" href="/memes/x-when-you-open-their-ribcage-violent-anti-memes" target="_self"><img alt="There Are A Lot Of Memes About Ripping Open People's Ribcages Going Around Right Now" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/111/822.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="There Are A Lot Of Memes About Ripping Open People's Ribcages Going Around Right Now" width="198"/> <div class="info abs"> <div class="c"> There Are A Lot Of Memes About Ripping Open People's Ribcages Going Around Right Now </div> </div> </a></article> </li> <li data-index="7"> <article class="rel c entry" id="newsfeed_lb_14110"> <a class="photo left" href="/memes/netflix-x-is-y" target="_self"><img alt="Netflix's Newest Adaptions Are Blowing Up Philosophy Facebook" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/110/dcd.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Netflix's Newest Adaptions Are Blowing Up Philosophy Facebook" width="198"/> <div class="info abs"> <div class="c"> Netflix's Newest Adaptions Are Blowing Up Philosophy Facebook </div> </div> </a></article> </li> <li data-index="8"> <article class="rel c entry" id="newsfeed_lb_14109"> <a class="photo left" href="/memes/sites/spacehey" target="_self"><img alt="Spacehey Is The Modern MySpace Clone, And Looks Like An Attractive Alternative Social Media Hub" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/109/SpaceHey.jpeg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Spacehey Is The Modern MySpace Clone, And Looks Like An Attractive Alternative Social Media Hub" width="198"/> <div class="info abs"> <div class="c"> Spacehey Is The Modern MySpace Clone, And Looks Like An Attractive Alternative Social Media Hub </div> </div> </a></article> </li> <li data-index="9"> <article class="rel c entry" id="newsfeed_lb_14108"> <a class="photo left" href="/memes/jeff-bezos-steep-cliff-fatal-drop-warning" target="_self"><img alt="Jeff Bezos Threatens To Push Leonardo DiCaprio Off A Cliff, Becomes Instant Meme" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/108/434.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Jeff Bezos Threatens To Push Leonardo DiCaprio Off A Cliff, Becomes Instant Meme" width="198"/> <div class="info abs"> <div class="c"> Jeff Bezos Threatens To Push Leonardo DiCaprio Off A Cliff, Becomes Instant Meme </div> </div> </a></article> </li> <li data-index="10"> <article class="rel c entry" id="newsfeed_lb_14107"> <a class="photo left" href="/memes/of-course-you-have-blue-hair-and-pronouns" target="_self"><img alt="Of Course I Have Pronouns, Did You Not See My Blue Hair?" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/107/cac.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Of Course I Have Pronouns, Did You Not See My Blue Hair?" width="198"/> <div class="info abs"> <div class="c"> Of Course I Have Pronouns, Did You Not See My Blue Hair? </div> </div> </a></article> </li> <li data-index="11"> <article class="rel c entry" id="newsfeed_lb_14106"> <a class="photo left" href="/memes/john-cena-speaking-chinese-and-eating-ice-cream-bing-chilling" target="_self"><img alt="YouTubers Take Cracks At 'Translating' John Cena's Ice Cream Promotion Of 'Fast &amp; Furious 9'" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/106/004ergTRgx07MxKZhGEw01041200l6Sn0E010.mp4_snapshot_00.02.418.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Months Later, The Most Memorable Part Of The Cena Eating Ice Cream Video Is 'Bing Chilling'" width="198"/> <div class="info abs"> <div class="c"> Months Later, The Most Memorable Part Of The Cena Eating Ice Cream Video Is 'Bing Chilling' </div> </div> </a></article> </li> <li data-index="12"> <article class="rel c entry" id="newsfeed_lb_14105"> <a class="photo left" href="/memes/bing-bong" target="_self"><img alt="Viral Video Makes 'Bing Bong' The Rallying Cry Of Knicks Fans This Year" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/105/Screen_Shot_2021-11-11_at_2.55.30_PM.png" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Viral Video Makes 'Bing Bong' The Rallying Cry Of Knicks Fans This Year" width="198"/> <div class="info abs"> <div class="c"> Viral Video Makes 'Bing Bong' The Rallying Cry Of Knicks Fans This Year </div> </div> </a></article> </li> <li data-index="13"> <article class="rel c entry" id="newsfeed_lb_14104"> <a class="photo left" href="/memes/sites/neuralblender" target="_self"><img alt="NeuralBlender Uses That Neural Net Magic To Generate Images Based On Your Crazy Prompts" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/104/cover6.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="NeuralBlender Uses That Neural Net Magic To Generate Images Based On Your Crazy Prompts" width="198"/> <div class="info abs"> <div class="c"> NeuralBlender Uses That Neural Net Magic To Generate Images Based On Your Crazy Prompts </div> </div> </a></article> </li> <li data-index="14"> <article class="rel c entry" id="newsfeed_lb_14103"> <a class="photo left" href="/memes/use-the-voice" target="_self"><img alt="'Use The Voice' Inspires Twitter To Remember The Best Voices From Pop Culture" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/103/Screen_Shot_2021-11-11_at_1.30.39_PM.png" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'Use The Voice' Inspires Twitter To Remember The Best Voices From Pop Culture" width="198"/> <div class="info abs"> <div class="c"> 'Use The Voice' Inspires Twitter To Remember The Best Voices From Pop Culture </div> </div> </a></article> </li> <li data-index="15"> <article class="rel c entry" id="newsfeed_lb_14102"> <a class="photo left" href="/memes/events/youtubes-removal-of-the-dislike-button" target="_self"><img alt="YouTube Has Removed The Dislike Button, Sparking Memes Across Twitter And Reddit" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/102/7a2.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="YouTube Has Removed The Dislike Button, Sparking Memes Across Twitter And Reddit" width="198"/> <div class="info abs"> <div class="c"> YouTube Has Removed The Dislike Button, Sparking Memes Across Twitter And Reddit </div> </div> </a></article> </li> <li data-index="16"> <article class="rel c entry" id="newsfeed_lb_14101"> <a class="photo left" href="/memes/skinny-girl-walking-sideways" target="_self"><img alt="The 'Skinny Sidestep' Is Breaking TikTok With How Ridiculous This Flex Is" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/101/skinnysidestepheader.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="The 'Skinny Sidestep' Is Breaking TikTok With How Ridiculous This Flex Is" width="198"/> <div class="info abs"> <div class="c"> The 'Skinny Sidestep' Is Breaking TikTok With How Ridiculous This Flex Is </div> </div> </a></article> </li> <li data-index="17"> <article class="rel c entry" id="newsfeed_lb_14100"> <a class="photo left" href="/memes/subcultures/grand-theft-auto-the-trilogy-the-definitive-edition" target="_self"><img alt="'GTA: The Trilogy - The Definitive Edition' Is Out, And So Are Threads Collecting Some Extra Janky Models From It" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/100/6b2.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'GTA: The Trilogy - The Definitive Edition' Is Out, And So Are Threads Collecting Some Extra Janky Models From It" width="198"/> <div class="info abs"> <div class="c"> 'GTA: The Trilogy - The Definitive Edition' Is Out, And So Are Threads Collecting Some Extra Janky Models From It </div> </div> </a></article> </li> <li data-index="18"> <article class="rel c entry" id="newsfeed_lb_14099"> <a class="photo left" href="/memes/kyle-rittenhouse-crying" target="_self"><img alt="Kyle Rittenhouse Is The Becoming The Newest Crying Reaction Image" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/099/4c1.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Kyle Rittenhouse Is The Becoming The Newest Crying Reaction Image" width="198"/> <div class="info abs"> <div class="c"> Kyle Rittenhouse Is The Becoming The Newest Crying Reaction Image </div> </div> </a></article> </li> <li data-index="19"> <article class="rel c entry" id="newsfeed_lb_14098"> <a class="photo left" href="/memes/mozart-if-he-was-a-good-pianist-the-beatles-if-they-were-a-good-band" target="_self"><img alt="Mozart Is Never Coming Back From 'Mozart If He Was A Good Pianist' Memes" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/098/7c1.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="We Saw Mozart Being A Good Pianist, Now It's The Beatles' Turn To Be A Good Band" width="198"/> <div class="info abs"> <div class="c"> We Saw Mozart Being A Good Pianist, Now It's The Beatles' Turn To Be A Good Band </div> </div> </a></article> </li> <li data-index="20"> <article class="rel c entry" id="newsfeed_lb_14097"> <a class="photo left" href="/memes/events/cassius-march-taunting-call" target="_self"><img alt="Cassius Marsh Getting Called For Taunting Is The Newest Big NFL Meme Moment" data-src="https://i.kym-cdn.com/featured_items/icons/wide/000/014/097/756.jpg" height="112" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Cassius Marsh Getting Called For Taunting Is The Newest Big NFL Meme Moment" width="198"/> <div class="info abs"> <div class="c"> Cassius Marsh Getting Called For Taunting Is The Newest Big NFL Meme Moment </div> </div> </a></article> </li> </ul> <div class="btn-carrousel-container"> <div class="left-cover"> <svg class="arrow-left" height="32" version="1.1" viewbox="0 0 38 64" width="18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>btn_scrollLeft</title> <defs> <path d="M32.8092551,57.4418863 L33.6931641,56.5580994 C34.2789782,55.9724074 34.2789782,55.0225806 33.6931641,54.4367665 L9.25657688,30.0000572 L33.6931641,5.5633479 C34.2789782,4.97765594 34.2789782,4.0278291 33.6931641,3.44201507 L32.8092551,2.55822812 C32.2235631,1.97253615 31.2738584,1.97253615 30.6880443,2.55822812 L4.30675958,28.9393908 C3.72094555,29.5252048 3.72094555,30.4749096 4.30675958,31.0608457 L30.6880443,57.4420084 C31.2738584,58.0277004 32.2235631,58.0277004 32.8092551,57.4418863 Z" id="path-1"></path> <filter filterunits="objectBoundingBox" height="125.1%" id="filter-2" width="146.3%" x="-23.1%" y="-9.0%"> <feoffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feoffset> <fegaussianblur in="shadowOffsetOuter1" result="shadowBlurOuter1" stddeviation="2"></fegaussianblur> <fecolormatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.0745098039 0 0 0 0 0.0745098039 0 0 0 0 0.243137255 0 0 0 0.12 0"></fecolormatrix> </filter> </defs> <g fill="none" fill-rule="evenodd" id="NAV-3" stroke="none" stroke-width="1"> <g fill-rule="nonzero" id="btn_scrollLeft"> <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use> <use fill="#FFFFFF" xlink:href="#path-1"></use> </g> </g> </svg> </div> <div class="right-cover"> <svg class="arrow-right" height="32" version="1.1" viewbox="0 0 38 64" width="18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>btn_scrollRight</title> <defs> <path d="M7.44448031,57.3230187 L33.8257651,30.941856 C34.4115791,30.356042 34.4115791,29.4063372 33.8257651,28.8204011 L7.44448031,2.43936052 C6.85866628,1.85354649 5.90896151,1.85354649 5.32326955,2.43936052 L4.43936052,3.32314748 C3.85354649,3.90883944 3.85354649,4.85866628 4.43936052,5.44448031 L28.8759478,29.8811896 L4.43936052,54.3178989 C3.85354649,54.9035909 3.85354649,55.8534177 4.43936052,56.4392318 L5.32326955,57.3230187 C5.90896151,57.9087107 6.85866628,57.9087107 7.44448031,57.3230187 Z" id="path-2"></path> <filter filterunits="objectBoundingBox" height="125.1%" id="filter-2" width="146.3%" x="-23.1%" y="-9.0%"> <feoffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feoffset> <fegaussianblur in="shadowOffsetOuter1" result="shadowBlurOuter1" stddeviation="2"></fegaussianblur> <fecolormatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.0745098039 0 0 0 0 0.0745098039 0 0 0 0 0.243137255 0 0 0 0.12 0"></fecolormatrix> </filter> </defs> <g fill="none" fill-rule="evenodd" id="NAV-3" stroke="none" stroke-width="1"> <g fill-rule="nonzero" id="btn_scrollRight"> <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-2"></use> <use fill="#FFFFFF" xlink:href="#path-2"></use> </g> </g> </svg> </div> </div> </section>
+<script type="text/javascript"> window.fbAsyncInit = function() { FB.init({ appId: '104675392961482', status: false, xfbml: true, version: 'v3.3' }); $(document).trigger('fb-loaded'); }; (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://connect.facebook.net/en_US/sdk.js'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk')); </script> <script type="text/javascript"> (function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })(); </script> <script async="" data-pin-build="parsePins" defer="" src="https://assets.pinterest.com/js/pinit.js" type="text/javascript"></script> <script> window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = 'https://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, 'script', 'twitter-wjs')); </script> <div class="contentFloadmenu"> <header id="mast"> <button class="nav-toggler" data-open-navbar=""> <i class="fal fa-bars bars-icon-menu"></i> <i class="fal fa-times times-icon-menu"></i> </button> <div id="searchbar-menu"> <div class="title-search"> <form action="/search" id="search_form" method="get"> <div class="input-container"> <label class="search-for-title" for="search_box">SEARCH FOR:</label> <input autocapitalize="off" autocorrect="off" class="search-box" id="search_box" name="q" placeholder="" type="text" value=""/> </div> <div class="icon-search"> <i class="fal fa-search"></i> </div> </form> </div> <div class="content-search"></div> </div> <div class="logo-nav-container"> <div id="logo"> <a href="/" title="Know Your Meme"> <img alt="Kym-logo-small" class="logo-image" src="https://s.kym-cdn.com/assets/kym-logo-small-3829d72942bea9a286c085772f9a64a7.png"/> </a> </div> <div class="navigation-container" id="nav-container-id"> <ul class="nav-links" id="navigation-links"> <li class="top-level memes" style="position: initial;"> <div class="menu-row"> <a class="menu-title" href="/memes/">MEMES</a> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-memes submenu-all"> <div class="submenu-content"> <div class="sections-container"> <span class="memes-title">ALL MEMES:</span> <ul> <li class="section-li"> <a href="/memes/">Latest</a> </li> <li class="section-li"> <a href="/memes/trending">Trending</a> </li> <li class="section-li"> <a href="/memes/popular">Popular</a> </li> <li class="section-li"> <a href="/memes/submissions">Submissions</a> </li> <li class="section-li"> <a href="/memes/all">All</a> </li> <li class="section-li divider-mini"></li> <li class="section-li submit-meme-container"> <a href="/memes/new?guidelines=1">Submit A Meme</a> </li> </ul> </div> <div class="actions-container"> <span class="memes-title">MEME CATEGORIES:</span> <ul> <li class="section-li"> <a href="/categories/event">Events</a> </li> <li class="section-li"> <a href="/categories/person">People</a> </li> <li class="section-li"> <a href="/categories/meme">Memes</a> </li> <li class="section-li"> <a href="/categories/subculture">Subcultures</a> </li> <li class="section-li"> <a href="/categories/culture">Cultures</a> </li> <li class="section-li"> <a href="/categories/site">Sites</a> </li> <li class="section-li"> <a href="/categories">All Categories</a> </li> </ul> </div> <div class="divider-vertical-alt-2"></div> <div class="latest-memes-container latest-all-container"> <span class="memes-title">LATEST MEMES:</span> <div class="latest-memes latest-items"> <article class="rel c entry"> <a href="/memes/louisoix-leveilleurs-final-moments?class=photo+left&amp;target=_self"><img alt="_5-32_screenshot" height="77" src="https://i.kym-cdn.com/entries/icons/medium/000/038/671/_5-32_screenshot.png" width="136"/> <div class="descrip-item"> Louisoix Leveilleur's Final Moments </div> </a></article> <article class="rel c entry"> <a href="/memes/lets-go-brandon?class=photo+left&amp;target=_self"><img alt="Tco_(32)" height="77" src="https://i.kym-cdn.com/entries/icons/medium/000/038/492/tco_(32).jpg" width="136"/> <div class="descrip-item"> Let's Go Brandon </div> </a></article> <article class="rel c entry"> <a href="/memes/god-fucking-damnit-kris-where-the-fuck-are-we?class=photo+left&amp;target=_self"><img alt="Falyz8duyayoapq" height="77" src="https://i.kym-cdn.com/entries/icons/medium/000/038/414/FALYz8DUYAYoaPq.png" width="136"/> <div class="descrip-item"> "GOD FUCKING damnit KRIS where the FUCK are we!?" </div> </a></article> <article class="rel c entry"> <a href="/memes/ankha-zone?class=photo+left&amp;target=_self"><img alt="Images-2021-09-11t082939.336" height="77" src="https://i.kym-cdn.com/entries/icons/medium/000/038/299/images-2021-09-11T082939.336.jpeg" width="136"/> <div class="descrip-item"> Ankha Zone </div> </a></article> </div> </div> </div> </div> </li> <li class="top-level images" style="position: initial;"> <div class="menu-row"> <a class="menu-title" href="/photos/">IMAGES</a> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-images submenu-all"> <div class="submenu-content"> <div class="sections-container"> <span class="images-title">ALL IMAGES:</span> <ul> <li class="section-li"> <a href="/photos">Latest</a> </li> <li class="section-li"> <a href="/photos/trending">Trending</a> </li> <li class="section-li"> <a href="/photos/templates">Templates</a> </li> <li class="section-li divider-mini"></li> <li class="section-li"> <a href="/photos/new">Upload an Image</a> </li> </ul> </div> <div class="divider-vertical-alt"></div> <div class="latest-images-container latest-all-container"> <span class="images-title">LATEST IMAGES:</span> <div class="latest-images latest-items"> <article class="rel c entry"> <a class="photo left" href="/photos/2248223-balkan-memes" target="_self"><img alt="24f" height="77" src="https://i.kym-cdn.com/photos/images/list/002/248/223/24f.jpg" width="136"/> <div class="descrip-item"> R*MANIA DAILY LIFE | /r/2balkan4you/top/ </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/photos/2248222-rfreefolk" target="_self"><img alt="D54" height="77" src="https://i.kym-cdn.com/photos/images/list/002/248/222/d54.jpg" width="136"/> <div class="descrip-item"> Come, dance with me then! | /r/FreeFolk </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/photos/2248221-greentext-stories" target="_self"><img alt="1da" height="77" src="https://i.kym-cdn.com/photos/images/list/002/248/221/1da.png" width="136"/> <div class="descrip-item"> Anon uses reddit. | /r/Greentext </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/photos/2248220-beetlejuicing" target="_self"><img alt="019" height="77" src="https://i.kym-cdn.com/photos/images/list/002/248/220/019.png" width="136"/> <div class="descrip-item"> Time Traveler spotted | /r/beetlejuicing/ </div> </a></article> </div> </div> </div> </div> </li> <li class="top-level videos" style="position: initial;"> <div class="menu-row"> <a class="menu-title" href="/videos/">VIDEOS</a> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-videos submenu-all"> <div class="submenu-content"> <div class="sections-container"> <span class="videos-title">ALL VIDEOS:</span> <ul> <li class="section-li"> <a href="/videos">Latest</a> </li> <li class="section-li"> <a href="/videos/trending">Trending</a> </li> <li class="section-li"> <a href="/episodes">Episodes</a> </li> <li class="section-li divider-mini"></li> <li class="section-li"> <a href="/videos/new">Upload a Video</a> </li> </ul> </div> <div class="divider-vertical-alt"></div> <div class="latest-videos-container latest-all-container"> <span class="videos-title">LATEST VIDEOS:</span> <div class="latest-videos latest-items"> <article class="rel c entry"> <a class="photo left" href="/videos/365596" target="_self"><img alt="Thumbnail_missing" height="77" src="https://s.kym-cdn.com/assets/thumbnail_missing-9b6f4a707b0b7b5a8e095c7b21d230b2.png" width="136"/> <div class="descrip-item"> Funniest Khabane Lame TikTok Compilation 2021 </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/videos/365595" target="_self"><img alt="Hqdefault" height="77" src="https://i.ytimg.com/vi/HL3IH3XCKYI/hqdefault.jpg" width="136"/> <div class="descrip-item"> Best Cashback Credit Cards in India 2021 - Check Top 5 Cashback &amp; Rew ... </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/videos/365594" target="_self"><img alt="Hqdefault" height="77" src="https://i.ytimg.com/vi/q7Q6Q9d3-c8/hqdefault.jpg" width="136"/> <div class="descrip-item"> Is Cibil score required for gold loan or not? </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/videos/365593" target="_self"><img alt="Hqdefault" height="77" src="https://i.ytimg.com/vi/11AQOpONEMs/hqdefault.jpg" width="136"/> <div class="descrip-item"> Documents required to apply for credit card </div> </a></article> </div> </div> </div> </div> </li> <li class="top-level news" style="position: initial;"> <div class="menu-row"> <a class="menu-title" href="//news.knowyourmeme.com:443/news">NEWS</a> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-news submenu-all"> <div class="submenu-content"> <div class="sections-container"> <span class="news-title">ALL NEWS:</span> <ul> <li class="section-li"> <a href="//news.knowyourmeme.com:443/news">Latest</a> </li> </ul> </div> <div class="divider-vertical-alt"></div> <div class="latest-news-container latest-all-container"> <span class="news-title">LATEST NEWS:</span> <div class="latest-news latest-items"> <article class="rel c entry"> <a class="photo left" href="https://news.knowyourmeme.com/news/halo-infinite-multiplayer-beta-goes-live-including-battle-pass" target="_self"><img alt="The halo announcement with battle pass advertisement." height="77" src="https://i.kym-cdn.com/news/posts/desktop/000/001/562/8675309.jpg" width="136"/> <div class="descrip-item"> 'Halo Infinite' Multiplayer Beta Goes Live, Including A Battle Pass </div> </a></article> <article class="rel c entry"> <a class="photo left" href="https://news.knowyourmeme.com/news/internet-divided-after-brass-against-singer-urinates-on-fan-who-consented-to-it" target="_self"><img alt="Sophie Urista, brass against singer, urinating on a fan at the Welcome to Rockville festival in Daytona Florida." height="77" src="https://i.kym-cdn.com/news/posts/desktop/000/001/561/Screen_Shot_2021-11-15_at_2.19.31_PM.png" width="136"/> <div class="descrip-item"> Internet Divided After Brass Against Singer Urinates On Fan Who Conse ... </div> </a></article> <article class="rel c entry"> <a class="photo left" href="https://news.knowyourmeme.com/news/elon-musk-invites-brutal-owns-after-trying-to-dunk-bernie-sanders-on-twitter-for-some-reason" target="_self"><img alt="Elon musk ghislaine maxwell tweet." height="77" src="https://i.kym-cdn.com/news/posts/desktop/000/001/560/Screen_Shot_2021-11-15_at_11.39.31_AM.png" width="136"/> <div class="descrip-item"> Elon Musk Invites Brutal Owns On Twitter After Trying To Dunk On Bern ... </div> </a></article> <article class="rel c entry"> <a class="photo left" href="https://news.knowyourmeme.com/news/anti-vaxxers-who-received-shot-are-now-trying-to-undo-it-somehow" target="_self"><img alt="An image of cupping, one of the ways people are trying to undo their vaccinations." height="77" src="https://i.kym-cdn.com/news/posts/desktop/000/001/559/cupping-2.jpeg" width="136"/> <div class="descrip-item"> Anti-vaxxers Who Received Shot Are Now Reportedly Trying To 'Undo' It ... </div> </a></article> </div> </div> </div> </div> </li> <li class="top-level editorial" style="position: initial;"> <div class="menu-row"> <a class="menu-title" href="/editorials/">EDITORIAL</a> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-editorial submenu-all"> <div class="submenu-content"> <div class="sections-container"> <span class="editorials-title">ALL EDITORIALS:</span> <ul> <li class="section-li"> <a href="/editorials">Latest</a> </li> <li class="section-li"> <a href="/editorials/interviews">Interviews</a> </li> <li class="section-li"> <a href="/editorials/collections">Collections</a> </li> <li class="section-li"> <a href="/editorials/meme-review">Meme Review</a> </li> <li class="section-li"> <a href="/editorials/in-the-media">In the Media</a> </li> </ul> </div> <div class="divider-vertical-alt"></div> <div class="latest-editorials-container latest-all-container"> <span class="editorials-title">LATEST EDITORIALS:</span> <div class="latest-editorials latest-items"> <article class="rel c entry"> <a class="photo left" href="/editorials/collections/25-new-spongebob-memes-for-our-current-societal-drama" target="_self"><img alt="Two _SpongeBob_ memes in the following collection." height="77" src="https://i.kym-cdn.com/editorials/icons/mobile/000/003/594/SB_(1).jpg" width="136"/> <div class="descrip-item"> 25 New 'SpongeBob' Memes For Our Current Societal Drama </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/editorials/collections/judge-but-admire-these-20-awful-taste-but-great-execution-creations" target="_self"><img alt="Two images from /r/ATBGE in the following collection. " height="77" src="https://i.kym-cdn.com/editorials/icons/mobile/000/003/593/comedy_cemetery_(5).jpg" width="136"/> <div class="descrip-item"> Judge But Admire These 20 'Awful Taste But Great Execution' Creations ... </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/editorials/collections/15-cringeworthy-memes-dug-out-of-the-comedy-cemetery" target="_self"><img alt="Two comedy cemetery memes in the following collection. " height="77" src="https://i.kym-cdn.com/editorials/icons/mobile/000/003/592/comedy_cemetery_(4).jpg" width="136"/> <div class="descrip-item"> 15 Cringeworthy Memes Dug Out Of The Comedy Cemetery </div> </a></article> <article class="rel c entry"> <a class="photo left" href="/editorials/interviews/femboy-fishing-reveals-the-highs-and-lows-of-fishing-the-creeks-of-missouri-in-a-short-skirt-and-knee-high-socks" target="_self"><img alt="two images of Erin, aka Femboy Fishing, in the creeks of Missouri fishing" height="77" src="https://i.kym-cdn.com/editorials/icons/mobile/000/003/591/tco_-_2021-11-15T161813.347.jpg" width="136"/> <div class="descrip-item"> 'Femboy Fishing' Reveals The Highs And Lows Of Fishing The Creeks Of ... </div> </a></article> </div> </div> </div> </div> </li> <li class="top-level community" style="position: initial;"> <div class="menu-row"> <span class="menu-title" style="margin-right: 4px">COMMUNITY</span> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-community submenu-all"> <div class="submenu-content"> <div class="sections-container"> <ul> <li class="section-li"> <a href="/forums">Forums</a> </li> <li class="section-li"> <a href="/chat">Chat</a> </li> <li class="section-li"> <a href="/editorials/rules-and-guidelines/">Rules</a> </li> <li class="section-li"> <a href="/activity">Activity</a> </li> <li class="section-li"> <a href="/about">About</a> </li> </ul> </div> <div class="divider-vertical"></div> <div class="actions-container"> <ul> <li class="section-li"> <a href="/memes/new?guidelines=1">Submit a Meme Entry</a> </li> <li class="section-li"> <a href="/photos/new">Upload an Image</a> </li> <li class="section-li"> <a href="/videos/new">Upload a Video</a> </li> </ul> </div> <div class="divider-vertical"></div> <div class="join-container"> <a class="btn btn-primary btn-new-kym btn-join-kym" href="https://knowyourmeme.com/signup">Join KYM</a> </div> </div> </div> </li> <li class="top-level user-aux" style="position: initial;"> <div class="menu-row"> <div class="user-photo-icon"> <svg height="96px" version="1.1" viewbox="0 0 80 96" width="80px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>icon_profile</title> <defs> <polygon id="path-3" points="0 96 79.9604819 96 79.9604819 0 0 0"></polygon> </defs> <g fill="none" fill-rule="evenodd" id="NAV-3" stroke="none" stroke-width="1"> <g id="icon_profile"> <path d="M39.979759,0 C52.7113253,0 63.0322892,10.27968 63.0322892,22.96032 C63.0322892,35.64096 52.7113253,45.92064 39.979759,45.92064 C27.2481928,45.92064 16.9272289,35.64096 16.9272289,22.96032 C16.9272289,10.27968 27.2481928,0 39.979759,0" fill="#FFFFFF" id="Fill-1"></path> <mask fill="white" id="mask-2"> <use xlink:href="#path-3"></use> </mask> <g id="Clip-4"></g> <path d="M0,96 C0,74.00832 17.899759,56.1792 39.979759,56.1792 C62.059759,56.1792 79.9604819,74.00832 79.9604819,96 L0,96 Z" fill="#FFFFFF" id="Fill-3" mask="url(#mask-2)"></path> </g> </g> </svg> </div> <i class="fa fa-sort-down sort-down-menu"></i> <i class="fa fa-sort-up sort-up-menu"></i> </div> <div class="submenu-user-aux submenu-all"> <div class="submenu-content"> <div class="submenu-user login-container" data-submenu-user-container=""> <span class="member-login">MEMBER LOGIN</span> <form accept-charset="UTF-8" action="/sessions" class="form-horizontal login-form" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"/><input name="authenticity_token" type="hidden" value="ukqLWjCiNZDVRRQE+bpqioU9LoNag2qpNcrL/FRaq1Q="/></div><div class="login-error-msg" style="display: none"> <span class="error-msg-span">Uh-oh, login failed. Do you have caps locks on? Try it again.</span> </div> <div class="session-input-holder"> <input autocomplete="off" autofocus="autofocus" class="email-address" id="session_login" name="session[login]" placeholder="ENTER USERNAME" required="required" size="30" type="text"/> <label for="session_login">Username</label> </div> <div class="login-error-msg" style="display: none"> <span class="error-msg-span">Uh-oh, login failed. Do you have caps locks on? Try it again.</span> </div> <div class="session-input-holder"> <input autocomplete="off" class="password-login" id="session_password" name="session[password]" placeholder="ENTER PASSWORD" required="required" size="30" type="password"/> <label for="session_password">Password</label> </div> <input class="btn btn-primary btn-new-kym min-margin-top" name="commit" type="submit" value="Sign In"/> </form> <a class="forgot-password" href="https://knowyourmeme.com/forgot-password" rel="nofollow">Forgot password?</a> <div class="divider-yellow"></div> <span class="member-login min-margin-botom">NOT YET A MEMBER?</span> <a class="btn btn-primary btn-new-kym btn-join-kym btn-join-kym-blue" href="https://knowyourmeme.com/signup">Join KYM</a> </div> </div> </div> </li> </ul> </div> </div> <div class="user-container"> <div class="icon-search" id="btn-search-header"> <i class="fal fa-search search-searchbar-icon"></i> <i class="fal fa-times times-searchbar-icon"></i> </div> <div class="user-photo"> <div class="user-photo-icon" id="user-photo-id"> <svg height="96px" version="1.1" viewbox="0 0 80 96" width="80px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <title>icon_profile</title> <defs> <polygon id="path-3" points="0 96 79.9604819 96 79.9604819 0 0 0"></polygon> </defs> <g fill="none" fill-rule="evenodd" id="NAV-3" stroke="none" stroke-width="1"> <g id="icon_profile"> <path d="M39.979759,0 C52.7113253,0 63.0322892,10.27968 63.0322892,22.96032 C63.0322892,35.64096 52.7113253,45.92064 39.979759,45.92064 C27.2481928,45.92064 16.9272289,35.64096 16.9272289,22.96032 C16.9272289,10.27968 27.2481928,0 39.979759,0" fill="#FFFFFF" id="Fill-1"></path> <mask fill="white" id="mask-2"> <use xlink:href="#path-3"></use> </mask> <g id="Clip-4"></g> <path d="M0,96 C0,74.00832 17.899759,56.1792 39.979759,56.1792 C62.059759,56.1792 79.9604819,74.00832 79.9604819,96 L0,96 Z" fill="#FFFFFF" id="Fill-3" mask="url(#mask-2)"></path> </g> </g> </svg> <i class="fa fa-sort-down" id="sort-down-user"></i> <i class="fa fa-sort-up" id="sort-up-user"></i> </div> <div class="submenu-user login-container" data-submenu-user-container="" id="submenu-user-header"> <span class="member-login">MEMBER LOGIN</span> <form accept-charset="UTF-8" action="/sessions" class="form-horizontal login-form" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"/><input name="authenticity_token" type="hidden" value="Ki8Sr9qYdOtrDnflsDO+kVE+O0EAgBC3T2rcZqPV/Uc="/></div><div class="login-error-msg" style="display: none"> <span class="error-msg-span">Uh-oh, login failed. Do you have caps locks on? Try it again.</span> </div> <div class="session-input-holder"> <input autocomplete="off" autofocus="autofocus" class="email-address" id="session_login" name="session[login]" placeholder="ENTER USERNAME" required="required" size="30" type="text"/> <label for="session_login">Username</label> </div> <div class="login-error-msg" style="display: none"> <span class="error-msg-span">Uh-oh, login failed. Do you have caps locks on? Try it again.</span> </div> <div class="session-input-holder"> <input autocomplete="off" class="password-login" id="session_password" name="session[password]" placeholder="ENTER PASSWORD" required="required" size="30" type="password"/> <label for="session_password">Password</label> </div> <input class="btn btn-primary btn-new-kym min-margin-top" name="commit" type="submit" value="Sign In"/> </form> <a class="forgot-password" href="https://knowyourmeme.com/forgot-password" rel="nofollow">Forgot password?</a> <div class="divider-yellow"></div> <span class="member-login min-margin-botom">NOT YET A MEMBER?</span> <a class="btn btn-primary btn-new-kym btn-join-kym btn-join-kym-blue" href="https://knowyourmeme.com/signup">Join KYM</a> </div> </div> </div> </header> </div> <div class="contentFload"> <header class="mastD"> <div class="logo-nav-container"> <div class="photo-user" id="photo_user"> <header class="rel c" style="
+ width: 100%;
+ margin-left: 0px;"> <a class="photo left wide" href="https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg"><img alt="Man with a speech bubble that says +1 Confirm" class="wide" data-src="https://i.kym-cdn.com/entries/icons/mobile/000/002/431/man-talking-loud.jpg" height="56" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="+1" width="100"/></a> <section class="info wide floafbar"> <h1> <a class="header__entry-title" href="/memes/1" title="+1">+1</a> <a class="label" href="/categories/meme" style="background: #f0f8ff00; color: #ffffff;margin-bottom:0px">Meme</a> </h1> <dl> <dt> Status: </dt> <dd> Confirmed </dd> <dt> Year: </dt> <dd> <a href="/search?query=year%3A2004" rel="nofollow">2004</a> </dd> <dt> Origin </dt> <dd class="entry_origin_linknew"> <a href="/memes/sites/urban-dictionary">Urban Dictionary</a> </dd> </dl> </section> </header> </div> </div> <div class="header-share-buttons"> <div class="share-buttons"> <input class="share-buttons-trigger" id="header-share-buttons-trigger" type="checkbox"/> <label class="share-button trigger" for="header-share-buttons-trigger"></label> <a class="share-button email" data-label="Email +1" href="mailto:?subject=+1%20|%20Know%20Your%20Meme%20&amp;body=https://knowyourmeme.com/memes/1" target="_blank"></a> <a class="share-button pinterest" data-label="Pinterest +1" data-pin-custom="true" href="http://pinterest.com/pin/create/button/?url=https://knowyourmeme.com/memes/1&amp;media=https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg" target="_blank"></a> <a class="share-button twitter" data-label="Twitter +1" href="https://twitter.com/intent/tweet?text=+1%20%7C%20Know%20Your%20Meme%20https://knowyourmeme.com/memes/1" target="_blank"></a> <a class="share-button facebook" data-label="Facebook +1" href="https://www.facebook.com/sharer/sharer.php?u=https://knowyourmeme.com/memes/1&amp;display=popup&amp;ref=plugin&amp;src=share_button" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false;" target="_blank"></a> </div> </div> </header> </div> <section id="trending-bar"> <div class="popular-links"> <h5 class="left"> Popular: </h5> <a href="/memes/subcultures/grand-theft-auto-the-trilogy-the-definitive-edition" title="GTA Trilogy: Definitive Edition">GTA Trilogy: Definitive Edition</a> <a href="/memes/events/2020-kyle-rittenhouse-kenosha-wisconsin-shootings" title="Kenosha Wisconsin Shooting (NSFW)">Kenosha Wisconsin Shooting (NSFW)</a> <a href="/memes/sites/anaesthesia-blues" title="Anaesthesia Blues">Anaesthesia Blues</a> <a href="/memes/idk-punchlines" title='"IDK" Punchlines'>"IDK" Punchlines</a> </div> </section>
+</div>
+</div>
+</div>
+<div class="x_brb6 c" id="content">
+<div class="" id="maru">
+<div id="flashes"> </div>
+<article class="entry" id="entry_2431">
+<header class="rel c">
+<div class="share-buttons">
+<input class="share-buttons-trigger" id="entry-share-buttons-trigger" type="checkbox"/>
+<label class="share-button trigger" for="entry-share-buttons-trigger"></label>
+<a class="share-button email" data-label="Email +1" href="mailto:?subject=+1%20|%20Know%20Your%20Meme%20&amp;body=https://knowyourmeme.com/memes/1" target="_blank"></a>
+<a class="share-button pinterest" data-label="Pinterest +1" data-pin-custom="true" href="http://pinterest.com/pin/create/button/?url=https://knowyourmeme.com/memes/1&amp;media=https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg" target="_blank"></a>
+<a class="share-button twitter" data-label="Twitter +1" href="https://twitter.com/intent/tweet?text=+1%20%7C%20Know%20Your%20Meme%20https://knowyourmeme.com/memes/1" target="_blank"></a>
+<a class="share-button facebook" data-label="Facebook +1" href="https://www.facebook.com/sharer/sharer.php?u=https://knowyourmeme.com/memes/1&amp;display=popup&amp;ref=plugin&amp;src=share_button" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false;" target="_blank"></a>
+</div>
+<div class="photo-wrapper">
+<a class="photo left wide" href="/memes/1/photos"><img alt="Man with a speech bubble that says +1 Confirm" class="wide" data-src="https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="+1"/></a>
+</div>
+<section class="info wide">
+<h1>
++1
+</h1>
+<div class="entry-relations">
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<div>
+<span>
+Part of a series on <a href="/memes/sites/know-your-meme--3">Know Your Meme</a>
+</span>
+<div>
+<p class="parent">
+<a href="/memes/know-your-meme--3/children">View Related Entries</a>
+</p>
+</div>
+</div>
+</div>
+<div class="details">
+<div class="details-col">
+<div class="detail">
+<span>Status:</span>
+<div class="tooltip-popup">
+<span>
+confirmed
+</span>
+</div>
+</div>
+<div class="detail">
+<span>Origin:</span>
+<span>
+Urban Dictionary
+</span>
+</div>
+</div>
+<div class="details-col">
+<div class="detail">
+<span>Year:</span>
+<span>
+<a href="/search?query=year%3A2004">2004</a>
+</span>
+</div>
+<div class="detail">
+<span>Type:</span>
+<span>
+<a href="/types/slang">Slang</a>
+</span>
+</div>
+</div>
+</div>
+<div class="author-info">
+<a href="/users/philosoraptoralejandro" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/015/638/philosoraptor.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Philosoraptor Alejandro"/></a>
+<div class="timestamps">
+<p>
+Added
+<abbr class="timeago" title="2010-04-12T19:53:06-04:00">Apr 12, 2010 at 07:53PM EDT</abbr>
+by
+<span><a href="/users/philosoraptoralejandro" rel="nofollow">Philosoraptor Alejandro</a>.</span>
+</p>
+<p>
+Updated
+<abbr class="timeago" title="2021-04-15T06:19:45-04:00">Apr 15, 2021 at 06:19AM EDT</abbr>
+by
+<span><a href="/users/autumn-able" rel="nofollow">Autumn Able</a>.</span>
+</p>
+</div>
+</div>
+<aside class="stats">
+<a class="stat-item" href="/memes/1#photos" rel="nofollow">
+<div class="photos" title="4 Images"></div>
+<span>4</span>
+</a>
+<a class="stat-item" href="/memes/1#videos" rel="nofollow">
+<div class="videos" title="0 Videos"></div>
+<span>0</span>
+</a>
+<a class="stat-item" href="/memes/1#comments" rel="nofollow">
+<div class="comments" title="77 Comments"></div>
+<span>77</span>
+</a>
+<div class="stat-item">
+<div class="views" title="453,420 Views"></div>
+<span>453,420</span>
+</div>
+</aside>
+</section>
+</header>
+<div class="ads full-width leaderboard">
+<div class="bg"></div>
+<div class="header-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-header-unit shemedia-ad" data-name="kym_newentry_leaderboard_desktop" data-options='{"lazyLoad":true}' data-shemedia-size="banner" id="kym_newentry_leaderboard_desktop">
+<div id="kym_newentry_leaderboard_desktop"></div>
+</div>
+</div>
+</div>
+<div class="entry-buttons">
+<a class="checked disabled" href="/memes/1">Read</a>
+<a href="/memes/1/suggestions/new">Edit</a>
+<a href="/memes/1/edits">History</a>
+</div>
+<div class="hidden" id="structured-data" itemscope="" itemtype="https://schema.org/Article">
+<meta content="https://knowyourmeme.com/memes/1" itemprop="mainEntityOfPage"/>
+<meta content="+1" itemprop="headline"/>
+<meta content="https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg" itemprop="thumbnailUrl"/>
+<meta content="2010-04-12T19:53:06-04:00" itemprop="dateCreated"/>
+<meta content="2010-04-12T19:53:06-04:00" itemprop="datePublished"/>
+<meta content="2021-04-15T06:19:45-04:00" itemprop="dateModified"/>
+<div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+<meta content="Know Your Meme" itemprop="name"/>
+<div itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+<meta content="https://s.kym-cdn.com/assets/logo.jpg" itemprop="url"/>
+<meta content="720" itemprop="height"/>
+<meta content="720" itemprop="width"/>
+</div>
+</div>
+<div itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+<meta content="Philosoraptor Alejandro" itemprop="name"/>
+<meta content="https://knowyourmeme.com/users/philosoraptoralejandro" itemprop="url"/>
+</div>
+<div itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+<meta content="https://i.kym-cdn.com/entries/icons/original/000/002/431/man-talking-loud.jpg" itemprop="url"/>
+<meta content="453" itemprop="height"/>
+<meta content="767" itemprop="width"/>
+</div>
+<meta content="UserComments:77" itemprop="interactionCount"/>
+<meta content="UserPageVisits:453425" itemprop="interactionCount"/>
+</div>
+<script>
+  window.shopify_collection_id = 153825640502;
+</script>
+<div class="c" id="entry_body">
+<section class="bodycopy">
+<div class="entry-sections-container">
+<div class="entry-sections">
+<div class="entry-section-container">
+<div class="entry-section">
+<h2 id="about">About</h2><p><strong>+1</strong> (read as "plus one") is a numeric sign primarily used by <a class="auto-link" href="/memes/cultures/the-internet">internet</a> forum members to express their agreement with a preceding comment. It has also seen significant use among forum members of the internet meme database <a class="internal-link" href="/memes/sites/know-your-meme--3">Know Your Meme</a> to express one's opinion regarding an idea proposed by another member for consideration by the community. Despite the connotation of the positive symbol, it does not necessarily convey assent to the idea under consideration, but rather the call for a specific action suggested by the user in response to the proposed idea.</p>
+</div>
+</div>
+<div class="anyclip">
+<!-- anyclip player -->
+<script pubname="knowyourmemecom" src="https://play.anyclip.com/anyclip-widget/lre-widget/prod/v1/src/lre.js" widgetname="0011r000024GCSI_11030">
+</script>
+<!-- end anyclip player -->
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<h2 id="origin">Origin</h2><p>"+1" has long been used in internet forums as a means of expressing one's agreement with the preceding post. On April 28th, 2004, a definition for the phrase was added to <a class="internal-link" href="/memes/sites/urban-dictionary">Urban Dictionary</a> <sup class="footnote" id="fnr1"><a class="footnote-superscript" href="#fn1">[1]</a></sup> by user Joe Mama (shown below).</p><br/><center><a href="/photos/2027331" target="_blank"><img alt='y f &gt; TOP DEFINITION +1 1.) A post in a forum/message board that indicates the person agrees with a previous or quoted reply to a thread. 2.) Shorthand for "My thoughts exactly" or "me too". Joe posts: "Urbandictionary.com is a great site for learning forum speak." Floe responds: "+1" by Joe Mama April 28, 2004 Font' class="kym-image image-auto-link" data-src="https://i.kym-cdn.com/photos/images/newsfeed/002/027/331/ea0.png" id="photo_2027331" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" style="width:425px;" title="Urban Dictionary"/></a> </center><p><br/></p>
+</div>
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<h2 id="spread">Spread</h2><p>Use of the phrase saw a steep decline in use through the 2010s as forums such as <a class="internal-link" href="/memes/sites/reddit">Reddit</a> and social media sites like <a class="internal-link" href="/memes/sites/twitter">Twitter</a> and <a class="internal-link" href="/memes/sites/facebook">Facebook</a> used upvote and "like" systems to allow users to express their agreement with an opinion. One of the more recent inquiries into the phrase appeared in a Quora<sup class="footnote" id="fnr3"><a class="footnote-superscript" href="#fn3">[3]</a></sup> post on March 9th, 2020. As described by Shulamit Widawsky:</p><blockquote><p><ins>1 is very similar to an upvote, but it has some nuance.<br/>If it is alone, like on a website like NextDoor where it can be added as an icon, it means, “Yes, I’m upvoting what you wrote, but specifically because I agree with what you wrote.”<br/>If it is used in a sentence like the example given in the details, “</ins>1 for mentioning…” then it is saying something like, “I might not have bothered to upvote, but since you mentioned this thing that is important to me, I am upvoting.<br/>”Think of a teacher grading a test--if the teacher wrote “89/100, +1 for including ….” and then writing “A” on the page. It means they earned an extra point for something that wasn’t necessarily part of the original requirements, but the teacher found it valuable enough to bump up a B to an A.<br/>Online it mostly means I agree with what you wrote if there is no other comment, and I’m giving you extra points for including something other people missed if they describe what the +1 was specifically for.<br/>Upvoting can just mean it was a worthwhile answer, but it doesn’t necessarily mean the person agreed with the answer. Also, sometime someone posts something that is sad or otherwise seems crass to “upvote” but the reader agrees with what they wrote, so they offer a +1.</p>
+</blockquote></div>
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<h4 id="on-knowyourmeme">On KnowYourMeme</h4><p>While use of the phrase has largely fallen off on social media sites through the 2010s, it has continued to see use among commenters at Know Your Meme, who will use it less to express their agreement with a post but to voice their opinion on a site's page.</p><p>The term "+1" first entered Know Your Meme's community vernacular in late 2009. It was initially used by Know Your Meme administrators and moderators to express their views on an entry submission, but by 2010, it had become one of the most frequently used site-specific jargons among the commenters. According to the site's FAQ<sup class="footnote" id="fnr2"><a class="footnote-superscript" href="#fn2">[2]</a></sup> thread:</p><blockquote><p><strong>Q:</strong> What do all these “+1 Deadpool/work/confirm” mean?</p></blockquote><blockquote><p><strong>A:</strong> As you read through the comments of any entry, you’ll undoubtedly stumble upon a “+1 thing”. This kind of comment was initially used by the Admins to tell another admin when they were ready to confirm/deadpool an entry and that they were awaiting for another opinion on it. Overtime, it has then been utilized by all users but they mustn’t be taken seriously or for granted. This is because even the newest of newcomers are jumping in on it and they usually don’t know what they are doing. We invite you to not lose your temper with other users’ comments as well as to look for the comments that are adding arguments in their opinions as these are more likely to help you.</p></blockquote><h4 id="usage">Usage</h4><p>The phrase "+1" is followed by an aspect of a page that the poster is pointing out in that precise moment. Some of the more common of this comments are:</p>
+</div>
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<ul> <li>+1 Work (<em>the submission needs more work</em>)</li> <li>+1 Confirm (<em>the submission is ready to be confirmed as a meme</em>)</li> <li>+1 Meme (<em>the submission is a meme, although it may need more work</em>)</li> <li>+1 Deadpool (<em>the submission is not a meme</em>)</li></ul>
+</div>
+</div>
+</div>
+<div class="side-rail-ads-container">
+<div class="aside">
+<div class="ads sticky-ads">
+<div class="rectangle-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-rectangle-unit shemedia-ad" data-name="kym_newentry_mediumrect_desktop" data-options='{"containerId":"kym_newentry_mediumrect_desktop","lazyLoad":false}' data-shemedia-size="medrec" id="kym_newentry_mediumrect_desktop"></div>
+</div>
+</div>
+</div>
+<div class="aside">
+<div class="ads sticky-ads">
+<div class="rectangle-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-rectangle-unit shemedia-ad" data-name="kym_newentry_mediumrect_desktop_01" data-options='{"containerId":"kym_newentry_mediumrect_desktop_01","lazyLoad":true}' data-shemedia-size="medrec" id="kym_newentry_mediumrect_desktop_01"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="entry-insert top-entries full-width">
+<h5 class="title">Top entries this week</h5>
+<div class="content">
+<a alt="Hello There" class="photo" href="/memes/hello-there" title="Hello There">
+<div class="wrapper">
+<img alt="Hello There" data-src="https://i.kym-cdn.com/entries/icons/original/000/029/079/hellothere.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Hello There">
+</img></div>
+<p>
+Hello There
+</p>
+</a>
+<a alt="Mandela Catalogue" class="photo" href="/memes/mandela-catalogue" title="Mandela Catalogue">
+<div class="wrapper">
+<img alt="Mandela Catalogue" data-src="https://i.kym-cdn.com/entries/icons/original/000/038/805/cover3.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Mandela Catalogue"/>
+</div>
+<p>
+Mandela Catalogue
+</p>
+</a>
+<a alt="2020 Kyle Rittenhouse Kenosha, Wisconsin Shootings" class="photo" href="/memes/2020-kyle-rittenhouse-kenosha-wisconsin-shootings" title="2020 Kyle Rittenhouse Kenosha, Wisconsin Shootings">
+<div class="wrapper">
+<img alt="2020 Kyle Rittenhouse Kenosha, Wisconsin Shootings" data-src="https://i.kym-cdn.com/entries/icons/original/000/035/105/Kyle_Rittenhouse_Shooting_Banner.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="2020 Kyle Rittenhouse Kenosha, Wisconsin Shootings"/>
+</div>
+<p>
+2020 Kyle Rittenhouse Kenosha, Wisconsin Shootings
+</p>
+</a>
+<a alt="Brian Peppers" class="photo" href="/memes/brian-peppers" title="Brian Peppers">
+<div class="wrapper">
+<img alt="Brian Peppers" data-src="https://i.kym-cdn.com/entries/icons/original/000/000/138/brianpeppers.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Brian Peppers"/>
+</div>
+<p>
+Brian Peppers
+</p>
+</a>
+</div>
+</div>
+<div class="entry-sections-container">
+<div class="entry-sections">
+<div class="entry-section-container">
+<div class="entry-section">
+<h2 id="search-interest">Search Interest</h2><div class="google-trends-embed-wrapper"><script src="https://ssl.gstatic.com/trends_nrtr/925_RC01/embed_loader.js" type="text/javascript"></script> <script type="text/javascript">trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"plus one","geo":"","time":"all"}],"category":0,"property":""}, {"exploreQuery":"date=all&q=plus%20one","guestPath":"https://trends.google.com:443/trends/embed/"});</script></div>
+</div>
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<h2 id="external-references">External References</h2><div class="references"><p id="fn1"><sup class="footnote"><a href="#fnr1">[1]</a></sup> <span class="footnote-text">Urban Dictionary – <a class="external-link" href="https://www.urbandictionary.com/define.php?term=%2B1&amp;utm_source=search-action" target="_blank">+1</a></span></p><p id="fn2"><sup class="footnote"><a href="#fnr2">[2]</a></sup> <span class="footnote-text">KnowYourMeme – <a class="internal-link" href="/forums/general/topics/3937-frequently-asked-questions">FAQ</a></span></p><p id="fn3"><sup class="footnote"><a href="#fnr3">[3]</a></sup> <span class="footnote-text">Quora – <a class="external-link" href="https://www.quora.com/What-does-+1-mean-when-someone-uses-it-in-an-online-forum-or-a-question-website-like-this" target="_blank">What Does +1 Mean</a></span></p></div>
+</div>
+</div>
+</div>
+<div class="side-rail-ads-container">
+<div class="aside">
+<div class="ads sticky-ads">
+<div class="rectangle-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-rectangle-unit shemedia-ad" data-name="kym_newentry_mediumrect_desktop_02" data-options='{"containerId":"kym_newentry_mediumrect_desktop_02","lazyLoad":true}' data-shemedia-size="medrec" id="kym_newentry_mediumrect_desktop_02"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="entry-insert related-news full-width">
+<h5 class="title">Latest Editorial And News</h5>
+<div class="content">
+<a alt="15 Modern 'Loss' Memes That Just Can't Die" class="photo" href="/editorials/collections/15-modern-loss-memes-that-just-cant-die" title="15 Modern 'Loss' Memes That Just Can't Die">
+<div class="wrapper">
+<img alt="15 Modern 'Loss' Memes That Just Can't Die" data-src="https://i.kym-cdn.com/editorials/icons/original/000/003/588/loss_(2).png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="15 Modern 'Loss' Memes That Just Can't Die"/>
+</div>
+<p>
+15 Modern 'Loss' Memes That Just Can't Die
+</p>
+</a>
+<a alt="20 'Lord Of The Rings' Memes For Your Weekend Binge" class="photo" href="/editorials/collections/20-lord-of-the-rings-memes-for-your-weekend-binge" title="20 'Lord Of The Rings' Memes For Your Weekend Binge">
+<div class="wrapper">
+<img alt="20 'Lord Of The Rings' Memes For Your Weekend Binge" data-src="https://i.kym-cdn.com/editorials/icons/original/000/003/589/lotr_(2).png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="20 'Lord Of The Rings' Memes For Your Weekend Binge"/>
+</div>
+<p>
+20 'Lord Of The Rings' Memes For Your Weekend Binge
+</p>
+</a>
+<a alt="15 Tumblr Text Posts That Will Never Get Old" class="photo" href="/editorials/collections/15-tumblr-text-posts-that-will-never-get-old" title="15 Tumblr Text Posts That Will Never Get Old">
+<div class="wrapper">
+<img alt="15 Tumblr Text Posts That Will Never Get Old" data-src="https://i.kym-cdn.com/editorials/icons/original/000/003/582/tumblr_(3).png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="15 Tumblr Text Posts That Will Never Get Old"/>
+</div>
+<p>
+15 Tumblr Text Posts That Will Never Get Old
+</p>
+</a>
+<a alt="Anti-vaxxers Who Received Shot Are Now Trying To 'Undo' It Somehow" class="photo" href="/news/anti-vaxxers-who-received-shot-are-now-trying-to-undo-it-somehow" title="Anti-vaxxers Who Received Shot Are Now Trying To 'Undo' It Somehow">
+<div class="wrapper">
+<img alt="Anti-vaxxers Who Received Shot Are Now Trying To 'Undo' It Somehow" data-src="https://i.kym-cdn.com/news/posts/original/000/001/559/cupping-2.jpeg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Anti-vaxxers Who Received Shot Are Now Trying To 'Undo' It Somehow"/>
+</div>
+<p>
+Anti-vaxxers Who Received Shot Are Now Trying To 'Undo' It Somehow
+</p>
+</a>
+</div>
+</div>
+</section>
+<div id="abm-em">
+<a class="large red button" href="javascript:;">Read Full Entry</a>
+</div>
+<div class="entry-sections-container">
+<div class="entry-sections">
+<details class="related_memes" open="true">
+<summary>
+<h2>
+Related Entries
+<span>
+(13)
+</span>
+</h2>
+</summary>
+<div id="related-entries">
+<div class="sub-items">
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/goat-tan"><img alt="Goat-tan" data-src="https://i.kym-cdn.com/entries/icons/square/000/014/054/kym_entry_for_their_forced_meme.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Goat-tan" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/goat-tan">Goat-tan</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/kym-tan"><img alt="KYM-tan" data-src="https://i.kym-cdn.com/entries/icons/square/000/017/996/tumblr_not8ef9jcN1u070mxo1_500.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="KYM-tan" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/kym-tan">KYM-tan</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/super-robo-jesus"><img alt="Super Robo Jesus" data-src="https://i.kym-cdn.com/entries/icons/square/000/000/287/superrobojesus.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Super Robo Jesus" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/super-robo-jesus">Super Robo Jesus</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/don--3"><img alt="Don" data-src="https://i.kym-cdn.com/entries/icons/square/000/017/101/don_meme_aids.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Don" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/don--3">Don</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left wide" href="/memes/memex"><img alt="MemeX" class="wide" data-src="https://i.kym-cdn.com/entries/icons/mobile/000/025/828/.png.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="MemeX" width="100"/></a>
+<a class="category" href="/categories/event"><span class="label" style="background: #f0f8ff00; color: #69c647;margin-bottom:0px">Event</span></a>
+<a class="entry-name" href="/memes/memex">MemeX</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/i-need-blood"><img alt="I need blood" data-src="https://i.kym-cdn.com/entries/icons/square/000/014/169/d14.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="I need blood" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/i-need-blood">I need blood</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left wide" href="/memes/lucina-ah-so-cute"><img alt='Lucina "Ah, so cute"' class="wide" data-src="https://i.kym-cdn.com/entries/icons/mobile/000/018/360/ab6.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title='Lucina "Ah, so cute"' width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/lucina-ah-so-cute">Lucina "Ah, so cute"</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/this-cheeto--3"><img alt="This Cheeto" data-src="https://i.kym-cdn.com/entries/icons/square/000/017/663/cheeto_high_res.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="This Cheeto" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/this-cheeto--3">This Cheeto</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/knowyourmemes-adblock-pop-up"><img alt="KnowYourMeme's AdBlock Pop-Up" data-src="https://i.kym-cdn.com/entries/icons/square/000/023/684/Screen_shot_2017-08-16_at_11.40.49_AM.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="KnowYourMeme's AdBlock Pop-Up" width="100"/></a>
+<a class="category" href="/categories/meme"><span class="label" style="background: #f0f8ff00; color: #16114a;margin-bottom:0px">Meme</span></a>
+<a class="entry-name" href="/memes/knowyourmemes-adblock-pop-up">KnowYourMeme's AdBlock Pop-Up</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/don-caldwell"><img alt="Don Caldwell" data-src="https://i.kym-cdn.com/entries/icons/square/000/017/193/DonProfilePicture.jpg" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Don Caldwell" width="100"/></a>
+<a class="category" href="/categories/person"><span class="label" style="background: #f0f8ff00; color: #e21c79;margin-bottom:0px">Person</span></a>
+<a class="entry-name" href="/memes/don-caldwell">Don Caldwell</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/operation-stop-their-scheme"><img alt="Operation Stop Their Scheme" data-src="https://i.kym-cdn.com/entries/icons/square/000/009/036/Anon-declares-war-on-Know-Your-Meme.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Operation Stop Their Scheme" width="100"/></a>
+<a class="category" href="/categories/event"><span class="label" style="background: #f0f8ff00; color: #69c647;margin-bottom:0px">Event</span></a>
+<a class="entry-name" href="/memes/operation-stop-their-scheme">Operation Stop Their Scheme</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/april-1-2012"><img alt="April 1, 2012" data-src="https://i.kym-cdn.com/entries/icons/square/000/009/706/blowout.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="April 1, 2012" width="100"/></a>
+<a class="category" href="/categories/event"><span class="label" style="background: #f0f8ff00; color: #69c647;margin-bottom:0px">Event</span></a>
+<a class="entry-name" href="/memes/april-1-2012">April 1, 2012</a>
+</div>
+<div class="sub-item">
+<a class="entry-photo left" href="/memes/the-internet-meme-exchange"><img alt="The Internet Meme Exchange" data-src="https://i.kym-cdn.com/entries/icons/square/000/022/586/png.png" height="100" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="The Internet Meme Exchange" width="100"/></a>
+<a class="category" href="/categories/event"><span class="label" style="background: #f0f8ff00; color: #69c647;margin-bottom:0px">Event</span></a>
+<a class="entry-name" href="/memes/the-internet-meme-exchange">The Internet Meme Exchange</a>
+</div>
+</div>
+</div>
+<br/>
+<div class="section_form">
+<div class="tc">
+<a class="blue-button" href="/memes/know-your-meme--3/children">View All Related Entries</a>
+</div>
+</div>
+</details>
+<script type="text/javascript">
+  $(function() {
+    commendable = function() {
+      if (!$(this).hasClass('displayed')) {
+        $(this).addClass('displayed');
+        current_page = window.location.pathname.replace(/\/wall$/, '').replace(/\/$/, '');
+        $.get(current_page + '/comments.js', null, address_subdomains);
+        $('.top_comments').show()
+      }
+      $('#add_comment_button_spot').show()
+      $('.facebook_comments').hide()
+      $('#facebook_comments_tab').removeClass('current')
+      gaTrackInteractionEvent('comments', 'display', 'native')
+    }
+
+    address_subdomains = function() {
+      $.each($('[data-remote="true"]'), function(t, bone) {
+        match_subdomain_link(bone)
+      })
+    }
+
+    if(User.LoggedIn) {
+      $('#comments-list').bind('enterviewport', commendable).bullseye();
+    }
+
+    facebook_commendable = function() {
+      $('#comments-list').hide()
+      $('#add_comment_button_spot').hide()
+      $('.facebook_comments').show()
+      $('#facebook_comments_tab').addClass('current')
+      $('#kym_comments_tab').removeClass('current')
+      gaTrackInteractionEvent('comments', 'display', 'facebook')
+    }
+  });
+</script>
+<div class="entry-section-container">
+<div class="entry-section">
+<details class="section_content rel" id="videos" open="true">
+<summary>
+<h2>
+Recent Videos
+</h2>
+</summary>
+<div class="section_body recent-videos" id="videos_list">
+<p class="closed">There are no videos currently available.</p>
+</div>
+<div class="section_form c" id="video_form">
+<div class="add-button">
+<a href="/memes/1/videos/new" rel="nofollow">
+Add a Video
+<svg viewbox="0 0 266.514 266.514" xmlns="http://www.w3.org/2000/svg"><path d="M133.257 266.514C59.775 266.514 0 206.733 0 133.257S59.775 0 133.257 0s133.257 59.781 133.257 133.257-59.775 133.257-133.257 133.257zm0-255.636c-67.477 0-122.379 54.896-122.379 122.379S65.78 255.636 133.257 255.636s122.379-54.896 122.379-122.379S200.734 10.878 133.257 10.878z" fill="#4354ff"></path><path d="M210.35 127.818h-71.654V56.164a5.438 5.438 0 0 0-5.439-5.439 5.438 5.438 0 0 0-5.439 5.439v71.654H56.164a5.441 5.441 0 0 0-5.439 5.439 5.441 5.441 0 0 0 5.439 5.439h71.654v71.649a5.438 5.438 0 0 0 5.439 5.439 5.438 5.438 0 0 0 5.439-5.439v-71.649h71.654a5.441 5.441 0 0 0 5.439-5.439 5.44 5.44 0 0 0-5.439-5.439z" fill="#4354ff"></path></svg>
+</a>
+</div>
+</div>
+</details>
+<details class="section_content rel" id="photos" open="true">
+<summary>
+<h2>
+Recent Images
+<span>
+(4)
+</span>
+</h2>
+</summary>
+<div class="section_body recent-images" id="photos_list">
+<div class="photo_list" id="recent-images">
+<div class="photo_box rel" id="photo_2027331">
+<a class="photo" href="/photos/2027331-1">
+<img alt='y f &gt; TOP DEFINITION +1 1.) A post in a forum/message board that indicates the person agrees with a previous or quoted reply to a thread. 2.) Shorthand for "My thoughts exactly" or "me too". Joe posts: "Urbandictionary.com is a great site for learning forum speak." Floe responds: "+1" by Joe Mama April 28, 2004 Font' data-src="https://i.kym-cdn.com/photos/images/masonry/002/027/331/ea0.png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Urban Dictionary"/>
+</a>
+</div>
+<div class="photo_box rel" id="photo_1177676">
+<a class="photo" href="/photos/1177676-1">
+<img alt="YOUR +1 IS IN ANOTHER CASTL Runbow Xbox 360 black black and white text monochrome photography silhouette font monochrome darkness" data-src="https://i.kym-cdn.com/photos/images/masonry/001/177/676/fcd.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Your +1 is in another castle"/>
+</a>
+</div>
+<div class="photo_box rel" id="photo_1126985">
+<a class="photo" href="/photos/1126985-1">
+<img alt="1 CONFIRM. Captain America Black Widow fictional character cartoon" data-src="https://i.kym-cdn.com/photos/images/masonry/001/126/985/6ca.png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="+1 Confirm"/>
+</a>
+</div>
+<div class="photo_box rel" id="photo_90616">
+<a class="photo" href="/photos/90616-1">
+<img alt="+1 DEADPOOL? AWE, DAMMIT memegenerator.net Snoopy Charlie Brown hair human hair color blond hairstyle chin hair coloring photo caption" data-src="https://i.kym-cdn.com/photos/images/masonry/000/090/616/1-Deadpool-Awe-dammit.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="1-Deadpool-Awe-dammit.jpg"/>
+</a>
+</div>
+</div>
+</div>
+<div class="section_form c" id="photo_form">
+<div class="add-button">
+<a href="/memes/1/photos/new" rel="nofollow">
+Add an image
+<svg viewbox="0 0 266.514 266.514" xmlns="http://www.w3.org/2000/svg"><path d="M133.257 266.514C59.775 266.514 0 206.733 0 133.257S59.775 0 133.257 0s133.257 59.781 133.257 133.257-59.775 133.257-133.257 133.257zm0-255.636c-67.477 0-122.379 54.896-122.379 122.379S65.78 255.636 133.257 255.636s122.379-54.896 122.379-122.379S200.734 10.878 133.257 10.878z" fill="#4354ff"></path><path d="M210.35 127.818h-71.654V56.164a5.438 5.438 0 0 0-5.439-5.439 5.438 5.438 0 0 0-5.439 5.439v71.654H56.164a5.441 5.441 0 0 0-5.439 5.439 5.441 5.441 0 0 0 5.439 5.439h71.654v71.649a5.438 5.438 0 0 0 5.439 5.439 5.438 5.438 0 0 0 5.439-5.439v-71.649h71.654a5.441 5.441 0 0 0 5.439-5.439 5.44 5.44 0 0 0-5.439-5.439z" fill="#4354ff"></path></svg>
+</a>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="entry-section-container">
+<div class="entry-section">
+<details class="narrow-section" open="true">
+<summary>
+<h2>Tags</h2>
+</summary>
+<div class="tags">
+<a href="/search?q=tags%3A%28%22know+your+meme+plus+one+%2B%22%29">know your meme plus one +</a>
+<a href="/search?q=tags%3A%28%22shulamit+widawsky%22%29">shulamit widawsky</a>
+<a href="/search?q=tags%3A%28%22agree%22%29">agree</a>
+<a href="/search?q=tags%3A%28%22upvote%22%29">upvote</a>
+</div>
+</details>
+<details class="narrow-section" open="true">
+<summary>
+<h2>Additional References</h2>
+</summary>
+<div class="other-links">
+<a href="https://www.urbandictionary.com/define.php?term=%2B1">Urban Dictionary</a>
+</div>
+</details>
+<details class="entry-editors narrow-section" open="true">
+<summary>
+<h2>
+Entry Editors
+<span>
+(8)
+</span>
+</h2>
+<a href="/memes/1/editorships/ask">Request Editorship</a>
+</summary>
+<div class="editors">
+<div class="editor">
+<div class="photo">
+<a href="/users/philosoraptoralejandro" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/015/638/philosoraptor.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Philosoraptor Alejandro"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/philosoraptoralejandro">Philosoraptor</a>
+</div>
+<div class="about">
+<p>Jr. Researcher</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/chris-menning" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/000/008/kym2.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Chris Menning"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/chris-menning">Chris</a>
+</div>
+<div class="about">
+<p>Digital Archaeologist &amp; Archivist &amp; Pundit &amp; Early Adopter (#8)</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/cyber6x" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/028/902/Avatar_-_Persona_(Cropped).png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Cyber6x"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/cyber6x">Cyber6x</a>
+</div>
+<div class="about">
+<p>Database Moderator &amp; Midnight Channeler</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/brad--12" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/000/683/22d.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Brad"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/brad--12">Brad</a>
+</div>
+<div class="about">
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/z--4" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/077/241/465.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Z."/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/z--4">Z.</a>
+</div>
+<div class="about">
+<p>Database Moderator &amp; Rage Comicologist</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/adam--31" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/286/728/f94.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Adam"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/adam--31">Adam</a>
+</div>
+<div class="about">
+<p>Know Your Meme Universal Champion</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/andcallmeshirley" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/405/641/5c8.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="andcallmeshirley"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/andcallmeshirley">andcallmeshirley</a>
+</div>
+<div class="about">
+<p>Digital Archaeologist &amp; Treasurer &amp; Collection Butler</p>
+</div>
+</div>
+</div>
+<div class="editor">
+<div class="photo">
+<a href="/users/autumn-able" rel="nofollow"><img alt="" class="small" data-src="https://i.kym-cdn.com/profiles/icons/small/000/211/935/138.png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Autumn Able"/></a>
+</div>
+<div class="info">
+<div class="name">
+<a href="/users/autumn-able">Autumn</a>
+</div>
+<div class="about">
+<p>Sr. Entry Moderator</p>
+</div>
+</div>
+</div>
+</div>
+<div class="show-more-button">
+<p>View More Editors</p>
+<svg height="1792" viewbox="0 0 1792 1792" width="1792" xmlns="http://www.w3.org/2000/svg"><path d="M941 1299l454-454q19-19 19-45t-19-45l-102-102q-19-19-45-19t-45 19l-307 307-307-307q-19-19-45-19t-45 19l-102 102q-19 19-19 45t19 45l454 454q19 19 45 19t45-19zm723-403q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z" fill="#4354ff"></path></svg>
+</div>
+<div class="options-buttons">
+<a href="/memes/1/suggestions/new">Suggest a Change</a>
+<a href="/memes/1/edits">Edit History</a>
+<a href="/memes/1/editorships">View All Editors</a>
+</div>
+</details>
+<div data-allow="true" id="allow-comments"></div>
+<section class="section_content narrow-section rel" data-url="/memes/1/comments.js" id="comments">
+<h2>Comments</h2>
+<div class="comments-container">
+<div class="add-button">
+<a href="#comments_form" rel="nofollow">
+Add a Comment
+<svg viewbox="0 0 266.514 266.514" xmlns="http://www.w3.org/2000/svg"><path d="M133.257 266.514C59.775 266.514 0 206.733 0 133.257S59.775 0 133.257 0s133.257 59.781 133.257 133.257-59.775 133.257-133.257 133.257zm0-255.636c-67.477 0-122.379 54.896-122.379 122.379S65.78 255.636 133.257 255.636s122.379-54.896 122.379-122.379S200.734 10.878 133.257 10.878z" fill="#4354ff"></path><path d="M210.35 127.818h-71.654V56.164a5.438 5.438 0 0 0-5.439-5.439 5.438 5.438 0 0 0-5.439 5.439v71.654H56.164a5.441 5.441 0 0 0-5.439 5.439 5.441 5.441 0 0 0 5.439 5.439h71.654v71.649a5.438 5.438 0 0 0 5.439 5.439 5.438 5.438 0 0 0 5.439-5.439v-71.649h71.654a5.441 5.441 0 0 0 5.439-5.439 5.44 5.44 0 0 0-5.439-5.439z" fill="#4354ff"></path></svg>
+</a>
+</div>
+<section id="comments-list">
+<br/>
+<p class="tc"><a class="view-all-button blue-button" href="javascript:commendable()"><span>Show Comments</span><!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg fill="white" id="Capa_1" style="enable-background:new 0 0 256 256;" version="1.1" viewbox="0 0 256 256" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<g>
+<g>
+<polygon points="79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128   "></polygon>
+</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+</a></p>
+</section>
+<div class="hide">
+<section class="section_form c" id="comments_form">
+<h3>Add a Comment</h3>
+<form accept-charset="UTF-8" action="https://knowyourmeme.com/memes/1/comments" data-remote="true" id="comment_form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="E7L9UbJA0EA30m32wf4con52IgWts5hXMczyROxCg54="/></input></div><fieldset>
+<textarea cols="40" id="comment_comment" name="comment[comment]" rows="20">
+</textarea>
+</fieldset>
+<fieldset class="buttons c">
+<input class="button" data-disable-with="Submitting..." name="commit" type="submit" value="Add Comment"/>
+</fieldset>
+</form>
+</section>
+</div>
+<form accept-charset="UTF-8" action="https://knowyourmeme.com/memes/1/comments" class="comment-reply-form hide" data-remote="true" id="comment-reply-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"/><input name="authenticity_token" type="hidden" value="E7L9UbJA0EA30m32wf4con52IgWts5hXMczyROxCg54="/></div><fieldset>
+<input class="comment-parent-id" id="comment_parent_id" name="comment[parent_id]" type="hidden" value="0"/>
+<textarea cols="40" id="comment_comment" name="comment[comment]" rows="3">
+</textarea>
+</fieldset>
+<fieldset>
+<input class="reply-button" data-disable-with="Submitting..." name="commit" type="submit" value="Reply"/>
+</fieldset>
+</form>
+<div class="show-more-button hidden">
+<a class="blue-button" data-remote="true" data-type="script" href="/comments?entry_id=2431&amp;page=2" id="show-more-link">View More Comments</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<div class="side-rail-ads-container">
+<div class="aside">
+<div class="ads sticky-ads">
+<div class="rectangle-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-rectangle-unit shemedia-ad" data-name="kym_newentry_mediumrect_desktop_03" data-options='{"containerId":"kym_newentry_mediumrect_desktop_03","lazyLoad":true}' data-shemedia-size="medrec" id="kym_newentry_mediumrect_desktop_03"></div>
+</div>
+</div>
+</div>
+<div class="aside">
+<div class="ads sticky-ads">
+<div class="rectangle-unit-wrapper shemedia-ad-wrapper">
+<div class="shemedia-rectangle-unit shemedia-ad" data-name="kym_newentry_mediumrect_desktop_04" data-options='{"containerId":"kym_newentry_mediumrect_desktop_04","lazyLoad":true}' data-shemedia-size="medrec" id="kym_newentry_mediumrect_desktop_04"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="news_feeds">
+<h2>The latest from KYM</h2>
+<div class="news-post">
+<div class="image photo">
+<div class="media"><a class="newsfeed-image" href="/photos/2246595-hello-human-resources" rel="nofollow"><picture><source srcset="https://i.kym-cdn.com/photos/images/newsfeed/002/246/595/ee6.png"/><img alt="You've Been Caught" class="newsfeed_photo" data-src="https://i.kym-cdn.com/photos/images/newsfeed/002/246/595/ee6.png" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="You've Been Caught"/></picture></a></div>
+<svg height="48px" version="1.1" viewbox="0 0 60 48" width="60px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Photo</title>
+<defs>
+<path d="M49.4998963,41.9999142 C51.9851809,41.9999142 53.9998856,39.9852095 53.9998856,37.4999249 L53.9998856,10.4999893 C53.9998856,8.01470467 51.9851809,6 49.4998963,6 L10.4999893,6 C8.01470467,6 6,8.01470467 6,10.4999893 L6,37.4999249 C6,39.9852095 8.01470467,41.9999142 10.4999893,41.9999142 L49.4998963,41.9999142 Z M49.4998963,38.9999213 L10.4999928,38.9999213 C9.67290384,38.9999213 8.99999285,38.3270103 8.99999285,37.4999249 L8.99999285,10.4999928 C8.99999285,9.67290384 9.67290384,8.99999285 10.4999928,8.99999285 L49.4998963,8.99999285 C50.3269817,8.99999285 50.9998927,9.67290384 50.9998927,10.4999928 L50.9998927,37.4999249 C50.9998927,38.3270103 50.3269817,38.9999213 49.4998963,38.9999213 Z M16.499975,21.7499624 C19.3994432,21.7499624 21.7499624,19.3994432 21.7499624,16.499975 C21.7499624,13.6005068 19.3994432,11.2499875 16.499975,11.2499875 C13.6005068,11.2499875 11.2499875,13.6005068 11.2499875,16.499975 C11.2499875,19.3994432 13.6005068,21.7499624 16.499975,21.7499624 Z M16.499975,18.7499696 C15.2592553,18.7499696 14.2499803,17.7406947 14.2499803,16.499975 C14.2499803,15.2592553 15.2592553,14.2499803 16.499975,14.2499803 C17.7406947,14.2499803 18.7499696,15.2592553 18.7499696,16.499975 C18.7499696,17.7406947 17.7406947,18.7499696 16.499975,18.7499696 Z M46.8749025,35.9999285 C47.4961779,35.9999285 47.9998999,35.4962065 47.9998999,34.8749312 L47.9998999,26.2499517 C47.9998999,25.6532124 47.7627788,25.0809176 47.3409049,24.6589521 L39.0909245,16.4089718 C38.2122035,15.5303423 36.7876463,15.5303423 35.9089253,16.4089718 L26.9999499,25.3179471 L24.0909603,22.409049 C23.2122392,21.530328 21.7876821,21.530328 20.9090526,22.409049 L12.6590723,30.6590293 C12.2952426,31.0227675 11.9999857,31.7355038 11.9999857,32.2499374 L11.9999857,34.8749312 C11.9999857,35.4962065 12.5037076,35.9999285 13.124983,35.9999285 L46.8749025,35.9999285 Z M44.999907,32.9999356 L14.9999785,32.9999356 L14.9999785,32.5606667 L22.4999607,25.0606845 L26.9999499,29.5606738 L37.4999249,19.0606988 L44.999907,26.560681 L44.999907,32.9999356 Z" id="photo-path-1"></path>
+<filter filterunits="objectBoundingBox" height="150.0%" id="photo-filter-2" width="137.5%" x="-18.8%" y="-25.0%">
+<feoffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feoffset>
+<fegaussianblur in="shadowOffsetOuter1" result="shadowBlurOuter1" stddeviation="3"></fegaussianblur>
+<fecolormatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.0745098039   0 0 0 0 0.0745098039   0 0 0 0 0.243137255  0 0 0 0.44 0"></fecolormatrix>
+</filter>
+</defs>
+<g fill="none" fill-rule="evenodd" id="Chosen-round-3-photo" stroke="none" stroke-width="1">
+<g fill-rule="nonzero" id="icon_imageSingle2x">
+<use fill="black" fill-opacity="1" filter="url(#photo-filter-2)" xlink:href="#photo-path-1"></use>
+<use fill="#FFFFFF" xlink:href="#photo-path-1"></use>
+</g>
+</g>
+</svg>
+</div>
+<div class="body">
+<a class="category-type photo type" href="/memes">
+Photo
+</a>
+<div class="title">
+<h1><a class="newsfeed-title" href="/photos/2246595-hello-human-resources" title="You've Been Caught">You've Been Caught</a></h1>
+</div>
+<div class="desc">
+</div>
+<div class="timestamps">
+Nov 15th, 2021 10:17 AM
+</div>
+<div class="post-stamp">
+Image
+</div>
+</div>
+</div>
+<div class="news-post">
+<div class="image site">
+<div class="media"><a class="newsfeed-image" href="/memes/sites/anaesthesia-blues" rel="nofollow"><picture><source srcset="https://i.kym-cdn.com/entries/icons/mobile/000/038/852/Screen_Shot_2021-11-15_at_3.05.12_PM.jpg"/><img alt="'Anaesthesia Blues' Is Hilarious, Sincere, And Doesn't Exist" class="newsfeed_photo" data-src="https://i.kym-cdn.com/entries/icons/mobile/000/038/852/Screen_Shot_2021-11-15_at_3.05.12_PM.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'Anaesthesia Blues' Is Hilarious, Sincere, And Doesn't Exist"/></picture></a></div>
+</div>
+<div class="body">
+<a class="category-type site type" href="/categories/site">
+Site
+</a>
+<div class="title">
+<h1><a class="newsfeed-title" href="/memes/sites/anaesthesia-blues" title="'Anaesthesia Blues' Is Hilarious, Sincere, And Doesn't Exist">'Anaesthesia Blues' Is Hilarious, Sincere, And Doesn't Exist</a></h1>
+</div>
+<div class="desc">
+<p>The fictional television show has been a hit of a new OOC parody account.</p>
+</div>
+<div class="timestamps">
+Nov 15th, 2021 03:51 PM
+</div>
+<div class="post-stamp">
+Trending
+</div>
+</div>
+</div>
+<div class="news-post">
+<div class="image video">
+<div class="media"><a class="newsfeed-image" href="/videos/365537-aunt-cass-checks-your-browser-history" rel="nofollow"><picture><source srcset="https://i.kym-cdn.com/news_feeds/icons/mobile/000/058/602/275.jpg"/><img alt="Ok That's It, I'm Gonna Post It" class="newsfeed_photo" data-src="https://i.kym-cdn.com/news_feeds/icons/mobile/000/058/602/275.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="Ok That's It, I'm Gonna Post It"/></picture></a></div>
+<svg height="60px" version="1.1" viewbox="0 0 54 60" width="54px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>icon_video-2x</title>
+<defs>
+<path d="M13.1018062,53.3718439 L46.1017275,33.8718904 C49.0454155,32.1375195 49.0548454,27.8625663 46.1017275,26.1281955 L13.1018062,6.61881204 C10.4205076,5.03449575 6.31428571,6.57193715 6.31428571,10.4907511 L6.31428571,49.4999964 C6.31428571,53.015613 10.1299199,55.1343214 13.1018062,53.3718439 Z M9.31427856,49.4999964 L9.31427856,10.4907511 C9.31427856,8.96255645 10.8518115,8.76571854 11.5736116,9.19693089 L44.5735329,28.7063143 C45.5579055,29.2875812 45.5579055,30.7125046 44.5829628,31.2937715 L11.5830415,50.793725 C10.5892389,51.3656536 9.31427856,50.681207 9.31427856,49.4999964 Z" id="video-path-1"></path>
+<filter filterunits="objectBoundingBox" height="137.5%" id="video-filter-2" width="142.9%" x="-21.4%" y="-18.7%">
+<feoffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feoffset>
+<fegaussianblur in="shadowOffsetOuter1" result="shadowBlurOuter1" stddeviation="3"></fegaussianblur>
+<fecolormatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.0745098039   0 0 0 0 0.0745098039   0 0 0 0 0.243137255  0 0 0 0.44 0"></fecolormatrix>
+</filter>
+</defs>
+<g fill="none" fill-rule="evenodd" id="Chosen-round-3-video" stroke="none" stroke-width="1">
+<g fill-rule="nonzero" id="icon_video-2x">
+<use fill="black" fill-opacity="1" filter="url(#video-filter-2)" xlink:href="#video-path-1"></use>
+<use fill="#FFFFFF" xlink:href="#video-path-1"></use>
+</g>
+</g>
+</svg>
+</div>
+<div class="body">
+<a class="category-type type video" href="/memes">
+Video
+</a>
+<div class="title">
+<h1><a class="newsfeed-title" href="/videos/365537-aunt-cass-checks-your-browser-history" title="Ok That's It, I'm Gonna Post It">Ok That's It, I'm Gonna Post It</a></h1>
+</div>
+<div class="desc">
+<p>My type.</p>
+</div>
+<div class="timestamps">
+Nov 15th, 2021 04:55 PM
+</div>
+<div class="post-stamp">
+Video
+</div>
+</div>
+</div>
+<div class="news-post">
+<div class="image subculture">
+<div class="media"><a class="newsfeed-image" href="/memes/subcultures/grand-theft-auto-the-trilogy-the-definitive-edition" rel="nofollow"><picture><source srcset="https://i.kym-cdn.com/news_feeds/icons/mobile/000/058/605/752.jpg"/><img alt="'GTA - The Definitive Edition' Plummets To Fourth Lowest User-Rated Game On Metacritic" class="newsfeed_photo" data-src="https://i.kym-cdn.com/news_feeds/icons/mobile/000/058/605/752.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="'GTA - The Definitive Edition' Plummets To Fourth Lowest User-Rated Game On Metacritic"/></picture></a></div>
+</div>
+<div class="body">
+<a class="category-type subculture type" href="/categories/subculture">
+Subculture
+</a>
+<div class="title">
+<h1><a class="newsfeed-title" href="/memes/subcultures/grand-theft-auto-the-trilogy-the-definitive-edition" title="'GTA - The Definitive Edition' Plummets To Fourth Lowest User-Rated Game On Metacritic">'GTA - The Definitive Edition' Plummets To Fourth Lowest User-Rated Game On Metacritic</a></h1>
+</div>
+<div class="desc">
+<p>Sporting measly 0.5 Metacritic user score with its PC and Xbox Series X versions, <em>Grand Theft Auto: The Trilogy – The Definitive Edition</em> has been the butt of the joke the entire weekend, with users sharing increasingly ridiculous clips of in-game glitches.</p>
+</div>
+<div class="timestamps">
+Nov 15th, 2021 07:54 PM
+</div>
+<div class="post-stamp">
+Trending
+</div>
+</div>
+</div>
+<div class="news-post">
+<div class="editorial image">
+<div class="media"><a class="newsfeed-image" href="/editorials/collections/15-pieces-of-meme-art-better-than-an-nft" rel="nofollow"><picture><source srcset="https://i.kym-cdn.com/editorials/icons/mobile/000/003/587/memeartheader.jpg"/><img alt="15 Pieces Of Meme Art Better Than An NFT" class="newsfeed_photo" data-src="https://i.kym-cdn.com/editorials/icons/mobile/000/003/587/memeartheader.jpg" src="https://s.kym-cdn.com/assets/blank-8f52844e31c600b21b78a8b0b00dbfbb.gif" title="15 Pieces Of Meme Art Better Than An NFT"/></picture></a></div>
+</div>
+<div class="body">
+<a class="category-type editorial type" href="/memes">
+Editorial
+</a>
+<div class="title">
+<h1><a class="newsfeed-title" href="/editorials/collections/15-pieces-of-meme-art-better-than-an-nft" title="15 Pieces Of Meme Art Better Than An NFT">15 Pieces Of Meme Art Better Than An NFT</a></h1>
+</div>
+<div class="desc">
+<p>You can actually hang these on your wall…</p>
+</div>
+<div class="timestamps">
+Nov 15th, 2021 04:26 PM
+</div>
+<div class="post-stamp">
+Collection
+</div>
+</div>
+</div>
+</div>
+<div class="loader"></div>
+<div id="infinite-scrolling">
+<div class="pagination"><span class="previous_page disabled">Previous</span> <em class="current">1</em> <a href="/memes/1?page=2" rel="next">2</a> <a href="/memes/1?page=3">3</a> <a href="/memes/1?page=4">4</a> <a href="/memes/1?page=5">5</a> <a href="/memes/1?page=6">6</a> <a href="/memes/1?page=7">7</a> <a href="/memes/1?page=8">8</a> <a href="/memes/1?page=9">9</a> <span class="gap"></span> <a href="/memes/1?page=11280">11280</a> <a href="/memes/1?page=11281">11281</a> <a class="next_page" href="/memes/1?page=2" rel="next">Next</a></div>
+</div>
+</article>
+<div class="hide">
+<div id="abm-ep">
+<h1>
+We see that you're using an ad-blocker!
+</h1>
+<hr/>
+<div class="msg">
+<p>
+Know Your Meme is an advertising supported site and we noticed that you're using an ad-blocking solution.
+</p>
+</div>
+<h2>
+To continue reading this entry:
+</h2>
+<hr/>
+<div class="options">
+<div class="o1">
+<p>
+Turn off your ad-blocker
+</p>
+<a class="large button" href="/whitelist-us" rel="nofollow" target="_blank">DO IT NOW</a>
+</div>
+<div class="o2">
+<p>
+Login to Know Your Meme
+</p>
+<a class="large button" href="/login" rel="nofollow" target="_blank">LOGIN OR SIGN-UP</a>
+</div>
+</div>
+</div>
+</div>
+<script type="application/ld+json">
+{"@context": "http://schema.org", "@type": "BreadcrumbList", "itemListElement":
+[
+{"@type": "ListItem", "position": 1, "item": {"@id": "https://knowyourmeme.com/categories/meme", "name": "Meme"}},
+{"@type": "ListItem", "position": 2, "item": {"@id": "https://knowyourmeme.com/memes/1", "name": "+1"}}
+]
+}
+</script>
+</div>
+<aside class="right desktop-only" id="sidebar">
+</aside>
+</div>
+<script async="" data-cfasync="false" src="https://api.b2c.com/api/init-40069ffybbzfqiynrkd.js"></script> <noscript> <img src="https://api.b2c.com/api/noscript-40069ffybbzfqiynrkd.gif"/> </noscript>
+<footer id="footer-new"> <div class="footer-container"> <div class="footer-logo-container"> <div class="kym-logo-square"> <a href="/" title="Know Your Meme"></a> </div> <div class="socials-container"> <a class="item-socials" href="https://www.facebook.com/knowyourmeme"><i class="fa fa-facebook"></i> </a><a class="item-socials" href="https://twitter.com/knowyourmeme"><i class="fa fa-twitter"></i> </a><a class="item-socials" href="https://www.pinterest.com/knowyourmeme/"><i class="fa fa-pinterest"></i> </a><a class="item-socials" href="https://tumblr.knowyourmeme.com/"><i class="fa fa-tumblr"></i> </a><a class="item-socials" href="https://www.youtube.com/user/KnowYourMeme"><i class="fa fa-youtube"></i> </a></div> </div> <div class="footer-links-holder"> <div class="footer-links-container"> <div class="footer-links-row"> <span>ABOUT</span> <ul class="footer-links-list"> <li> <a href="/about">Our Story</a> </li> <li> <a href="/editorials/rules-and-guidelines/">Site Rules</a> </li> <li> <a href="/credits">Credits</a> </li> <li> <a href="/contact">Contact</a> </li> <li> <a href="/editorials/the-style-guide/">Style Guide </a> </li> <li> <a href="//news.knowyourmeme.com:443/news/staff">Staff</a> </li> </ul> </div> <div class="footer-links-divider"></div> <div class="footer-links-row"> <span>MEMES &amp; MORE</span> <ul class="footer-links-list"> <li> <a href="/memes">Memes</a> </li> <li> <a href="/photos">Images</a> </li> <li> <a href="/videos">Videos</a> </li> <li> <a href="//news.knowyourmeme.com:443/news">News</a> </li> <li> <a href="/forums">Forums</a> </li> <li> <a href="/subscribe">RSS Feed</a> </li> </ul> </div> </div> <div class="footer-insider-container"></div> </div> </div> <div class="trademark-container"> Know Your Meme ® is a trademark of Literally Media Ltd. By using this site, you are agreeing by the site's terms of use and privacy policy and DMCA policy. © 2007-2020 Literally Media Ltd. </div> </footer>
+<div class="hide"> <div id="login_signup_form"> <h3>Namaste! You must login or signup first!</h3> <table> <tr> <td class="login"> <h6>Already a memeber?</h6> <p><a class="large red button" href="/login" rel="nofollow">Login Now!</a></p> </td> <td class="signup"> <h6>Don't have an account?</h6> <p><a class="large red button" href="/signup" rel="nofollow">Sign up Now!</a></p> </td> </tr> </table> </div> </div> <script type="text/javascript">var _qevents = _qevents || []; (function() { var elem = document.createElement('script'); elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js"; elem.async = true; elem.type = "text/javascript"; var scpt = document.getElementsByTagName('script')[0]; scpt.parentNode.insertBefore(elem, scpt); })(); _qevents.push([{ qacct:"p-byLmeZUvD2jyq" }]);</script> <noscript> <div style="display: none;"> <img alt="Quantcast" border="0" height="1" src="https://pixel.quantserve.com/pixel?a.1=p-75z9nhQwNH4Ek&amp;a.2=p-149W7Ang9fLCQ" style="display: none;" width="1"/> </div> </noscript> <script type="text/javascript">var _comscore = _comscore || []; _comscore.push({ c1: "2", c2: "6685975" }); (function() { var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true; s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js"; el.parentNode.insertBefore(s, el); })();</script> <noscript> <img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=6685975&amp;cv=2.0&amp;cj=1"/> </noscript> <div class="chartbeat-sections" data-sections="Entry Pages"></div> <script> function sendToGoogleAnalytics({name, delta, id}) { console.log(name); ga('send', 'event', { eventCategory: 'Web Vitals', eventAction: name, eventLabel: id, eventValue: Math.round(name === 'CLS' ? delta * 1000 : delta), nonInteraction: true, transport: 'beacon', }); } (function() { var script = document.createElement('script'); script.src = 'https://unpkg.com/web-vitals'; script.onload = function() { webVitals.getCLS(sendToGoogleAnalytics); webVitals.getFID(sendToGoogleAnalytics); webVitals.getLCP(sendToGoogleAnalytics); }; document.getElementsByTagName("head")[0].appendChild(script); }()) </script>
+<div class="social-data" data-media="https://i.kym-cdn.com/entries/icons/facebook/000/002/431/man-talking-loud.jpg" data-url="https://knowyourmeme.com/memes/1"></div>
+<div class="complex-ad-wrapper adhesion hide"> <div class="adhesion-dismissal"> <a href="#" id="adhesion_dismiss">Close [X]</a> </div> <div class="complex-ad" data-complex="false" data-dfp-name="kym_adhesion_desktop" data-dfp-size="[728, 90]" data-options='{"containerId":"kym_adhesion","keywords":"userLoggedIn"}' id="kym_adhesion"></div> </div>
+<div class="complex-ad-wrapper"> <div class="complex-ad" data-complex="false" data-dfp-name="kym_richmedia" data-dfp-size="[1, 1]" data-options='{"containerId":"kym_richmedia"}' id="kym_richmedia"></div> </div>
+</body>
+</html>

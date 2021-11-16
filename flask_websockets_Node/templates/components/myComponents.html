@@ -1,10 +1,10 @@
-<html>
-  <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
 
+  <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
 <template id="d3-template" value='!!!'>
   <div style ="margin: 20px">
-    <svg id="container" width="200" height="200">
-            <circle id="circle" cx="100" cy="100" r="25"  />
+    <svg id="container" width="100" height="100">
+            <circle id="circle" cx="50" cy="50" r="12"></circle>
     </svg>
   </div>
 </template>
@@ -26,9 +26,9 @@ class D3DrawWidget extends HTMLElement {
           let svgCont = this.shadowRoot.querySelector("#container");
 
 
-              var width = 200
-              var  height = 200
-              var margin = 40
+              var width = 100
+              var  height = 100
+              var margin = 20
 
               // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
               var radius = Math.min(width, height) / 2 - margin
@@ -62,8 +62,8 @@ class D3DrawWidget extends HTMLElement {
                 .enter()
                 .append('path')
                 .attr('d', d3.arc()
-                  .innerRadius(99)         // This is the size of the donut hole
-                  .outerRadius(40)
+                  .innerRadius(49)         // This is the size of the donut hole
+                  .outerRadius(20)
                 )
                 .attr('fill', function(d){ return(color(d.data.key)) })
                 //.attr("stroke", "black")
@@ -184,9 +184,9 @@ class D3DrawWidget extends HTMLElement {
                   .attr("height", function(d) { return height - y(d.length); })
                   .style("fill", "#69b3a2")
                   // Show tooltip on hover
-                  .on("mouseover", showTooltip )
-                  .on("mousemove", moveTooltip )
-                  .on("mouseleave", hideTooltip )
+                  //.on("mouseover", showTooltip )
+                   
+                  //.on("mouseleave", hideTooltip )
 
           });
 
@@ -210,10 +210,12 @@ class D3DrawWidget extends HTMLElement {
 
 
 <template id="d3-template" value='!!!'>
-  <svg id="container" width="50" height="50">
-    <circle id="circle" cx="25" cy="25" r="25" style fill="green" />
+  <div style = "width: 100px; height: 100px; display: inline-block; padding: 2px 2px; overflow-x: hidden;">
+  <svg id="container"  style= "width: 100px; height: 100px; display: inline-block; padding: 2px 2px; overflow-x: hidden;">
+    
   </svg>
-  </template>
+  </div> 
+</template>
   
   
 
@@ -255,5 +257,3 @@ class D3DrawWidget extends HTMLElement {
 
 
 
-
-</html>
