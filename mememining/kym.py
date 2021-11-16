@@ -155,6 +155,6 @@ print(str(len(nl)))
 print(type(nl))
 
 #for i in todo:
-for i in range(8,100):
+for i in range(500,1000):
 
     kym_id(i)
