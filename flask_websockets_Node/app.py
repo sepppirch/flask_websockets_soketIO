@@ -4,7 +4,7 @@ from flask_session import Session
 import requests
 import json
 from engineio.payload import Payload
-
+from PIL import Image
 import string
 import random
 
@@ -83,13 +83,29 @@ def wsreceiver():
 ### Send it back to node wich multicasts it to ue4 clients
     sendUE4('http://127.0.0.1:3000/in', data)
 
-    return
+    return "creatde image"
 
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
+
+@app.route('/image', methods=['GET', 'POST'])
+def image():
+    new_im = Image.new('RGB', (128, 128))
+    i = 0
+    for y in range (128):
+        for x in range (128):
+            r = int(i / 128)* 2
+            h = (i % 16)*8
+
+            new_im.putpixel((x, y), ((128 - x)*2, x*2, y*2))
+
+            i+=1
+    #print(h)
+    new_im.save('static/img/testtt.bmp')
+    return "image written"
 
 
 @app.route('/chat', methods=['GET', 'POST'])
