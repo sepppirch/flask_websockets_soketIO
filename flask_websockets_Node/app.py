@@ -92,7 +92,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/image', methods=['GET', 'POST'])
-def image():
+def write_image():
     new_im = Image.new('RGB', (128, 128))
     i = 0
     for y in range (128):
