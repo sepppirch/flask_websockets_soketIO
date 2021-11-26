@@ -7,7 +7,7 @@ from engineio.payload import Payload
 from PIL import Image
 import string
 import random
-
+import random
 Payload.max_decode_packets = 50
 
 class bcolors:
@@ -95,17 +95,21 @@ def index():
 def write_image():
     new_im = Image.new('RGB', (128, 128))
     i = 0
+    k = random.randrange(10,255)
+    l = random.randrange(10,255)
+    m = random.randrange(10,255)
     for y in range (128):
         for x in range (128):
-            r = int(i / 128)* 2
-            h = (i % 16)*8
-
-            new_im.putpixel((x, y), ((128 - x)*2, x*2, y*2))
+            r = (i % k)
+            h = (i % l)
+            q = (i % m)
+            #new_im.putpixel((x, y), ((128 - x)*2, x*2, y*2))\
+            new_im.putpixel((x, y), (r, h, q))
 
             i+=1
     #print(h)
-    new_im.save('static/img/testtt.bmp')
-    return "image written"
+    new_im.save('static/img/test.bmp')
+    return #redirect(url_for('static/img/test.bmp'))
 
 
 @app.route('/chat', methods=['GET', 'POST'])
