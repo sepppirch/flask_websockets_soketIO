@@ -8,6 +8,7 @@ from PIL import Image
 import string
 import random
 import random
+import csv
 Payload.max_decode_packets = 50
 
 class bcolors:
@@ -91,6 +92,36 @@ def wsreceiver():
 def index():
     return render_template('index.html')
 
+@app.route('/nodeTex', methods=['GET', 'POST'])
+def makeNodeTex():
+    with open('static/csv/1_spring.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+ 
+        tex = []
+        new_im = Image.new('RGB', (128, 128))
+
+        for row in spamreader:
+            r = int(float(row[0])*255)
+            g = int(float(row[1])*255)
+            b = int(float(row[2])*255)
+            pixel = [r,g,b]
+            tex.append(pixel)
+            #print(row[0])
+
+        length = len(tex)
+ 
+
+        for i in range(length):
+            x = i%128
+            y = int(i/128)
+
+            new_im.putpixel((x, y), tex[i])
+
+
+        url = 'static/img/node.bmp'
+        new_im.save(url)
+        return redirect("http://127.0.0.1:5000/" + url, code=302)
+
 @app.route('/image', methods=['GET', 'POST'])
 def write_image():
     new_im = Image.new('RGB', (128, 128))
@@ -108,8 +139,9 @@ def write_image():
 
             i+=1
     #print(h)
-    new_im.save('static/img/test.bmp')
-    return #redirect(url_for('static/img/test.bmp'))
+    url = 'static/img/test.bmp'
+    new_im.save(url)
+    return redirect("http://127.0.0.1:5000/" + url, code=302)
 
 
 @app.route('/chat', methods=['GET', 'POST'])
