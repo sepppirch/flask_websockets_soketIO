@@ -1,3 +1,4 @@
 __pycache__/
 flask_session/
 NodeServer/.vs/server/
+flask_websockets_Node/venv/
