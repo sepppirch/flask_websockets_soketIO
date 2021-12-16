@@ -94,33 +94,70 @@ def index():
 
 @app.route('/nodeTex', methods=['GET', 'POST'])
 def makeNodeTex():
-    with open('static/csv/1_spring.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
- 
-        tex = []
-        new_im = Image.new('RGB', (128, 128))
 
-        for row in spamreader:
-            r = int(float(row[0])*255)
-            g = int(float(row[1])*255)
-            b = int(float(row[2])*255)
-            pixel = [r,g,b]
-            tex.append(pixel)
+    name = 'airports'
+
+    with open('static/csv/'+name+'.csv', newline='') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+ 
+        texh = [(0,0,0)] * 16384
+        texl = [(0,0,0)] * 16384
+        texc = [(0,0,0,0)] * 16384
+
+        new_imgh = Image.new('RGB', (128, 128))
+        new_imgl = Image.new('RGB', (128, 128))
+        new_imgc = Image.new('RGBA', (128, 128))
+
+        TexXYZ = Image.new('RGB', (128, 256))
+        
+        i = 0
+        for row in csvreader:
+            x = int(float(row[0])*65280)
+            y = int(float(row[1])*65280)
+            z = int(float(row[2])*65280)
+
+            r = int(row[3])
+            g = int(row[4])
+            b = int(row[5])
+            a = int(row[6])
+
+            xh = int(x / 255)
+            yh = int(y / 255)
+            zh = int(z / 255)
+
+            xl = x % 255
+            yl = y % 255
+            zl = z % 255
+
+
+            pixelh = (xh,yh,zh)
+            pixell = (xl,yl,zl)
+            pixelc = (r,g,b,a)
+
+            texh[i] = pixelh
+            texl[i] = pixell
+            texc[i] = pixelc
+
+
+            i += 1
             #print(row[0])
 
-        length = len(tex)
- 
+        new_imgh.putdata(texh)
+        new_imgl.putdata(texl)
+        new_imgc.putdata(texc)
+             
+        TexXYZ.paste(new_imgh, (0, 0))
+        TexXYZ.paste(new_imgl, (0, 128))
 
-        for i in range(length):
-            x = i%128
-            y = int(i/128)
+        path = 'static/img/'
+        
+        pathXYZ = path + name + 'XYZ.bmp'
+        pathRGB = path + name + 'XYZ.png'
 
-            new_im.putpixel((x, y), tex[i])
+        TexXYZ.save(pathXYZ)
+        new_imgc.save(pathRGB, "PNG")
 
-
-        url = 'static/img/node.bmp'
-        new_im.save(url)
-        return redirect("http://127.0.0.1:5000/" + url, code=302)
+        return redirect("http://127.0.0.1:5000/" + pathXYZ, code=302)
 
 @app.route('/image', methods=['GET', 'POST'])
 def write_image():
