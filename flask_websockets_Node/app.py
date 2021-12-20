@@ -3,6 +3,8 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 import requests
 import json
+import os
+from flask import jsonify
 from engineio.payload import Payload
 from PIL import Image
 import string
@@ -92,6 +94,33 @@ def wsreceiver():
 def index():
     return render_template('index.html')
 
+@app.route('/projects', methods=['GET', 'POST'])
+def listProjects():
+    folder = 'static/projects'
+    sub_folders = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
+    print(sub_folders)
+    return jsonify(
+        projects=sub_folders  
+    )
+
+@app.route('/load_project', methods=['GET', 'POST'])
+def loadProject():
+    folder = 'static/projects/erika/'
+    layoutfolder = folder + "layouts"
+    layoutRGBfolder = folder + "layoutsRGB"
+    linksRGBfolder = folder + "linksRGB"
+    linkfolder = folder + "links"
+    layouts = [name for name in os.listdir(layoutfolder)]
+    layoutsRGB = [name for name in os.listdir(layoutRGBfolder)]
+    links = [name for name in os.listdir(linkfolder)]
+    linksRGB = [name for name in os.listdir(linksRGBfolder)]
+    return jsonify(
+        layouts=layouts,
+        layoutsRGB=layoutsRGB,
+        links = links,
+        linksRGB = linksRGB 
+    )
+
 @app.route('/nodeTex', methods=['GET', 'POST'])
 def makeNodeTex():
 
@@ -158,6 +187,8 @@ def makeNodeTex():
         new_imgc.save(pathRGB, "PNG")
 
         return redirect("http://127.0.0.1:5000/" + pathXYZ, code=302)
+
+
 
 @app.route('/image', methods=['GET', 'POST'])
 def write_image():
