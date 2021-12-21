@@ -190,6 +190,69 @@ def makeNodeTex():
 
 
 
+@app.route('/linkTex', methods=['GET', 'POST'])
+def makeLinkTex():
+
+    name = '3_mol_links'
+
+    with open('static/csv/'+ name +'.csv', newline='') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+ 
+        texl = [(0,0,0)] * 1024 * 512
+        texc = [(0,0,0,0)] * 512 * 512
+
+        new_imgl = Image.new('RGB', (1024, 512))
+        new_imgc = Image.new('RGBA', (512, 512))
+        
+        i = 0
+        for row in csvreader:
+
+            sl = int(row[0]) % 128
+            s = int(int (row[0]) / 128)
+
+            el = int(row[1]) % 128
+            e = int(int (row[1]) / 128)
+
+            
+
+            r = int(row[2])
+            g = int(row[3])
+            b = int(row[4])
+            a = int(row[5])
+
+
+            pixell1 = (s,sl,0)
+            pixell2 = (e,el,0)
+
+            pixelc = (r,g,b,a)
+
+            if i < 262144:
+
+                texl[i*2] = pixell1
+                texl[i*2+1] = pixell2
+                texc[i] = pixelc
+
+
+            i += 1
+            #print(i)
+
+        new_imgl.putdata(texl)
+        new_imgc.putdata(texc)
+             
+
+
+        path = 'static/img/'
+        
+        pathl = path + name + 'LINKS.bmp'
+        pathRGB = path + name + 'LINKS_RGB.png'
+
+        new_imgl.save(pathl, "PNG")
+        new_imgc.save(pathRGB, "PNG")
+
+        return redirect("http://127.0.0.1:5000/" + pathl, code=302)
+
+
+
 @app.route('/image', methods=['GET', 'POST'])
 def write_image():
     new_im = Image.new('RGB', (128, 128))
