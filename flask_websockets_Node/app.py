@@ -65,29 +65,9 @@ def makeProjectFolders(name):
     path = "static/projects/" + name
     try:
         os.mkdir(path)
-    except OSError:
-        print ("Creation of the directory %s failed" % path)
-    else:
-        print ("Successfully created the directory %s " % path)
-    try:
         os.mkdir(path + '/layouts')
-    except OSError:
-        print ("Creation of the directory %s failed" % path)
-    else:
-        print ("Successfully created the directory %s " % path)
-    try:
         os.mkdir(path + '/layoutsRGB')
-    except OSError:
-        print ("Creation of the directory %s failed" % path)
-    else:
-        print ("Successfully created the directory %s " % path)
-    try:
         os.mkdir(path + '/links')
-    except OSError:
-        print ("Creation of the directory %s failed" % path)
-    else:
-        print ("Successfully created the directory %s " % path)
-    try:
         os.mkdir(path + '/linksRGB')
     except OSError:
         print ("Creation of the directory %s failed" % path)
@@ -152,9 +132,8 @@ def makeNodeTex(project, name, file):
             texl[i] = pixell
             texc[i] = pixelc
             i += 1
-    except IndexError:
-        return "ERROR:" + name + " nodefile malformated?"
-
+    except (IndexError, ValueError):
+        return "ERROR " + name + " nodefile malformated?"
     
     with open(path + '/names.json', 'w') as outfile:
         json.dump(attrlist, outfile)
@@ -165,19 +144,15 @@ def makeNodeTex(project, name, file):
     TexXYZ.paste(new_imgh, (0, 0))
     TexXYZ.paste(new_imgl, (0, 128))
         
-        
     pathXYZ = path + '/layouts/' +  name + 'XYZ.bmp'
     pathRGB = path + '/layoutsRGB/' +  name +  'RGB.png'
+
     if os.path.exists(pathXYZ):
-        return "ERROR:" +  name + " Nodelist already in project"
+        return "ERROR " +  name + " Nodelist already in project"
     else:
         TexXYZ.save(pathXYZ)
         new_imgc.save(pathRGB, "PNG")
-        #os.mkdir(path)
-    #except FileExistsError:
-       #
-
-        return "OK:" + name + " Node Textures Created"
+        return "SUCCESS " + name + " Node Textures Created"
     
     
     
@@ -204,17 +179,13 @@ def makeLinkTex(project, name, file):
                 el = int(row[1]) % 128
                 e = int(int (row[1]) / 128)
 
-                
-
                 r = int(row[2])
                 g = int(row[3])
                 b = int(row[4])
                 a = int(row[5])
 
-
                 pixell1 = (s,sl,0)
                 pixell2 = (e,el,0)
-
                 pixelc = (r,g,b,a)
 
                 if i < 262144:
@@ -223,11 +194,10 @@ def makeLinkTex(project, name, file):
                     texl[i*2+1] = pixell2
                     texc[i] = pixelc
 
-
                 i += 1
 
         except (IndexError, ValueError):
-            return "ERROR:" +  name + " Linkfile malformated?" 
+            return "ERROR " +  name + " Linkfile malformated?" 
 
         new_imgl.putdata(texl)
         new_imgc.putdata(texc)
@@ -235,11 +205,11 @@ def makeLinkTex(project, name, file):
         pathRGB = path + '/linksRGB/' +  name +  'RGB.png'
 
         if os.path.exists(pathl):
-            return "ERROR:" +  name  + " linklist already in project"
+            return "ERROR " +  name  + " linklist already in project"
         else:
             new_imgl.save(pathl, "PNG")
             new_imgc.save(pathRGB, "PNG")
-            return "OK:" +  name +  " Link Textures Created"
+            return "SUCCESS " +  name +  " Link Textures Created"
     
     
     
