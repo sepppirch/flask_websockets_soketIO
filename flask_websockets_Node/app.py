@@ -11,6 +11,8 @@ import string
 import random
 import random
 import csv
+
+from io import StringIO
 Payload.max_decode_packets = 50
 
 class bcolors:
@@ -57,15 +59,137 @@ import logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
-Session(app)
+#Session(app)
+
+def makeProjectFolders(name):
+    path = "static/projects/" + name
+    try:
+        os.mkdir(path)
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)
+    try:
+        os.mkdir(path + '/layouts')
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)
+    try:
+        os.mkdir(path + '/layoutsRGB')
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)
+    try:
+        os.mkdir(path + '/links')
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)
+    try:
+        os.mkdir(path + '/linksRGB')
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)
+
+
+
+
+def listProjects():
+    folder = 'static/projects'
+    sub_folders = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
+    print(sub_folders)
+    return sub_folders
+
+
+def makeNodeTex(name, file):
+
+    #with open('static/csv/'+name+'.csv', newline='') as csvfile:
+
+
+
+
+
+    f = StringIO(file)
+    csvreader = csv.reader(f, delimiter=',')
+
+    texh = [(0,0,0)] * 16384
+    texl = [(0,0,0)] * 16384
+    texc = [(0,0,0,0)] * 16384
+
+    new_imgh = Image.new('RGB', (128, 128))
+    new_imgl = Image.new('RGB', (128, 128))
+    new_imgc = Image.new('RGBA', (128, 128))
+
+    TexXYZ = Image.new('RGB', (128, 256))
+    
+    i = 0
+
+    for row in csvreader:
+        print(row)
+        x = int(float(row[0])*65280)
+        y = int(float(row[1])*65280)
+        z = int(float(row[2])*65280)
+
+        
+
+        r = int(row[3])
+        g = int(row[4])
+        b = int(row[5])
+        a = int(row[6])
+
+        xh = int(x / 255)
+        yh = int(y / 255)
+        zh = int(z / 255)
+
+        xl = x % 255
+        yl = y % 255
+        zl = z % 255
+
+
+        pixelh = (xh,yh,zh)
+        pixell = (xl,yl,zl)
+        pixelc = (r,g,b,a)
+
+        texh[i] = pixelh
+        texl[i] = pixell
+        texc[i] = pixelc
+
+
+        i += 1
+        
+
+    new_imgh.putdata(texh)
+    new_imgl.putdata(texl)
+    new_imgc.putdata(texc)
+         
+    TexXYZ.paste(new_imgh, (0, 0))
+    TexXYZ.paste(new_imgl, (0, 128))
+
+    path = 'static/projects/' + name
+    
+    pathXYZ = path + '/layouts/' +  name + 'XYZ.bmp'
+    pathRGB = path + '/layoutsRGB/' +  name +  'RGB.png'
+
+    TexXYZ.save(pathXYZ)
+    new_imgc.save(pathRGB, "PNG")
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 socketio = SocketIO(app, manage_session=False)
-
-
-
 ###RECEIVE INCOMING WEBSOCKET MSG FROM NODE.JS 
 @app.route('/flask', methods=['GET', 'POST'])
 def wsreceiver():
@@ -94,14 +218,70 @@ def wsreceiver():
 def index():
     return render_template('index.html')
 
-@app.route('/projects', methods=['GET', 'POST'])
-def listProjects():
-    folder = 'static/projects'
-    sub_folders = [name for name in os.listdir(folder) if os.path.isdir(os.path.join(folder, name))]
-    print(sub_folders)
-    return jsonify(
-        projects=sub_folders  
-    )
+@app.route('/upload', methods=['GET'])
+def upload():
+    prolist = listProjects()
+    return render_template('upload.html', namespaces=prolist)
+
+@app.route('/uploadfiles', methods=['GET', 'POST'])
+def upload_file():
+    #print("namespace", request.args.get("namespace"))
+    form = request.form.to_dict()
+    print(request.files)
+    print(form)
+    prolist = listProjects()
+    namespace = ''
+    if form["namespace"] == "New":
+        namespace = form["new_name"]
+        
+    else:
+        namespace = form["existing_namespace"]
+    if not namespace:
+        return "namespace fail"
+    
+    # GET LAYOUT
+    
+    if namespace in prolist:
+        print('project exists')
+    else:
+        # Make Folders
+        makeProjectFolders(namespace)
+
+
+
+
+
+    state = 'failed'
+    layout_files = request.files.getlist("layouts")
+    if len(layout_files) > 0 and len(layout_files[0].filename) > 0:
+        print("loading layouts", len(layout_files))
+        print(layout_files[0])
+        for file in layout_files:
+            # TODO: fix the below line to account for dots in filenames
+            name = file.filename.split(".")[0]
+            contents = file.read().decode('utf-8')
+            makeNodeTex(namespace, contents)
+            #print(contents)
+            
+            # print(contents)
+            #x = validate_layout(contents.split("\n"))
+            #print("layout errors are", x)
+            #if x[1] == 0:
+            state = 'success'
+        #Upload.upload_layouts(namespace, layout_files)
+
+
+    # GET EDGES
+    edge_files = request.files.getlist("links")
+    if len(edge_files) > 0 and len(edge_files[0].filename) > 0:
+        print("loading links", len(edge_files))
+        #Upload.upload_edges(namespace, edge_files)
+
+
+    return state
+
+#@app.route('/projects', methods=['GET', 'POST'])
+
 
 @app.route('/load_project', methods=['GET', 'POST'])
 def loadProject():
@@ -121,72 +301,10 @@ def loadProject():
         linksRGB = linksRGB 
     )
 
-@app.route('/nodeTex', methods=['GET', 'POST'])
-def makeNodeTex():
-
-    name = 'airports'
-
-    with open('static/csv/'+name+'.csv', newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
- 
-        texh = [(0,0,0)] * 16384
-        texl = [(0,0,0)] * 16384
-        texc = [(0,0,0,0)] * 16384
-
-        new_imgh = Image.new('RGB', (128, 128))
-        new_imgl = Image.new('RGB', (128, 128))
-        new_imgc = Image.new('RGBA', (128, 128))
-
-        TexXYZ = Image.new('RGB', (128, 256))
-        
-        i = 0
-        for row in csvreader:
-            x = int(float(row[0])*65280)
-            y = int(float(row[1])*65280)
-            z = int(float(row[2])*65280)
-
-            r = int(row[3])
-            g = int(row[4])
-            b = int(row[5])
-            a = int(row[6])
-
-            xh = int(x / 255)
-            yh = int(y / 255)
-            zh = int(z / 255)
-
-            xl = x % 255
-            yl = y % 255
-            zl = z % 255
+#@app.route('/nodeTex', methods=['GET', 'POST'])
 
 
-            pixelh = (xh,yh,zh)
-            pixell = (xl,yl,zl)
-            pixelc = (r,g,b,a)
-
-            texh[i] = pixelh
-            texl[i] = pixell
-            texc[i] = pixelc
-
-
-            i += 1
-            #print(row[0])
-
-        new_imgh.putdata(texh)
-        new_imgl.putdata(texl)
-        new_imgc.putdata(texc)
-             
-        TexXYZ.paste(new_imgh, (0, 0))
-        TexXYZ.paste(new_imgl, (0, 128))
-
-        path = 'static/img/'
-        
-        pathXYZ = path + name + 'XYZ.bmp'
-        pathRGB = path + name + 'XYZ.png'
-
-        TexXYZ.save(pathXYZ)
-        new_imgc.save(pathRGB, "PNG")
-
-        return redirect("http://127.0.0.1:5000/" + pathXYZ, code=302)
+       # return redirect("http://127.0.0.1:5000/" + pathXYZ, code=302)
 
 
 
