@@ -114,7 +114,6 @@ def makeNodeTex(project, name, file):
             x = int(float(row[0])*65280)
             y = int(float(row[1])*65280)
             z = int(float(row[2])*65280)
-            
             r = int(row[3])
             g = int(row[4])
             b = int(row[5])
@@ -132,11 +131,13 @@ def makeNodeTex(project, name, file):
             texl[i] = pixell
             texc[i] = pixelc
             i += 1
+
     except (IndexError, ValueError):
-        return "ERROR " + name + " nodefile malformated?"
+        return '<a style="color:red;">ERROR </a>' + name + " nodefile malformated?" 
     
     with open(path + '/names.json', 'w') as outfile:
         json.dump(attrlist, outfile)
+
     new_imgh.putdata(texh)
     new_imgl.putdata(texl)
     new_imgc.putdata(texc)
@@ -148,11 +149,11 @@ def makeNodeTex(project, name, file):
     pathRGB = path + '/layoutsRGB/' +  name +  'RGB.png'
 
     if os.path.exists(pathXYZ):
-        return "ERROR " +  name + " Nodelist already in project"
+        return '<a style="color:red;">ERROR </a>' +  name + " Nodelist already in project"
     else:
         TexXYZ.save(pathXYZ)
         new_imgc.save(pathRGB, "PNG")
-        return "SUCCESS " + name + " Node Textures Created"
+        return '<a style="color:green;">SUCCESS </a>' + name + " Node Textures Created"
     
     
     
@@ -197,7 +198,7 @@ def makeLinkTex(project, name, file):
                 i += 1
 
         except (IndexError, ValueError):
-            return "ERROR " +  name + " Linkfile malformated?" 
+            return '<a style="color:red;">ERROR </a>'  +  name + " Linkfile malformated?" 
 
         new_imgl.putdata(texl)
         new_imgc.putdata(texc)
@@ -205,11 +206,11 @@ def makeLinkTex(project, name, file):
         pathRGB = path + '/linksRGB/' +  name +  'RGB.png'
 
         if os.path.exists(pathl):
-            return "ERROR " +  name  + " linklist already in project"
+            return '<a style="color:red;">ERROR </a>' +  name  + " linklist already in project"
         else:
             new_imgl.save(pathl, "PNG")
             new_imgc.save(pathRGB, "PNG")
-            return "SUCCESS " +  name +  " Link Textures Created"
+            return '<a style="color:green;">SUCCESS </a>' +  name +  " Link Textures Created"
     
     
     
