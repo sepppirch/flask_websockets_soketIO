@@ -14,11 +14,11 @@ from io import StringIO
 from uploader import *
 from websocket_functions import *
 from GlobalData import *
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 #Payload.max_decode_packets = 50
-
-
-
-
 
 
 app = Flask(__name__)
@@ -26,13 +26,9 @@ app.debug = False
 app.config['SECRET_KEY'] = 'secret'
 app.config['SESSION_TYPE'] = 'filesystem'
 
-import logging
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+
 
 socketio = SocketIO(app, manage_session=False)
-
-
 
 ### HTML ROUTES ###
 
@@ -40,47 +36,51 @@ socketio = SocketIO(app, manage_session=False)
 def index():
     return render_template('index.html')
 
+
+
 @app.route('/upload', methods=['GET'])
 def upload():
     prolist = listProjects()
     return render_template('upload.html', namespaces=prolist)
 
 @app.route('/Examples/CustomElements1')
-def test1():
-    
-    return render_template('gene-element.html')
+def CustomElements1R():
+    return render_template('geneElement.html')
 
 @app.route('/Examples/ServerSideVar')
-def test2():
-    
+def ServerSideVarR():
     return render_template('scroll.html', data = scb1Data)
 
 @app.route('/Examples/CustomElements2')
 def test3():
-    
     return render_template('test.html')
 
 
 
 
 ### DATA ROUTES###
+
 ###RECEIVE INCOMING WEBSOCKET MSG FROM NODE.JS 
 @app.route('/flask', methods=['GET', 'POST'])
 def ws_receiver():
     wsreceiver(socketio)
-    return "created image"
-
-
+    return 
 
 @app.route('/uploadfiles', methods=['GET', 'POST'])
-def uploadr():
+def uploadR():
     return upload_files(request)
 
+@app.route('/load_all_projects', methods=['GET', 'POST'])
+def loadAllProjectsR():
+    return jsonify(projects=listProjects())
+
 @app.route('/load_project/<name>', methods=['GET', 'POST'])
-def loadProject(name):
+def loadProjectInfoR(name):
     return loadProjectInfo(name)
 
-
+@app.route('/login/<usr>', methods=['GET', 'POST'])
+def loginR(usr):
+    return render_template('main.html', usr = usr)
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
