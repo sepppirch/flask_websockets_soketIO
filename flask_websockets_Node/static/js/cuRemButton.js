@@ -15,13 +15,16 @@ class InputGene extends HTMLElement {
       name_button.textContent = this.getAttribute('name');
       name_button.style.background=this.getAttribute('color');//("background",);
       console.log('create: '+ this.getAttribute('id'));
+
       name_button.addEventListener('click', () => {
-      console.log('select '+ this.getAttribute('id'));
+        console.log('select '+ this.getAttribute('id'));
+        socket.emit('ex', {msg: "reeee", id: this.getAttribute('id'), fn: "rem_butt_clicked"});
       });
     
       x_button.addEventListener('click', () => {
           console.log('remove '+ this.getAttribute('id') + ' from '+ this.parentElement.getAttribute('id'));
-          this.remove();
+          socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
+          //this.remove();
       });
 
 
