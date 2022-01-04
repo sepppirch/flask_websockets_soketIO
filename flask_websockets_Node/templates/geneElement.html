@@ -2,7 +2,7 @@
 <html>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="{{ url_for('static', filename='js/cuRemButton.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/mc_UI_Elements.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/connect_socketIO.js') }}"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
@@ -13,7 +13,7 @@
 
 
 
-	<template id="gene-template" value='!!!'>
+	<template id="mcRB-template" value='!!!'>
 		<style>
 			button {
 				width: 15%;
@@ -40,6 +40,36 @@
 
 
 
+	<template id="mcDD-template" value='!!!'>
+
+		<style>
+			select {
+			/* ... */
+			width: 100%;
+			height: 30px;
+			-moz-padding-start: calc(10px - 3px);
+			padding-left: 10px;
+			 
+			color: rgb(66, 66, 66);
+			font-family: 'Open Sans', sans-serif;
+			font-size: 25px;
+			font-weight: 700;
+			cursor: pointer;
+			border-radius: 10px;
+			background-color: #c5c5c5;
+			border-top: 2px solid ;
+			border-bottom: 0px solid ;
+			border-left: 0px solid;
+			border-right: 2px solid ;
+			}
+		</style>
+
+		<select id="dropdown">
+		</select>
+	</template>
+
+
+
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
@@ -59,24 +89,40 @@
 
 		<div id = 'geneBox' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
 			<script>
-				$("#geneBox").append("<gene-button id = '666' name = 'satan' color = '#000000'></gene-button>");
-				$("#geneBox").append("<gene-button id = '123' name = 'ATP1' color = 'lightgreen'></gene-button>");
-				$("#geneBox").append("<gene-button id = '133' name = 'HLX' color = 'red'></gene-button>");
-				$("#geneBox").append("<gene-button id = '523' name = 'ASC' color = '#00bbbb'></gene-button>");
+				$("#geneBox").append("<mc-rbutton id = '666' name = 'satan' color = '#000000'></mc-rbutton>");
+				$("#geneBox").append("<mc-rbutton id = '123' name = 'ATP1' color = 'lightgreen'></mc-rbutton>");
+				$("#geneBox").append("<mc-rbutton id = '133' name = 'HLX' color = 'red'></mc-rbutton>");
+				$("#geneBox").append("<mc-rbutton id = '523' name = 'ASC' color = '#00bbbb'></mc-rbutton>");
 
 				for (let i = 0; i < 50; i++) {
-					$("#geneBox").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
+					$("#geneBox").append("<mc-rbutton id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></mc-rbutton>");
 				}
 			</script>
 		</div>
+		
+
+
 		<br><br>
 		<div id = 'geneBox1' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
 			<script>
 				for (let i = 0; i < 50; i++) {
-					$("#geneBox1").append("<gene-button id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></gene-button>");
+					$("#geneBox1").append("<mc-rbutton id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></mc-rbutton>");
 				}
 			</script>
 		</div>
+		<br><br>
+		<div id = 'dropbox'>
+			<script>
+				
+					//$("#dropbox").append("<mc-dropdown id ="+ 100 +  " opt = '{a: 76, b: 20, c:70, d:8, e:9}'></mc-dropdown>");
+					$("#dropbox").append("<mc-dropdown id = 'dropdown99' opt = 'option1,option22,3'></mc-dropdown>");
+					$("#dropbox").append("<br><br>");
+					$("#dropbox").append("<mc-dropdown id = 'dropdown69' opt = 'trees,fruit,meat'></mc-dropdown>");
+					 
+				
+			</script>
+		</div>
+
 
 	</div>
 

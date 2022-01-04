@@ -83,7 +83,7 @@ class InputGene extends HTMLElement {
 
 constructor() {
 super();
-let template = document.querySelector('#gene-template').content;
+let template = document.querySelector('#mcRB-template').content;
   this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
 
   let name_button = this.shadowRoot.querySelector("#name");
@@ -188,7 +188,7 @@ constructor() {
 
 
 
-customElements.define('gene-button', InputGene);
+customElements.define('mc-rbutton', InputGene);
 customElements.define('d3draw-widget', D3DrawWidget);
 customElements.define('d3bar-widget', D3HistoPlot);
 

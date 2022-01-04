@@ -1,12 +1,12 @@
 
-class InputGene extends HTMLElement {
+class mcRButton extends HTMLElement {
 
 
     constructor() {
     super();
 
 
-    let template = document.querySelector('#gene-template').content;
+    let template = document.querySelector('#mcRB-template').content;
       this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
     
       let name_button = this.shadowRoot.querySelector("#name");
@@ -26,12 +26,70 @@ class InputGene extends HTMLElement {
           socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
           //this.remove();
       });
-
+      
 
     }
 }
 
-customElements.define('gene-button', InputGene);
+customElements.define('mc-rbutton', mcRButton);
+
+
+
+
+
+
+class mcRDropDown extends HTMLElement {
+
+  constructor() {
+  super();
+
+  let template = document.querySelector('#mcDD-template').content;
+  this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+  let dropdown = this.shadowRoot.querySelector("#dropdown");
+  var opt =  this.getAttribute('opt').split(",");
+  //console.log(opt);
+  opt.forEach(function(item, index, array) {
+    //console.log(item, index);
+    dropdown.append(new Option(item));
+  });
+
+  dropdown.addEventListener('change', () => {
+    var strUser = dropdown.options[dropdown.selectedIndex].text + " " + this.getAttribute('id');
+    console.log(strUser);
+  });
+
+    //set dropdown value: 
+    dropdown.value = opt[1];
+  }
+}
+
+customElements.define('mc-dropdown', mcRDropDown);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function makeid(length) {
     var result           = '';
