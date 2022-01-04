@@ -69,20 +69,17 @@
 	</template>
 
 	<template id="mcSlider-template" value='!!!'>
-		<style>
-		</style>
 		<div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
-		<input type="range" min="1" max="100" value="50" class="slider" id="slider" style = "width: 100%; height: 30p0x; display: inline-block; padding: 4px 2px">	</div>
+		<input type="range" min="1" max="100" value="50" class="slider" id="slider" style = "width: 100%; height: 30p0x; display: inline-block; padding: 4px 2px; color: #00ff40">	</div>
 	</template>
 
 
 	<template id="mcScrollBox-template" value='!!!'>
-		<style>
-		</style>
-		
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
+
 		<div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
 		<div id = 'box' name = 'box' style = 'width: 300px; height: 120px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
-		<mc-rbutton id = '0' name = 'JQ87E' color = '#c07053'></mc-rbutton>
+		
 		</div>
 	</template>
 
