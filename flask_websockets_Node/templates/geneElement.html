@@ -68,7 +68,12 @@
 		</select>
 	</template>
 
-
+	<template id="mcSlider-template" value='!!!'>
+		<style>
+		</style>
+		<div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
+		<input type="range" min="1" max="100" value="50" class="slider" id="slider" style = "width: 100%; height: 30p0x; display: inline-block; padding: 4px 2px">	</div>
+	</template>
 
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -87,7 +92,7 @@
 		<br><br>
 
 
-		<div id = 'geneBox' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
+		<div id = 'geneBox' style = 'width: 300px; height: 120px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
 			<mc-rbutton id = '666' name = 'satan' color = '#000000'></mc-rbutton>
 			<mc-rbutton id = '123' name = 'ATP1' color = 'lightgreen'></mc-rbutton>
 			<mc-rbutton id = '523' name = 'ASC' color = '#00bbbb'></mc-rbutton>
@@ -112,10 +117,18 @@
 			</script>
 		</div>
 		<br><br>
-		<div id = 'dropbox' style = 'width: 150px'>
+		<div id = 'dropbox' style = 'width: 200px'>
 			<mc-dropdown id = 'dropdown69' name ='dropdown69' opt = '["trees","fruit","meat"]'></mc-dropdown>
 			<br><br>
 			<mc-dropdown id = 'dropdown99'  name ='dropdown99' opt = '["audi","bmw","toyota"]'></mc-dropdown>
+			<br><br>
+			<mc-slider id = 'nodeSize'></mc-slider>
+			<br><br>
+			<mc-slider id = 'linkSize'></mc-slider>
+			<br><br>
+			<mc-slider id = 'trans'></mc-slider>
+			<br><br>
+			<mc-slider id = 'cutoff'></mc-slider>
 		</div>
 
 

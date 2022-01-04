@@ -18,7 +18,7 @@ $(document).ready(function(){
         //$('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
     socket.on('ex', function(data) {
-        //console.log("server returned: " + JSON.stringify(data));
+        console.log("server returned: " + JSON.stringify(data));
         switch(data.fn)
         {
             case 'mkB':
@@ -40,8 +40,12 @@ $(document).ready(function(){
                 select.value = data.opt;
                 // cold also add options.... select.append(new Option("reeeee"));
                 break; 
-            
-            
+
+            case 'sli':
+                    var slider = document.getElementById(data.id).shadowRoot.getElementById("slider");
+                    slider.value= data.val;
+                    break; 
+
         }
         
         

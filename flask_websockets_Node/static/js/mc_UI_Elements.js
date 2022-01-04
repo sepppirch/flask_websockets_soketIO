@@ -72,6 +72,33 @@ class mcRDropDown extends HTMLElement {
 customElements.define('mc-dropdown', mcRDropDown);
 
 
+class mcSlider extends HTMLElement {
+
+  constructor() {
+  super();
+  }
+
+  connectedCallback() {
+ 
+    let template = document.querySelector('#mcSlider-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+    let slider = this.shadowRoot.querySelector("#slider");
+    let label = this.shadowRoot.querySelector("#label");
+    label.innerHTML = this.getAttribute('id').toUpperCase();
+
+    
+
+  
+    slider.addEventListener('change', () => {
+      //console.log(slider.value);
+      socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    });
+  }
+}
+
+customElements.define('mc-slider', mcSlider);
+
+
 
 
 
