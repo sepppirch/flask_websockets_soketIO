@@ -58,10 +58,11 @@ class mcRDropDown extends HTMLElement {
     var strUser = dropdown.options[dropdown.selectedIndex].text + " " + this.getAttribute('id');
     console.log(strUser);
   });
-
     //set dropdown value: 
-    dropdown.value = opt[1];
+    //dropdown.value = opt[1];
   }
+
+
 }
 
 customElements.define('mc-dropdown', mcRDropDown);

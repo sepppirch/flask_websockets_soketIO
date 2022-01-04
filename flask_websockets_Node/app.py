@@ -80,6 +80,17 @@ def loadProjectInfoR(name):
 
 @app.route('/login/<usr>', methods=['GET', 'POST'])
 def loginR(usr):
+    if(request.method=='GET'):
+
+        
+        username = usr 
+        room = 1
+        #Store the data in session
+        session['username'] = username
+        session['room'] = room
+        return render_template('geneElement.html', session = session)
+    else:
+        return "error"
     return render_template('main.html', usr = usr)
 
 @app.route('/chat', methods=['GET', 'POST'])
