@@ -27,8 +27,17 @@ class mcRButton extends HTMLElement {
       });
     
       x_button.addEventListener('click', () => {
-          console.log('remove '+ this.getAttribute('id') + ' from '+ this.parentElement.getAttribute('id'));
-          socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
+ // my-list
+          //console.log('remove '+ this.getAttribute('id') + ' from '+ this.parentElement.getAttribute('id'));
+          if (this.parentElement.getAttribute('id') == 'box'){ //is in a scrollbox
+            var parent = this.getRootNode().host.getAttribute('id');
+            console.log(parent)
+            socket.emit('ex', {id: this.getAttribute('id'), parent: parent, fn: "rem_butt_del_sbox"});
+          }else{
+
+            socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
+          }
+          
           //this.remove();
       });
 
@@ -97,6 +106,34 @@ class mcSlider extends HTMLElement {
 }
 
 customElements.define('mc-slider', mcSlider);
+
+
+
+class mcScrollBox extends HTMLElement {
+
+  constructor() {
+  super();
+  }
+
+  connectedCallback() {
+    let template = document.querySelector('#mcScrollBox-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+ /*
+    
+    
+    let slider = this.shadowRoot.querySelector("#slider");
+    let label = this.shadowRoot.querySelector("#label");
+    label.innerHTML = this.getAttribute('id').toUpperCase();
+
+    slider.addEventListener('change', () => {
+      //console.log(slider.value);
+      socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    });
+    */
+  }
+}
+
+customElements.define('mc-scrollbox', mcScrollBox);
 
 
 

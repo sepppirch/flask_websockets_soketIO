@@ -35,6 +35,12 @@ $(document).ready(function(){
                     $('#' + data.parent).find('#' + data.id).remove();
                 }
                 break;
+
+            case 'rem_butt_del_sbox':
+                var box = document.getElementById(data.parent).shadowRoot.getElementById("box");
+                 $(box).find('#' + data.id).remove();
+                break;
+
             case 'sel':
                 var select = document.getElementById(data.id).shadowRoot.getElementById("dropdown");
                 select.value = data.opt;
