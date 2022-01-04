@@ -18,7 +18,7 @@ $(document).ready(function(){
         //$('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
     socket.on('ex', function(data) {
-        console.log("server returned: " + JSON.stringify(data));
+        //console.log("server returned: " + JSON.stringify(data));
         switch(data.fn)
         {
             case 'mkB':
@@ -34,6 +34,11 @@ $(document).ready(function(){
                     // found! -> remove in only in that div
                     $('#' + data.parent).find('#' + data.id).remove();
                 }
+                break;
+            case 'sel':
+                var select = document.getElementById(data.id).shadowRoot.getElementById("dropdown");
+                select.value = data.opt;
+                // cold also add options.... select.append(new Option("reeeee"));
                 break; 
             
             

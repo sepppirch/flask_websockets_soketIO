@@ -88,12 +88,11 @@
 
 
 		<div id = 'geneBox' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
-			<script>
-				$("#geneBox").append("<mc-rbutton id = '666' name = 'satan' color = '#000000'></mc-rbutton>");
-				$("#geneBox").append("<mc-rbutton id = '123' name = 'ATP1' color = 'lightgreen'></mc-rbutton>");
-				$("#geneBox").append("<mc-rbutton id = '133' name = 'HLX' color = 'red'></mc-rbutton>");
-				$("#geneBox").append("<mc-rbutton id = '523' name = 'ASC' color = '#00bbbb'></mc-rbutton>");
+			<mc-rbutton id = '666' name = 'satan' color = '#000000'></mc-rbutton>
+			<mc-rbutton id = '123' name = 'ATP1' color = 'lightgreen'></mc-rbutton>
+			<mc-rbutton id = '523' name = 'ASC' color = '#00bbbb'></mc-rbutton>
 
+			<script>
 				for (let i = 0; i < 50; i++) {
 					$("#geneBox").append("<mc-rbutton id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></mc-rbutton>");
 				}
@@ -105,21 +104,18 @@
 		<br><br>
 		<div id = 'geneBox1' style = 'width: 300px; height: 150px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
 			<script>
-				for (let i = 0; i < 50; i++) {
+				
+				for (let i = 0; i < 5; i++) {
 					$("#geneBox1").append("<mc-rbutton id = '"+ i + "' name = '"+ makeid(Math.floor(Math.random() * 3) + 4) + "' color = '#" + Math.floor(Math.random()*16777215).toString(16) + "'></mc-rbutton>");
 				}
+				
 			</script>
 		</div>
 		<br><br>
-		<div id = 'dropbox'>
-			<script>
-				
-					//$("#dropbox").append("<mc-dropdown id ="+ 100 +  " opt = '{a: 76, b: 20, c:70, d:8, e:9}'></mc-dropdown>");
-					$("#dropbox").append("<mc-dropdown id = 'dropdown99' opt = 'option1,option22,3'></mc-dropdown>");
-					$("#dropbox").append("<br><br>");
-					$("#dropbox").append("<mc-dropdown id = 'dropdown69' opt = 'trees,fruit,meat'></mc-dropdown>");
-					
-			</script>
+		<div id = 'dropbox' style = 'width: 150px'>
+			<mc-dropdown id = 'dropdown69' name ='dropdown69' opt = '["trees","fruit","meat"]'></mc-dropdown>
+			<br><br>
+			<mc-dropdown id = 'dropdown99'  name ='dropdown99' opt = '["audi","bmw","toyota"]'></mc-dropdown>
 		</div>
 
 

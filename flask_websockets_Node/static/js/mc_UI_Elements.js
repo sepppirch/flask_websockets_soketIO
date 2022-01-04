@@ -1,12 +1,17 @@
 
+//https://stackoverflow.com/questions/50508717/custom-elements-not-setting-getting-attributes
+
+
+
 class mcRButton extends HTMLElement {
 
 
     constructor() {
     super();
+    }
 
-
-    let template = document.querySelector('#mcRB-template').content;
+    connectedCallback() {
+      let template = document.querySelector('#mcRB-template').content;
       this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
     
       let name_button = this.shadowRoot.querySelector("#name");
@@ -18,7 +23,7 @@ class mcRButton extends HTMLElement {
 
       name_button.addEventListener('click', () => {
         console.log('select '+ this.getAttribute('id'));
-        socket.emit('ex', {msg: "reeee", id: this.getAttribute('id'), fn: "rem_butt_clicked"});
+        socket.emit('ex', {msg: this.getAttribute('name'), id: this.getAttribute('id'), fn: "rem_butt_clicked"});
       });
     
       x_button.addEventListener('click', () => {
@@ -26,15 +31,12 @@ class mcRButton extends HTMLElement {
           socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
           //this.remove();
       });
-      
 
     }
+
 }
 
 customElements.define('mc-rbutton', mcRButton);
-
-
-
 
 
 
@@ -43,26 +45,28 @@ class mcRDropDown extends HTMLElement {
   constructor() {
   super();
 
-  let template = document.querySelector('#mcDD-template').content;
-  this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
-
-  let dropdown = this.shadowRoot.querySelector("#dropdown");
-  var opt =  this.getAttribute('opt').split(",");
-  //console.log(opt);
-  opt.forEach(function(item, index, array) {
-    //console.log(item, index);
-    dropdown.append(new Option(item));
-  });
-
-  dropdown.addEventListener('change', () => {
-    var strUser = dropdown.options[dropdown.selectedIndex].text + " " + this.getAttribute('id');
-    console.log(strUser);
-  });
     //set dropdown value: 
     //dropdown.value = opt[1];
   }
 
-
+  connectedCallback() {
+ 
+    let template = document.querySelector('#mcDD-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+  
+    let dropdown = this.shadowRoot.querySelector("#dropdown");
+    //var opt =  this.getAttribute('opt').split(",");
+    var opt = JSON.parse(this.getAttribute('opt'));
+    //console.log(opt);
+    opt.forEach(function(item, index, array) {
+     dropdown.append(new Option(item));
+    });
+  
+    dropdown.addEventListener('change', () => {
+      console.log("changed");
+      socket.emit('ex', {id: this.getAttribute('id'), opt: dropdown.options[dropdown.selectedIndex].text, fn: "sel"});
+    });
+  }
 }
 
 customElements.define('mc-dropdown', mcRDropDown);
