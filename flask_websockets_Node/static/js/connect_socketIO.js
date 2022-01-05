@@ -2,6 +2,12 @@
 var socket;
 var lastval = 0;
 
+function settextscroll(id, val) {
+    var box = document.getElementById(id).shadowRoot.getElementById("box");
+    $(box).scrollTop(val[0]);
+    $(box).scrollLeft(val[1]);
+}
+
 
 $(document).ready(function(){
 
@@ -18,7 +24,7 @@ $(document).ready(function(){
         //$('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
     socket.on('ex', function(data) {
-        console.log("server returned: " + JSON.stringify(data));
+        //console.log("server returned: " + JSON.stringify(data));
         switch(data.fn)
         {
             case 'mkB':
@@ -51,6 +57,10 @@ $(document).ready(function(){
                     var slider = document.getElementById(data.id).shadowRoot.getElementById("slider");
                     slider.value= data.val;
                     break; 
+            case 'tex':
+                    var text = document.getElementById(data.id).shadowRoot.getElementById("text");
+                    text.value= data.val;
+                break; 
 
         }
         

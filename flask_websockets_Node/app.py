@@ -55,6 +55,10 @@ def ServerSideVarR():
 def test3():
     return render_template('test.html')
 
+@app.route('/main')
+def main():
+    return render_template('main.html')
+
 
 
 
@@ -81,8 +85,6 @@ def loadProjectInfoR(name):
 @app.route('/login/<usr>', methods=['GET', 'POST'])
 def loginR(usr):
     if(request.method=='GET'):
-
-        
         username = usr 
         room = 1
         #Store the data in session
@@ -96,8 +98,6 @@ def loginR(usr):
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     if(request.method=='POST'):
-
-        
         username = request.form['username'] 
         room = request.form['room']
         #Store the data in session

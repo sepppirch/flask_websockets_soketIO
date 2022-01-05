@@ -41,30 +41,9 @@
 
 
 	<template id="mcDD-template" value='!!!'>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
-		<style>
-			select {
-			/* ... */
-			width: 100%;
-			height: 30px;
-			-moz-padding-start: calc(10px - 3px);
-			padding-left: 10px;
-			 
-			color: rgb(66, 66, 66);
-			font-family: 'Open Sans', sans-serif;
-			font-size: 25px;
-			font-weight: 700;
-			cursor: pointer;
-			border-radius: 10px;
-			background-color: #c5c5c5;
-			border-top: 2px solid ;
-			border-bottom: 0px solid ;
-			border-left: 0px solid;
-			border-right: 2px solid ;
-			}
-		</style>
-
-		<select id="dropdown">
+		<select id="dropdown"  >
 		</select>
 	</template>
 
@@ -84,6 +63,39 @@
 	</template>
 
 
+	<template id="mcTextBox-template" value='!!!'>
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
+
+		<div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
+		<input type="Text" id = "text">
+	</template>
+
+
+	
+	<template id="mcColorBox-template" value='!!!'>
+
+		<style>
+		input{
+			border-radius: 50%;
+			height: 50px;
+			width: 50px;
+			border: none;
+			outline: none;
+			-webkit-appearance: none;
+		}
+		input::-webkit-color-swatch {
+			border: none;
+			border-radius: 50%;
+		}
+		input::-webkit-color-swatch-wrapper {
+			padding: 0; 
+		}
+		</style>
+
+		<input type="Color" id = "color">
+	</template>
+
 
 
 	<head>
@@ -95,7 +107,7 @@
 
 
 
-	<div style = "width: 300px; height: 400px;  ;">
+	<div style = "width: 300px; height: 400px; " id = "reee">
 
 		<h2 >logged in as {{session['username']}}</h2>
 		<h2 >CUSTOM-ELEMENTS</h2>
@@ -151,6 +163,10 @@
 			<mc-slider id = 'trans'></mc-slider>
 			<br><br>
 			<mc-slider id = 'cutoff'></mc-slider>
+			<br><br>
+			<mc-colorbox id ="ColorInput">></mc-colorbox>
+			<br><br>
+			<mc-textbox id ="TextInput">></mc-textbox>
 		</div>
 
 

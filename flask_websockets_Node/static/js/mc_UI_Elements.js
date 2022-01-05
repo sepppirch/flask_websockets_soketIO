@@ -19,26 +19,25 @@ class mcRButton extends HTMLElement {
     
       name_button.textContent = this.getAttribute('name');
       name_button.style.background=this.getAttribute('color');//("background",);
-      console.log('create: '+ this.getAttribute('id'));
+      //console.log('create: '+ this.getAttribute('id'));
 
       name_button.addEventListener('click', () => {
-        console.log('select '+ this.getAttribute('id'));
+        //console.log('select '+ this.shadowRoot.getAttribute('id'));
         socket.emit('ex', {msg: this.getAttribute('name'), id: this.getAttribute('id'), fn: "rem_butt_clicked"});
       });
     
       x_button.addEventListener('click', () => {
- // my-list
-          //console.log('remove '+ this.getAttribute('id') + ' from '+ this.parentElement.getAttribute('id'));
-          if (this.parentElement.getAttribute('id') == 'box'){ //is in a scrollbox
-            var parent = this.getRootNode().host.getAttribute('id');
-            console.log(parent)
-            socket.emit('ex', {id: this.getAttribute('id'), parent: parent, fn: "rem_butt_del_sbox"});
-          }else{
 
+          console.log(name_button.parentElement);
+          var parent = this.getRootNode().host;
+          if (parent != null){ //is in shadowDom
+            
+            socket.emit('ex', {id: this.getAttribute('id'), parent: parent.getAttribute('id'), fn: "rem_butt_del_sbox"});
+          }else
+          {
             socket.emit('ex', {id: this.getAttribute('id'), parent: this.parentElement.getAttribute('id'), fn: "rem_butt_del"});
           }
-          
-          //this.remove();
+
       });
 
     }
@@ -96,11 +95,33 @@ class mcSlider extends HTMLElement {
     label.innerHTML = this.getAttribute('id').toUpperCase();
 
     
+    var isSlide = false;
+    var lastval = 0;
 
+    slider.addEventListener('mouseup', () => {
+      //console.log(scrollbox.value);
+      isSlide = false;
+      //socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    });
+
+    slider.addEventListener('mousedown', () => {
+      isSlide = true;
+    });
   
     slider.addEventListener('change', () => {
       //console.log(slider.value);
       socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    });
+
+    slider.addEventListener('mousemove', (event, ui) => {
+      if (isSlide){
+        if (Math.abs(slider.value - lastval) > 2){
+          console.log(slider.value);
+          socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+          lastval = slider.value;
+        }
+      }
+
     });
   }
 }
@@ -118,22 +139,91 @@ class mcScrollBox extends HTMLElement {
   connectedCallback() {
     let template = document.querySelector('#mcScrollBox-template').content;
     this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
- /*
+
     
     
-    let slider = this.shadowRoot.querySelector("#slider");
+    let scrollbox = this.shadowRoot.querySelector("#box");
     let label = this.shadowRoot.querySelector("#label");
     label.innerHTML = this.getAttribute('id').toUpperCase();
 
-    slider.addEventListener('change', () => {
-      //console.log(slider.value);
-      socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    var isScroll = false;
+
+    scrollbox.addEventListener('mouseup', () => {
+      //console.log(scrollbox.value);
+      isScroll = false;
+      //socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
     });
-    */
+
+    scrollbox.addEventListener('mousedown', () => {
+      isScroll = true;
+    });
+
+    scrollbox.addEventListener('scroll', () => {
+      var out = [$(scrollbox).scrollTop(), $(scrollbox).scrollLeft() ];
+      if (isScroll){
+          socket.emit('ex', {msg: out, id: this.getAttribute('id'), fn: "scb"});
+          //console.log(out);
+      }
+    });
+   
   }
 }
 
 customElements.define('mc-scrollbox', mcScrollBox);
+
+
+
+
+
+class mcTextBox extends HTMLElement {
+
+  constructor() {
+  super();
+  }
+
+  connectedCallback() {
+    let template = document.querySelector('#mcTextBox-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+    let textbox = this.shadowRoot.querySelector("#text");
+    let label = this.shadowRoot.querySelector("#label");
+    label.innerHTML = this.getAttribute('id').toUpperCase();
+
+    textbox.addEventListener('keyup', () => {
+      console.log(textbox.value);
+      socket.emit('ex', {id: this.getAttribute('id'), val: textbox.value, fn: "tex"});
+    });
+
+    textbox.addEventListener('change', () => {
+      console.log(textbox.value);
+      //socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
+    });
+
+   
+  }
+}
+
+customElements.define('mc-textbox', mcTextBox);
+
+
+
+class mcColorBox extends HTMLElement {
+
+  constructor() {
+  super();
+  }
+
+  connectedCallback() {
+    let template = document.querySelector('#mcColorBox-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+    let colorbox = this.shadowRoot.querySelector("#color");
+
+   
+  }
+}
+
+customElements.define('mc-colorbox', mcColorBox);
 
 
 
