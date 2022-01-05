@@ -18,6 +18,13 @@ select {
   border-right: 2px solid ;
   }
 
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+  
 input {
     /* ... */
     width: 100%;

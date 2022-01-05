@@ -63,18 +63,14 @@ class mcRDropDown extends HTMLElement {
     this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
   
     let dropdown = this.shadowRoot.querySelector("#dropdown");
-    //var opt =  this.getAttribute('opt').split(",");
-    var opt = JSON.parse(this.getAttribute('opt'));
-    //console.log(opt);
-    opt.forEach(function(item, index, array) {
-     dropdown.append(new Option(item));
-    });
-  
+
     dropdown.addEventListener('change', () => {
-      console.log("changed");
+
       socket.emit('ex', {id: this.getAttribute('id'), opt: dropdown.options[dropdown.selectedIndex].text, fn: "sel"});
     });
   }
+
+
 }
 
 customElements.define('mc-dropdown', mcRDropDown);
@@ -238,7 +234,12 @@ customElements.define('mc-colorbox', mcColorBox);
 
 
 
-
+function   populateDropdown (id, data, active){
+  for (let i = 0; i < data.length; i++) {
+    document.getElementById(id).shadowRoot.getElementById("dropdown").append(new Option(data[i]));
+  }
+document.getElementById(id).shadowRoot.getElementById("dropdown").value = active;
+}
 
 
 

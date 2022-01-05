@@ -55,9 +55,7 @@ def ServerSideVarR():
 def test3():
     return render_template('test.html')
 
-@app.route('/main')
-def main():
-    return render_template('main.html')
+
 
 
 
@@ -82,7 +80,25 @@ def loadAllProjectsR():
 def loadProjectInfoR(name):
     return loadProjectInfo(name)
 
-@app.route('/login/<usr>', methods=['GET', 'POST'])
+@app.route('/main/<usr>', methods=['GET'])
+def main(usr):
+
+    if(request.method=='GET'):
+
+
+
+        username = usr 
+        room = 1
+        #Store the data in session
+        session['username'] = username
+        session['room'] = room
+
+        prolist = listProjects()
+        return render_template('main.html', session = session, sessionData = json.dumps(sessionData))
+    else:
+        return "error"    
+
+@app.route('/login/<usr>', methods=['GET'])
 def loginR(usr):
     if(request.method=='GET'):
         username = usr 
@@ -93,7 +109,7 @@ def loginR(usr):
         return render_template('geneElement.html', session = session)
     else:
         return "error"
-    return render_template('main.html', usr = usr)
+    
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
@@ -131,38 +147,27 @@ def join(message):
     #print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
 
-@socketio.on('text', namespace='/chat')
-def text(message):
-    room = session.get('room')
-    print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
-    emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
-    sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
 @socketio.on('ex', namespace='/chat')
 def ex(message):
     room = session.get('room')
-    #print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+    print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
+
+    if message['id'] == 'projects':
+        global sessionData
+        sessionData['actPro'] = message['opt']
+        print("changed activ project " + message['opt'])
+        
+
     if message['fn'] == 'mkB':
 
         global scb1Data
         scb1Data.append({'id': message['id'], 'msg': message['msg'] })
         print('add to server' + message['msg'] + ' ' + message['id'] )
-    
+        
+
     emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
-
-@socketio.on('test', namespace='/chat')
-def test(message):
-    #room = session.get('room')
-    print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
-    #emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
-    #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
-
-@socketio.on('sl1', namespace='/chat')
-def test(message):
-    room = session.get('room')
-    #print(bcolors.WARNING + session.get('username') + "says: " + message['msg'] + bcolors.ENDC)
-    emit('sl1', message , room=room)
 
 @socketio.on('left', namespace='/chat')
 def left(message):
