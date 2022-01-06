@@ -24,7 +24,7 @@ $(document).ready(function(){
         //$('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
     socket.on('ex', function(data) {
-        //console.log("server returned: " + JSON.stringify(data));
+        console.log("server returned: " + JSON.stringify(data));
         switch(data.fn)
         {
             case 'mkB':
@@ -42,12 +42,18 @@ $(document).ready(function(){
                 }
                 break;
 
+            
             case 'rem_butt_del_sbox':
                 var box = document.getElementById(data.parent).shadowRoot.getElementById("box");
                  $(box).find('#' + data.id).remove();
                 break;
 
             case 'sel':
+                // SPECIAL CASE: Refresh Page When loading new project
+                if (data.id == "projects"){
+                   window.location.href = "http://127.0.0.1:5000/main?usr="+ username + "&project=" + data.opt;
+                }
+
                 var select = document.getElementById(data.id).shadowRoot.getElementById("dropdown");
                 select.value = data.opt;
                 // cold also add options.... select.append(new Option("reeeee"));

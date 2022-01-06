@@ -21,4 +21,8 @@ x = '{"proj": ["ere","rrr"], "actPro": "coolNewproject"}'
 sessionData = json.loads(x)
 sessionData["proj"] = listProjects()
 
+pfile = {}
+
+
+
 

@@ -138,7 +138,9 @@
                 <body>
                     <script>
                         var sessiondata = JSON.parse({{sessionData|tojson}});
-                </script>
+                        var username = '{{session['username']}}';
+                        console.log(username );
+                    </script>
                     <h1 >logged in as {{session['username']}}</h1>
 
                     <div id="tabs" class="disable-select">
