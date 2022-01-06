@@ -234,11 +234,11 @@ customElements.define('mc-colorbox', mcColorBox);
 
 
 
-function   populateDropdown (id, data, active){
+function populateDropdown (id, data, active){
   for (let i = 0; i < data.length; i++) {
     document.getElementById(id).shadowRoot.getElementById("dropdown").append(new Option(data[i]));
   }
-document.getElementById(id).shadowRoot.getElementById("dropdown").value = active;
+ document.getElementById(id).shadowRoot.getElementById("dropdown").value = active;
 }
 
 
