@@ -31,8 +31,16 @@ $(document).ready(function(){
                 makeButton(data.id, data.msg, data.msg);
                 break;
 
+
+            case 'cht':
+                $('#'+data.id).tabs('option', 'active',data.msg);
+                break;
+
             case 'scb':
-                settextscroll(data.id, data.msg);
+                if (data.usr != username){
+                    settextscroll(data.id, data.msg);
+                }
+                
                 break;
                 
             case 'rem_butt_del':
@@ -60,8 +68,11 @@ $(document).ready(function(){
                 break; 
 
             case 'sli':
+                if (data.usr != username){
                     var slider = document.getElementById(data.id).shadowRoot.getElementById("slider");
                     slider.value= data.val;
+                }
+
                     break; 
             case 'tex':
                     var text = document.getElementById(data.id).shadowRoot.getElementById("text");

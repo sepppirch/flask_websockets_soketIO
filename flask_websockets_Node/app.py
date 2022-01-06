@@ -167,18 +167,11 @@ def join(message):
 def ex(message):
     room = session.get('room')
     print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
-
+    message['usr'] = session.get('username')
     if message['id'] == 'projects':
         global sessionData
         sessionData['actPro'] = message['opt']
         print("changed activ project " + message['opt'])
-        
-
-    if message['fn'] == 'mkB':
-
-        global scb1Data
-        scb1Data.append({'id': message['id'], 'msg': message['msg'] })
-        print('add to server' + message['msg'] + ' ' + message['id'] )
         
 
     emit('ex', message, room=room)

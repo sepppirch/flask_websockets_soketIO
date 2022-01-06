@@ -63,7 +63,8 @@ class mcRDropDown extends HTMLElement {
     this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
   
     let dropdown = this.shadowRoot.querySelector("#dropdown");
-
+    let label = this.shadowRoot.querySelector("#label");
+    label.innerHTML = this.getAttribute('id').toUpperCase();
     dropdown.addEventListener('change', () => {
 
       socket.emit('ex', {id: this.getAttribute('id'), opt: dropdown.options[dropdown.selectedIndex].text, fn: "sel"});
@@ -143,7 +144,7 @@ class mcScrollBox extends HTMLElement {
     label.innerHTML = this.getAttribute('id').toUpperCase();
 
     var isScroll = false;
-
+    var lastscroll = 0;
     scrollbox.addEventListener('mouseup', () => {
       //console.log(scrollbox.value);
       isScroll = false;
@@ -156,9 +157,12 @@ class mcScrollBox extends HTMLElement {
 
     scrollbox.addEventListener('scroll', () => {
       var out = [$(scrollbox).scrollTop(), $(scrollbox).scrollLeft() ];
-      if (isScroll){
+      var thisscroll = out[0] + out[1];
+      if (isScroll && Math.abs(thisscroll- lastscroll) > 10){
           socket.emit('ex', {msg: out, id: this.getAttribute('id'), fn: "scb"});
-          //console.log(out);
+          lastscroll = out[0] + out[1];
+          console.log(out[0])
+
       }
     });
    
