@@ -80,21 +80,36 @@ def loadAllProjectsR():
 def loadProjectInfoR(name):
     return loadProjectInfo(name)
 
-@app.route('/main/<usr>', methods=['GET'])
-def main(usr):
+@app.route('/main', methods=['GET'])
+def main():
+    username = request.args.get("usr")
+    project = request.args.get("project")
+    if username is None:
+        username = "none"
+    else:
+        print(username)
+    
+    if project is None:
+        project = "none"
+    else:
+        print(username)
 
     if(request.method=='GET'):
 
-
-
-        username = usr 
+         
         room = 1
         #Store the data in session
         session['username'] = username
         session['room'] = room
-
-        prolist = listProjects()
-        return render_template('main.html', session = session, sessionData = json.dumps(sessionData))
+        #prolist = listProjects()
+        if project != "none":
+            folder = 'static/projects/' + project + '/'
+            with open(folder + 'pfile.json', 'r') as json_file:
+                global pfile
+                pfile = json.load(json_file)
+                print(pfile)
+            json_file.close()
+        return render_template('main.html', session = session, sessionData = json.dumps(sessionData), pfile = json.dumps(pfile))
     else:
         return "error"    
 
@@ -152,18 +167,11 @@ def join(message):
 def ex(message):
     room = session.get('room')
     print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
-
+    message['usr'] = session.get('username')
     if message['id'] == 'projects':
         global sessionData
         sessionData['actPro'] = message['opt']
         print("changed activ project " + message['opt'])
-        
-
-    if message['fn'] == 'mkB':
-
-        global scb1Data
-        scb1Data.append({'id': message['id'], 'msg': message['msg'] })
-        print('add to server' + message['msg'] + ' ' + message['id'] )
         
 
     emit('ex', message, room=room)

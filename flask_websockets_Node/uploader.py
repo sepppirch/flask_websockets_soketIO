@@ -13,12 +13,25 @@ from io import StringIO
 
 def makeProjectFolders(name):
     path = "static/projects/" + name
+    pfile = {}
+    pfile["name"] = name
+    pfile["layouts"] = []
+    pfile["layoutsRGB"] = []
+    pfile["links"] = []
+    pfile["linksRGB"] = []
+    pfile["selections"] = []
+    
+
     try:
         os.mkdir(path)
         os.mkdir(path + '/layouts')
         os.mkdir(path + '/layoutsRGB')
         os.mkdir(path + '/links')
         os.mkdir(path + '/linksRGB')
+
+        with open(path + '/pfile.json', 'w') as outfile:
+            json.dump(pfile, outfile)
+
     except OSError:
         print ("Creation of the directory %s failed" % path)
     else:
@@ -31,12 +44,16 @@ def loadProjectInfo(name):
     linksRGBfolder = folder + "linksRGB"
     linkfolder = folder + "links"
 
+
+
     if os.path.exists(folder):
+
 
         layouts = [name for name in os.listdir(layoutfolder)]
         layoutsRGB = [name for name in os.listdir(layoutRGBfolder)]
         links = [name for name in os.listdir(linkfolder)]
         linksRGB = [name for name in os.listdir(linksRGBfolder)]
+
         return jsonify(
             layouts=layouts,
             layoutsRGB=layoutsRGB,
@@ -208,7 +225,12 @@ def upload_files(request):
         makeProjectFolders(namespace)
 
 
+    folder = 'static/projects/' + namespace + '/'
+    pfile = {}
 
+    with open(folder + 'pfile.json', 'r') as json_file:
+        pfile = json.load(json_file)
+    json_file.close()
 
 
     state = ''
@@ -222,7 +244,8 @@ def upload_files(request):
             name = file.filename.split(".")[0]
             contents = file.read().decode('utf-8')
             state = state + ' <br>'+  makeNodeTex(namespace, name, contents)
-            
+            pfile["layouts"].append(name)
+            pfile["layoutsRGB"].append(name + "RGB")
 
             
             # print(contents)
@@ -241,9 +264,13 @@ def upload_files(request):
         for file in edge_files:
             name = file.filename.split(".")[0]
             contents = file.read().decode('utf-8')
+            pfile["links"].append(name)
+            pfile["linksRGB"].append(name + "RGB")
             state = state + ' <br>'+ makeLinkTex(namespace, name, contents)
             
-    #print(state)
+    #update the projects file
+    with open(folder + 'pfile.json', 'w') as json_file:
+        json.dump(pfile, json_file)
 
     return state
     

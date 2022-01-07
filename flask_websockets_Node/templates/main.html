@@ -41,7 +41,7 @@
     
 
 
-    <template id="mcRB-template" value='!!!'>
+    <template id="mcRB-template" >
         <style>
             button {
                 width: 15%;
@@ -68,20 +68,20 @@
 
 
 
-    <template id="mcDD-template" value='!!!'>
+    <template id="mcDD-template" >
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
-
-        <select id="dropdown"  >
+        <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 100; padding-bottom: 20;">TEXT</div>
+        <select id="dropdown" style= "padding: 20;" >
         </select>
     </template>
 
-    <template id="mcSlider-template" value='!!!'>
+    <template id="mcSlider-template" >
         <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
         <input type="range" min="1" max="100" value="50" class="slider" id="slider" style = "width: 100%; height: 30p0x; display: inline-block; padding: 4px 2px; color: #00ff40">	</div>
     </template>
 
 
-    <template id="mcScrollBox-template" value='!!!'>
+    <template id="mcScrollBox-template" >
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
         <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
@@ -91,7 +91,7 @@
     </template>
 
 
-    <template id="mcTextBox-template" value='!!!'>
+    <template id="mcTextBox-template" >
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
@@ -101,7 +101,7 @@
 
 
     
-    <template id="mcColorBox-template" value='!!!'>
+    <template id="mcColorBox-template" >
 
         <style>
         input{
@@ -138,14 +138,28 @@
                 <body>
                     <script>
                         var sessiondata = JSON.parse({{sessionData|tojson}});
-                </script>
+                        var pdata = JSON.parse({{pfile|tojson}});
+                        var username = '{{session['username']}}';
+                        console.log(pdata);
+                    </script>
                     <h1 >logged in as {{session['username']}}</h1>
 
                     <div id="tabs" class="disable-select">
-                        <script>    
-                        $(function () {
-                            $("#tabs").tabs();
-                        });
+                        <script>   // MULTICAST TAB CHANGES 
+                            $(function () {
+                                $("#tabs").tabs();
+                            });
+
+                            var lastactive = 0;
+                            $('#tabs').on('click', function (event, ui) {
+                                var active = $('#tabs').tabs('option', 'active');
+                                if (active != lastactive){
+                                    console.log("changed tab to " + active);
+                                    lastactive = active;
+                                    socket.emit('ex', {msg: active, id: "tabs", fn: "cht"});
+                                }
+                                
+                            });
                         </script>
                         <ul>
                             <li><a href="#tabs-1"><img draggable="false" onmousedown="return false" height='40' width='40'
@@ -168,21 +182,35 @@
 
                         <div id="tabs-1">
                             <div id="projects-section">
-
-                                <div class="swagLabel" >PROJECTS</div>
-                                <script>
-                          
-                                </script>
                                 <mc-dropdown id = 'projects' ></mc-dropdown>
+                                    <script>
+                                        populateDropdown('projects', sessiondata["proj"],sessiondata["actPro"]);
+                                    </script>
+                                <br><br>
+                                <div style = 'width: 200px; height: 300px; overflow:auto; border-radius: 12px;  
+                                    background-color: #272727; display: inline-block; border-color: rgb(12, 12, 12); padding: 10px; 
+                                    border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid' >
+                                <mc-dropdown id = 'layouts'></mc-dropdown>
                                 <script>
-                                    populateDropdown('projects', sessiondata["proj"],sessiondata["actPro"]);
+                                    populateDropdown('layouts',pdata["layouts"],pdata["layouts"][0]);
                                 </script>
                                 <br><br>
-                                <mc-dropdown id = 'testdd'></mc-dropdown>
+                                <mc-dropdown id = 'nodecolors'></mc-dropdown>
                                 <script>
-                                    var options = ["A", "B", "C"];
-                                    populateDropdown('testdd',options,options[1]);
+                                    populateDropdown('nodecolors',pdata["layoutsRGB"],pdata["layoutsRGB"][0]);
                                 </script>
+                                <br><br>
+                                <mc-dropdown id = 'links'></mc-dropdown>
+                                <script>
+                                    populateDropdown('links',pdata["links"],pdata["links"][0]);
+                                </script>
+                                <br><br>
+                                <mc-dropdown id = 'linkcolors'></mc-dropdown>
+                                <script>
+                                    populateDropdown('linkcolors',pdata["linksRGB"],pdata["linksRGB"][0]);
+                                </script>
+
+                                </div>  
                                <!--
                                 <button id="RefreshProjects"><img src="{{ url_for('static', filename='img/refresh.png') }}"></button>
  
@@ -198,28 +226,38 @@
                         </div>
 
                         <div id="tabs-2">
-                            <div class="swagLabel" >LOAD SELECTION</div>
-
-                            <select name="selectMode" id="selectMode"></select>
-                            <select name="selections" id="selections"></select>
-                            <button id="LoadSelection">GO!</button>
-                            <p>
-                                <button id="saveSel">SAVE SELECTION</button>
-                            </p>
+                           
+		
+                            <script>
+                                // fill scrollbox with buttons
+                                //$('document').ready(function(){
+                                    var b = document.createElement("mc-scrollbox");
+                                        b.setAttribute("id", "somename");
+                                        b.setAttribute("name","somename");
+                                    document.getElementById("tabs-2").appendChild(b);
+                
+                                    for (let i = 0; i < 50; i++) {
+                                        var p = document.createElement("mc-rbutton");
+                                        p.setAttribute("id", i);
+                                        p.setAttribute("name", makeid(Math.floor(Math.random() * 3) + 4));
+                                        p.setAttribute("color" , '#' + Math.floor(Math.random()*16777215).toString(16));
+                                        document.getElementById("somename").shadowRoot.getElementById("box").appendChild(p);
+                                    }
+                
+                                //});
+                
+                
+                                
+                            </script>
+                         
                         </div>
 
                         <div id="tabs-3">
                             <!-- SLIDERS -->
-                            <div class="swagLabel">SCALE</div>
-                            <div id="slider_scale"></div>
-                            <div class="swagLabel">NODE SIZE</div>
-                            <div id="slider-node_size"></div>
-                            <div class="swagLabel">LINK SIZE</div>
-                            <div id="slider-link_size"></div>
-                            <div class="swagLabel">LINK TRANSPARENCY</div>
-                            <div id="slider-link_transparency"></div>
-                            <div class="swagLabel">LIGHT</div>
-                            <div id="slider-light"></div>
+                            <mc-slider id = scale></mc-slider>
+                            <mc-slider id = nodesize></mc-slider>
+                            <mc-slider id = linksize></mc-slider>
+                            <mc-slider id = transparency></mc-slider>
                             <!-- BUTTONS -->
                              
 
@@ -227,95 +265,13 @@
                             <div id="tabs-4">
                                 <div class="swagLabel">SEARCH</div>
 
-                                <div id="searchGroup1">
-                                    <select name="searchMode1" id="searchMode1"></select>
-                                    <button name="searchGO" id="searchGO">GO!</button>
-                                </div>
-                                <p>
-                                    <select name="searchAttribute1" id="searchAttribute1"></select>
-                                    <button name	="searchInput1" id="searchInput1">INPUT1</button>
-
-                                    <!-- <button name	="addAttr" id="addAttr">+</button> -->
-
-                                    <input type="text" id="search_txt" name="search_txt" />
-                                </p> 
-
-                                <p>
-
-                                    <div class="swagLabel" id="sResults"  >SEARCH RESULTS</div>
-                                    <div id="autocomp" style="max-height:300px;overflow-y:auto;">
-                                    </p>
-                                </div>
                             </div>
 
                             <div id="tabs-5">
 
-                                <div class="swagLabel" id="ResultsLabel" > RESULTS</div>
-
-                                <div id="ResultList" style="max-height:300px;overflow-y:auto;">
-                                </div>
                             </div>
                             <div id="tabs-6">
 
-                                <div  style="max-height:300px;overflow-y:auto;">
-
-                                <div class="swagLabel" > RANDOM WALK</div>
-                                <div id = "rwsection">
-                                    <div class="swagLabelSmall" id="restart_probability"  > RESTART PROBABILITY:</div>
-                                    <div id="slider-restart_probability"></div>
-                                    <div class="widget">
-                                        <button id="start_randomwalk_button">START RANDOMWALK</button>
-                                        <button id="clear_randomwalk_button">CLEAR</button>
-                                        <div class="swagLabel" id = "rwLabel"  >__________________________________</div>
-                                    </div>
-                                </div>
-
-                                <img id = "spinner" src="{{ url_for('static', filename='img/processing.gif') }}" />
-
-                                <p> </p>
-                                <div class="swagLabel" id="ShortestPathSection" >SHORTEST PATH
-                                     
-                                    <p></p>
-                                        <button id="p1_shortestPath" data-value = -1>P1</button>
-                                        <button id="p2_shortestPath" data-value = -1>P2</button>
-                                    
-                                    <button id="start_shortestPath">START</button><button id="clear_shortestPath">CLEAR</button>
-                                    <div class="swagLabel" id="spLabel" ></div>
-                                    <div class="swagLabel" >__________________________________</div>
-                                    
-                                    <!-- <svg width="512" height="600"></svg> -->
-                                    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/d3ForceGraph.js') }}"></script> -->
-                                </div>
-                                <p></p>
-                                <div class="swagLabel" >ISOLATE SELECTION</div>
-                                <p></p>
-                                <button name="test" id="test">ISOLATE</button>
-                                <button id="exitIsolate"> EXIT </button> 
-                                <div class="swagLabel" >__________________________________</div>
-                                <p> </p>
-                                <div class="swagLabel" >LINKFADE</div>
-                                <p> </p>
-                                <button id="linkfade"> ON </button> 
-                                <div class="swagLabel" >__________________________________</div>
-                                <p> </p>
-                                <div class="swagLabel" >RE-LAYOUT</div>
-                                <p> </p>
-                                <button name="reLayout" id="reLayout">RE-LAYOUT</button>
-                                <div class="swagLabel" >__________________________________</div>
-                                <p> </p>
-
-                                <div class="swagLabel" id="GSEASection" >GSEA
-                                    <p> </p>
-                                    <p>
-                                        <select name="GSEAAttributes" id="GSEAAttributes"></select>
-                                        <button id="start_GSEA">START</button>  
-                                    </p>
-                                  
-                                        <svg id="GSEABarChart" width="500" height="1500" style="overflow-y:auto;" ></svg>
-                                               
-                                </div>
-
-                                </div>
                             </div>
 
                             <div id="tabs-7">
