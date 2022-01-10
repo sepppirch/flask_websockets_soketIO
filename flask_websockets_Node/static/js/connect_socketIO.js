@@ -62,15 +62,24 @@ $(document).ready(function(){
                    window.location.href = "http://127.0.0.1:5000/main?usr="+ username + "&project=" + data.opt;
                 }
 
-                var select = document.getElementById(data.id).shadowRoot.getElementById("dropdown");
-                select.value = data.opt;
+                $('#'+ data.id).val(data.opt);
+                $('#'+ data.id).selectmenu("refresh");
+
+                //$("#dropdown", $(data.id).shadowRoot).selectmenu("value", 1);
+                //$("#dropdown", $(data.id).shadowRoot).selectmenu("change");
+           
+                ///var select = document.getElementById(data.id).shadowRoot.getElementById("dropdown-button");
+                //$(select).selectmenu("value", data.opt);
+                //$(select).selectmenu("change"); 
+                //select.value = data.opt;
                 // cold also add options.... select.append(new Option("reeeee"));
                 break; 
 
             case 'sli':
                 if (data.usr != username){
-                    var slider = document.getElementById(data.id).shadowRoot.getElementById("slider");
-                    slider.value= data.val;
+                    //var slider = document.getElementById(data.id).shadowRoot.getElementById("slider");
+                   // slider.value= data.val;
+                   $('#'+ data.id).slider('value', data.val);
                 }
 
                     break; 

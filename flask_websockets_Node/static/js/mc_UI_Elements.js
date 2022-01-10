@@ -47,86 +47,6 @@ class mcRButton extends HTMLElement {
 customElements.define('mc-rbutton', mcRButton);
 
 
-
-class mcRDropDown extends HTMLElement {
-
-  constructor() {
-  super();
-
-    //set dropdown value: 
-    //dropdown.value = opt[1];
-  }
-
-  connectedCallback() {
- 
-    let template = document.querySelector('#mcDD-template').content;
-    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
-  
-    let dropdown = this.shadowRoot.querySelector("#dropdown");
-    let label = this.shadowRoot.querySelector("#label");
-    label.innerHTML = this.getAttribute('id').toUpperCase();
-    dropdown.addEventListener('change', () => {
-
-      socket.emit('ex', {id: this.getAttribute('id'), opt: dropdown.options[dropdown.selectedIndex].text, fn: "sel"});
-    });
-  }
-
-
-}
-
-customElements.define('mc-dropdown', mcRDropDown);
-
-
-class mcSlider extends HTMLElement {
-
-  constructor() {
-  super();
-  }
-
-  connectedCallback() {
- 
-    let template = document.querySelector('#mcSlider-template').content;
-    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
-    let slider = this.shadowRoot.querySelector("#slider");
-    let label = this.shadowRoot.querySelector("#label");
-    label.innerHTML = this.getAttribute('id').toUpperCase();
-
-    
-    var isSlide = false;
-    var lastval = 0;
-
-    slider.addEventListener('mouseup', () => {
-      //console.log(scrollbox.value);
-      isSlide = false;
-      //socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
-    });
-
-    slider.addEventListener('mousedown', () => {
-      isSlide = true;
-    });
-  
-    slider.addEventListener('change', () => {
-      //console.log(slider.value);
-      socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
-    });
-
-    slider.addEventListener('mousemove', (event, ui) => {
-      if (isSlide){
-        if (Math.abs(slider.value - lastval) > 2){
-          console.log(slider.value);
-          socket.emit('ex', {id: this.getAttribute('id'), val: slider.value, fn: "sli"});
-          lastval = slider.value;
-        }
-      }
-
-    });
-  }
-}
-
-customElements.define('mc-slider', mcSlider);
-
-
-
 class mcScrollBox extends HTMLElement {
 
   constructor() {
@@ -230,28 +150,40 @@ customElements.define('mc-colorbox', mcColorBox);
 
 
 
+function initDropdown (id, data, active){
 
+  $('#'+ id).selectmenu();
 
-
-
-
-
-
-
-function populateDropdown (id, data, active){
   for (let i = 0; i < data.length; i++) {
-    document.getElementById(id).shadowRoot.getElementById("dropdown").append(new Option(data[i]));
+    $('#'+ id).append(new Option(data[i]));
   }
- document.getElementById(id).shadowRoot.getElementById("dropdown").value = active;
+  $('#'+ id).val(active);
+  $('#'+ id).selectmenu("refresh");
+
+  $('#'+ id).on('selectmenuselect', function () {
+    var name =  $('#'+ id).find(':selected').text();
+    socket.emit('ex', {id: id, opt: name, fn: "sel"});
+    ///logger($('#selectMode').val());
+  });
+
 }
 
 
 
+function initSlider (id){
 
+  $('#'+ id).slider({
+      animate: true,
+      range: "max",
+      min: 0,
+      max: 255,
+      value: 128,
+      slide: function (event, ui) {
+        socket.emit('ex', {id: id, val: ui.value, fn: "sli"});
+      }
+  });
 
-
-
-
+}
 
 
 
