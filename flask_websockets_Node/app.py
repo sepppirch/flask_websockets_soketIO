@@ -36,7 +36,9 @@ socketio = SocketIO(app, manage_session=False)
 def index():
     return render_template('index.html')
 
-
+# note to self: 
+# - only include 100% working code in releases
+# - have homies commit stuff and star the git
 
 @app.route('/upload', methods=['GET'])
 def upload():
