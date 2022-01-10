@@ -68,18 +68,6 @@
 
 
 
-    <template id="mcDD-template" >
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
-        <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 100; padding-bottom: 20;">TEXT</div>
-        <select id="dropdown" style= "padding: 20;" >
-        </select>
-    </template>
-
-    <template id="mcSlider-template" >
-        <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
-        <input type="range" min="1" max="100" value="50" class="slider" id="slider" style = "width: 100%; height: 30p0x; display: inline-block; padding: 4px 2px; color: #00ff40">	</div>
-    </template>
-
 
     <template id="mcScrollBox-template" >
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
@@ -182,35 +170,37 @@
 
                         <div id="tabs-1">
                             <div id="projects-section">
-                                <mc-dropdown id = 'projects' ></mc-dropdown>
+                               
+                                <select id = 'projects' ></select>
                                     <script>
-                                        populateDropdown('projects', sessiondata["proj"],sessiondata["actPro"]);
+                                        initDropdown('projects', sessiondata["proj"],sessiondata["actPro"]);
                                     </script>
                                 <br><br>
-                                <div style = 'width: 200px; height: 300px; overflow:auto; border-radius: 12px;  
-                                    background-color: #272727; display: inline-block; border-color: rgb(12, 12, 12); padding: 10px; 
-                                    border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid' >
-                                <mc-dropdown id = 'layouts'></mc-dropdown>
-                                <script>
-                                    populateDropdown('layouts',pdata["layouts"],pdata["layouts"][0]);
-                                </script>
+                                <div style = 'width: 200px; height: 300px; overflow:auto;   
+                                    background-color: #96969600; display: inline-block; border-color: rgb(50, 50, 50); padding: 10px; 
+                                    border: 2px dashed rgb(233, 233, 233);color:transparent' >
+                                 
+                                <select id = 'layouts' ></select>
+                                    <script>
+                                        initDropdown('layouts',pdata["layouts"],pdata["layouts"][0]);
+                                    </script>
                                 <br><br>
-                                <mc-dropdown id = 'nodecolors'></mc-dropdown>
-                                <script>
-                                    populateDropdown('nodecolors',pdata["layoutsRGB"],pdata["layoutsRGB"][0]);
-                                </script>
+                                <select id = 'nodecolors'></select>
+                                    <script>
+                                        initDropdown('nodecolors',pdata["layoutsRGB"],pdata["layoutsRGB"][0]);
+                                    </script>
                                 <br><br>
-                                <mc-dropdown id = 'links'></mc-dropdown>
-                                <script>
-                                    populateDropdown('links',pdata["links"],pdata["links"][0]);
-                                </script>
+                                <select id = 'links'></select>
+                                    <script>
+                                        initDropdown('links',pdata["links"],pdata["links"][0]);
+                                    </script>
                                 <br><br>
-                                <mc-dropdown id = 'linkcolors'></mc-dropdown>
-                                <script>
-                                    populateDropdown('linkcolors',pdata["linksRGB"],pdata["linksRGB"][0]);
-                                </script>
-
-                                </div>  
+                                <select id = 'linkcolors'></select>
+                                    <script>
+                                        initDropdown('linkcolors',pdata["linksRGB"],pdata["linksRGB"][0]);
+                                    </script>
+                                </div>
+                                <mc-textbox id = 'color1' ></mc-textbox>
                                <!--
                                 <button id="RefreshProjects"><img src="{{ url_for('static', filename='img/refresh.png') }}"></button>
  
@@ -254,10 +244,20 @@
 
                         <div id="tabs-3">
                             <!-- SLIDERS -->
-                            <mc-slider id = scale></mc-slider>
-                            <mc-slider id = nodesize></mc-slider>
-                            <mc-slider id = linksize></mc-slider>
-                            <mc-slider id = transparency></mc-slider>
+                            <div class="swagLabel">SCALE</div>
+                            <div id="slider_scale"></div>
+                            <div class="swagLabel">NODE SIZE</div>
+                            <div id="slider-node_size"></div>
+                            <div class="swagLabel">LINK SIZE</div>
+                            <div id="slider-link_size"></div>
+                            <div class="swagLabel">LINK TRANSPARENCY</div>
+                            <div id="slider-link_transparency"></div>
+                            <script>
+                                initSlider('slider_scale');
+                                initSlider('slider-node_size');
+                                initSlider('slider-link_size');
+                                initSlider('slider-link_transparency');
+                            </script>
                             <!-- BUTTONS -->
                              
 

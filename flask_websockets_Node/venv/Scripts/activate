@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\spirch\Documents\flask_multiplayerUI\flask_websockets_soketIO\flask_websockets_Node\venv"
+VIRTUAL_ENV="C:\Users\sebastian\Documents\Unreal Projects\websockets\serverSide\flask_websockets_soketIO\flask_websockets_Node\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
