@@ -16,6 +16,7 @@ from websocket_functions import *
 from GlobalData import *
 import logging
 import re
+from search import *
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
@@ -42,34 +43,10 @@ def index():
 # - have homies commit stuff and star the git
 # - make a webscraper for git and display contributors for a spec software in vr
 @app.route('/search', methods=['GET'])
-def search():
-    project = sessionData["actPro"]
-    if project != "none":
-        folder = 'static/projects/' + project + '/'
-        term = request.args.get("term")
-
-        results = []
-        i = 0
-        with open(folder + 'names.json', 'r') as json_file:
-            names = json.load(json_file)
-            for name in names["names"]:
-                for attr in name:
-                    #match = re.search(term, attr, re.IGNORECASE)
-                    match = re.match(term, attr, re.IGNORECASE)
-                    if match:
-                        x = '{"id":69,"name":"partiboi"}'
-                        res = json.loads(x)
-                        print(names["names"][i])
-                        res["id"] = i
-                        res["name"] = attr
-                        results.append(res)
-                        break
-
-                i += 1
-
-        json_file.close()
-    
-    return jsonify(results)
+def searchR():
+    term = request.args.get("term")
+    return jsonify(search(term))
+   
 
 
 @app.route('/upload', methods=['GET'])
