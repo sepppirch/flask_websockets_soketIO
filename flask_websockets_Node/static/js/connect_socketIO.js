@@ -2,6 +2,33 @@
 var socket;
 var lastval = 0;
 
+/// UE4 connection
+
+"object" != typeof ue || "object" != typeof ue.interface ? ("object" != typeof ue && (ue = {}), ue.interface = {}, ue.interface.broadcast = function (e, t) {
+    if ("string" == typeof e) {
+        var o = [e, ""];
+        void 0 !== t && (o[1] = t);
+        var n = encodeURIComponent(JSON.stringify(o));
+        "object" == typeof history && "function" == typeof history.pushState ? (history.pushState({}, "", "#" + n), history.pushState({}, "", "#" + encodeURIComponent("[]"))) : (document.location.hash = n, document.location.hash = encodeURIComponent("[]"))
+    }
+}) : function (e) {
+    ue.interface = {},
+    ue.interface.broadcast = function (t, o) {
+        "string" == typeof t && (void 0 !== o ? e.broadcast(t, JSON.stringify(o)) : e.broadcast(t, ""))
+    }
+}
+(ue.interface), (ue4 = ue.interface.broadcast);
+////  API DEFENITION
+//// DONT TOUCH THIS FILE
+function logger(message) {
+    console.log(message);
+    ue4("log", message);
+}
+
+
+
+
+
 function settextscroll(id, val) {
     var box = document.getElementById(id).shadowRoot.getElementById("box");
     $(box).scrollTop(val[0]);
@@ -10,6 +37,7 @@ function settextscroll(id, val) {
 
 
 $(document).ready(function(){
+    ue4("project", pdata);
 
     ///set up and connect to socket
     console.log('http://' + document.domain + ':' + location.port + '/chat');
@@ -60,6 +88,8 @@ $(document).ready(function(){
                 // SPECIAL CASE: Refresh Page When loading new project
                 if (data.id == "projects"){
                    window.location.href = "http://127.0.0.1:5000/main?usr="+ username + "&project=" + data.opt;
+                   
+                   
                 }
 
                 $('#'+ data.id).val(data.opt);
@@ -82,11 +112,26 @@ $(document).ready(function(){
                    $('#'+ data.id).slider('value', data.val);
                 }
 
-                    break; 
+                break; 
             case 'tex':
                     var text = document.getElementById(data.id).shadowRoot.getElementById("text");
                     text.value= data.val;
+                break;
+            
+            case 'sres':
+                console.log(data.val.length);
+
+                document.getElementById("sres").shadowRoot.getElementById("box").innerHTML = ''
+                for (let i = 0; i < data.val.length; i++) {
+                    var p = document.createElement("mc-sresult");
+                    p.setAttribute("id", data.val[i].id);
+                    p.setAttribute("name", data.val[i].name);
+                    p.setAttribute("style", "width=150px");
+                    p.setAttribute("color" , '#' + Math.floor(Math.random()*16777215).toString(16));
+                    document.getElementById("sres").shadowRoot.getElementById("box").appendChild(p);
+                }
                 break; 
+
 
         }
         

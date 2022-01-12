@@ -179,11 +179,19 @@ def ex(message):
     room = session.get('room')
     print(bcolors.WARNING + session.get('username') + "ex: " + json.dumps(message) + bcolors.ENDC)
     message['usr'] = session.get('username')
+    
     if message['id'] == 'projects':
         global sessionData
         sessionData['actPro'] = message['opt']
         print("changed activ project " + message['opt'])
-        
+
+    if message['id'] == 'search':
+        if len(message["val"]) > 1:
+            x = '{"id": "sres", "val":[], "fn": "sres"}'
+            results = json.loads(x)
+            results["val"] = search(message["val"])
+            
+            emit('ex',results, room=room)
 
     emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})

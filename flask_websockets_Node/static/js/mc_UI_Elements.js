@@ -147,6 +147,36 @@ customElements.define('mc-colorbox', mcColorBox);
 
 
 
+class mcSresult extends HTMLElement {
+
+  constructor() {
+  super();
+  }
+
+  connectedCallback() {
+
+
+    let template = document.querySelector('#mcSresult-template').content;
+    this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+
+    let name_button = this.shadowRoot.querySelector("#name");
+    let x_button = this.shadowRoot.querySelector("#x");
+  
+    name_button.textContent = this.getAttribute('name');
+    name_button.style.background=this.getAttribute('color');//("background",);
+    //console.log('create: '+ this.getAttribute('id'));
+
+    name_button.addEventListener('click', () => {
+      //console.log('select '+ this.shadowRoot.getAttribute('id'));
+      socket.emit('ex', {msg: this.getAttribute('name'), id: this.getAttribute('id'), fn: "sres_butt_clicked"});
+    });
+  
+
+   
+  }
+}
+
+customElements.define('mc-sresult', mcSresult);
 
 
 

@@ -244,7 +244,7 @@ def upload_files(request):
             name = file.filename.split(".")[0]
             contents = file.read().decode('utf-8')
             state = state + ' <br>'+  makeNodeTex(namespace, name, contents)
-            pfile["layouts"].append(name)
+            pfile["layouts"].append(name + "XYZ")
             pfile["layoutsRGB"].append(name + "RGB")
 
             
@@ -264,7 +264,7 @@ def upload_files(request):
         for file in edge_files:
             name = file.filename.split(".")[0]
             contents = file.read().decode('utf-8')
-            pfile["links"].append(name)
+            pfile["links"].append(name + "XYZ")
             pfile["linksRGB"].append(name + "RGB")
             state = state + ' <br>'+ makeLinkTex(namespace, name, contents)
             
