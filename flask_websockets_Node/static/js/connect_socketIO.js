@@ -111,7 +111,7 @@ $(document).ready(function(){
                    // slider.value= data.val;
                    $('#'+ data.id).slider('value', data.val);
                 }
-
+                ue4("slider", data);
                 break; 
             case 'tex':
                     var text = document.getElementById(data.id).shadowRoot.getElementById("text");
