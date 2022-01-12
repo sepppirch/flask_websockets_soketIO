@@ -15,6 +15,8 @@ from uploader import *
 from websocket_functions import *
 from GlobalData import *
 import logging
+import re
+from search import *
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
@@ -36,6 +38,15 @@ socketio = SocketIO(app, manage_session=False)
 def index():
     return render_template('index.html')
 
+# note to self: 
+# - only include 100% working code in releases
+# - have homies commit stuff and star the git
+# - make a webscraper for git and display contributors for a spec software in vr
+@app.route('/search', methods=['GET'])
+def searchR():
+    term = request.args.get("term")
+    return jsonify(search(term))
+   
 
 
 @app.route('/upload', methods=['GET'])
