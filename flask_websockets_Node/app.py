@@ -103,7 +103,7 @@ def main():
     if project is None:
         project = "none"
     else:
-        print(username)
+        print(project)
 
     if(request.method=='GET'):
 

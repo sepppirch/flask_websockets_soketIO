@@ -151,54 +151,62 @@ def makeLinkTex(project, name, file):
     csvreader = csv.reader(f, delimiter=',')
     path = 'static/projects/' + project 
 
-    with open('static/csv/'+ name +'.csv', newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+    #with open('static/csv/'+ name +'.csv', newline='') as csvfile:
+    #csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
  
-        texl = [(0,0,0)] * 1024 * 512
-        texc = [(0,0,0,0)] * 512 * 512
-        new_imgl = Image.new('RGB', (1024, 512))
-        new_imgc = Image.new('RGBA', (512, 512))
-        i = 0
-        try:
-            for row in csvreader:
+    texl = [(0,0,0)] * 1024 * 512
+    texc = [(0,0,0,0)] * 512 * 512
+    new_imgl = Image.new('RGB', (1024, 512))
+    new_imgc = Image.new('RGBA', (512, 512))
+    i = 0
+    try:
+        for row in csvreader:
 
-                sl = int(row[0]) % 128
-                s = int(int (row[0]) / 128)
+            sl = int(row[0]) % 128
+            s = int(int (row[0]) / 128)
 
-                el = int(row[1]) % 128
-                e = int(int (row[1]) / 128)
+            el = int(row[1]) % 128
+            e = int(int (row[1]) / 128)
+
+            if len(row) == 6:
 
                 r = int(row[2])
                 g = int(row[3])
                 b = int(row[4])
                 a = int(row[5])
 
-                pixell1 = (s,sl,0)
-                pixell2 = (e,el,0)
-                pixelc = (r,g,b,a)
+            if len(row) == 2:
+                r = 0
+                g = 100
+                b = 255
+                a = 90
 
-                if i < 262144:
+            pixell1 = (s,sl,0)
+            pixell2 = (e,el,0)
+            pixelc = (r,g,b,a)
 
-                    texl[i*2] = pixell1
-                    texl[i*2+1] = pixell2
-                    texc[i] = pixelc
+            if i < 262144:
 
-                i += 1
+                texl[i*2] = pixell1
+                texl[i*2+1] = pixell2
+                texc[i] = pixelc
 
-        except (IndexError, ValueError):
-            return '<a style="color:red;">ERROR </a>'  +  name + " Linkfile malformated?" 
+            i += 1
 
-        new_imgl.putdata(texl)
-        new_imgc.putdata(texc)
-        pathl = path + '/links/' +  name + 'XYZ.bmp'
-        pathRGB = path + '/linksRGB/' +  name +  'RGB.png'
+    except (IndexError, ValueError):
+        return '<a style="color:red;">ERROR </a>'  +  name + " Linkfile malformated?" 
 
-        if os.path.exists(pathl):
-            return '<a style="color:red;">ERROR </a>' +  name  + " linklist already in project"
-        else:
-            new_imgl.save(pathl, "PNG")
-            new_imgc.save(pathRGB, "PNG")
-            return '<a style="color:green;">SUCCESS </a>' +  name +  " Link Textures Created"
+    new_imgl.putdata(texl)
+    new_imgc.putdata(texc)
+    pathl = path + '/links/' +  name + 'XYZ.bmp'
+    pathRGB = path + '/linksRGB/' +  name +  'RGB.png'
+
+    if os.path.exists(pathl):
+        return '<a style="color:red;">ERROR </a>' +  name  + " linklist already in project"
+    else:
+        new_imgl.save(pathl, "PNG")
+        new_imgc.save(pathRGB, "PNG")
+        return '<a style="color:green;">SUCCESS </a>' +  name +  " Link Textures Created"
     return "successfully created node textures and names file"
 
 def upload_files(request):

@@ -131,13 +131,17 @@
 
 
                 <body>
+                    <div class="swagLabel" id= "url"></div>
                     <script>
                         var sessiondata = JSON.parse({{sessionData|tojson}});
                         var pdata = JSON.parse({{pfile|tojson}});
                         var username = '{{session['username']}}';
                         console.log(pdata);
+                        document.getElementById('url').innerHTML = window.location.href;
                     </script>
-                    <h1 >logged in as {{session['username']}}</h1>
+                    <div class="swagLabel" >logged in as {{session['username']}}</div>
+
+                    
 
                     <div id="tabs" class="disable-select">
                         <script>   // MULTICAST TAB CHANGES 

@@ -87,14 +87,16 @@ $(document).ready(function(){
             case 'sel':
                 // SPECIAL CASE: Refresh Page When loading new project
                 if (data.id == "projects"){
-                   window.location.href = "http://127.0.0.1:5000/main?usr="+ username + "&project=" + data.opt;
+                    var url = window.location.href.split('?')[0] + "?user="  + username + "&project=" + data.opt;
+                    console.log(url);
+                    window.location.href = url;
                    
                    
                 }
 
                 $('#'+ data.id).val(data.opt);
                 $('#'+ data.id).selectmenu("refresh");
-
+                ue4("sel", data);
                 //$("#dropdown", $(data.id).shadowRoot).selectmenu("value", 1);
                 //$("#dropdown", $(data.id).shadowRoot).selectmenu("change");
            
