@@ -1,6 +1,6 @@
 
 
-@font-face { font-family: Future; src: url('Asgalt-Regular.ttf'); } 
+@font-face { font-family: Future; src: url('Roboto-Light.ttf'); } 
 @font-face { font-family: Square; src: url('square_sans_serif_7.ttf'); } 
 @font-face { font-family: Venus; src: url('venus.ttf'); } 
 @font-face { font-family: Modular; src: url('Modular Amplitude.otf'); } 
@@ -72,6 +72,7 @@ input {
 
 .swagLabelSmall {
 
+  padding-top: 25px;
     color:white;
     font-size:30px;
     /* font: 'Roboto'; */
@@ -111,14 +112,14 @@ input {
 .ui-selectmenu-button.ui-button {
     
     width:90%;
-    height: 30px;
+    height: 25px;
     -moz-padding-start: calc(10px - 3px);
     padding: 5px;
     
     color: rgb(255, 255, 255);
     background:rgba(66, 66, 66, 0);
     font-family: 'Future', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: normal;
     cursor: pointer;
 
@@ -227,7 +228,9 @@ body {
 	/* border: 1px solid #666666; */
 	/* background: none; */
   /* color: white; */
- 
+  border: 10px solid transparent;
+  padding: 2px;
+  border-image: url("images/frame1.png") 10 stretch;
   background: transparent url("images/80black.png") 100% 100% repeat;  
 
 } 

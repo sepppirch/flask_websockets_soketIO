@@ -45,7 +45,7 @@
         <style>
             button {
                 width: 15%;
-                font-family: 'Venus', sans-serif;
+                font-family: 'Future', sans-serif;
                
                 cursor: pointer;
                 box-sizing: border-box;
@@ -131,15 +131,15 @@
 
 
                 <body>
-                    <div class="swagLabel" id= "url"></div>
+                    
                     <script>
                         var sessiondata = JSON.parse({{sessionData|tojson}});
                         var pdata = JSON.parse({{pfile|tojson}});
                         var username = '{{session['username']}}';
-                        console.log(pdata);
-                        document.getElementById('url').innerHTML = window.location.href;
+                        console.log(username);
+                        
                     </script>
-                    <div class="swagLabel" >logged in as {{session['username']}}</div>
+
 
                     
 
@@ -290,12 +290,13 @@
                                 <h4>VENUS somesmalltext</h4>
                             </div>
                             <div id="tabs-6">
-
+                                <div  id= "url"></div>
+                                <div >logged in as {{session['username']}}</div>
+                                <script>
+                                    document.getElementById('url').innerHTML = window.location.href;
+                                </script>
                             </div>
 
-                            <div id="tabs-7">
-             
-                            </div>
                         </div>
 
 

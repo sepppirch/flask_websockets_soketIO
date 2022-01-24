@@ -87,7 +87,7 @@ $(document).ready(function(){
             case 'sel':
                 // SPECIAL CASE: Refresh Page When loading new project
                 if (data.id == "projects"){
-                    var url = window.location.href.split('?')[0] + "?user="  + username + "&project=" + data.opt;
+                    var url = window.location.href.split('?')[0] + "?usr="  + username + "&project=" + data.opt;
                     console.log(url);
                     window.location.href = url;
                    
