@@ -1,30 +1,50 @@
 
 
-h1 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 25px;
-  font-weight: 700;
-}
+@font-face { font-family: Future; src: url('Asgalt-Regular.ttf'); } 
+@font-face { font-family: Square; src: url('square_sans_serif_7.ttf'); } 
+@font-face { font-family: Venus; src: url('venus.ttf'); } 
+@font-face { font-family: Modular; src: url('Modular Amplitude.otf'); } 
 
+ 
+
+h1 {
+  font-family: 'Square', sans-serif;
+  font-size: 80px;
+  font-weight: 10;
+}
+h2 {
+  font-family: 'Future', sans-serif;
+  font-size: 50px;
+  font-weight: 10;
+}
+h3 {
+  font-family: 'Modular', sans-serif;
+  font-size: 50px;
+  font-weight: 10;
+}
+h4 {
+  font-family: 'Venus', sans-serif;
+  font-size: 50px;
+  font-weight: 10;
+}
   
 input {
     /* ... */
+
     width: 100%;
     height: 30px;
     -moz-padding-start: calc(10px - 3px);
     padding-left: 10px;
      
-    color: rgb(66, 66, 66);
-    font-family: 'Open Sans', sans-serif;
-    font-size: 25px;
+    color: rgb(255, 255, 255);
+    font-family: 'Future', sans-serif;
+    font-size: 35px;
     font-weight: 700;
     cursor: pointer;
-    border-radius: 10px;
-    background-color: #c5c5c5;
-    border-top: 2px solid ;
-    border-bottom: 0px solid ;
-    border-left: 0px solid;
-    border-right: 2px solid ;
+    background:rgba(66, 66, 66, 0);
+    border: 10px solid transparent;
+    padding: 2px;
+    border-image: url("images/frame1.png") 10 stretch;
     }
 
 
@@ -53,21 +73,27 @@ input {
 .swagLabelSmall {
 
     color:white;
-    font-size:12px;
+    font-size:30px;
     /* font: 'Roboto'; */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Square', sans-serif;
     font-weight: normal;
 }
 
 .swagLabel {
     color:white;
-    font-size:24px;
+    font-size:40px;
     /* font: 'Roboto'; */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Square', sans-serif;
     font-weight: lighter;
 }
 /* added comment */
+.swagBox{
 
+  border: 10px solid transparent;
+  padding: 10px;
+  border-image: url("images/frame1.png") 10 stretch;
+
+}
 .ui-widget-header {
 	
 	background: #333333 url("images/network1.gif") 100% 100% repeat; 
@@ -76,7 +102,9 @@ input {
 
 .ui-widget .ui-widget{
      font-size:30px;
-     
+     border: 10px solid transparent;
+     padding: 2px;
+     border-image: url("images/frame1.png") 10 stretch;
 
 }
 
@@ -87,24 +115,30 @@ input {
     -moz-padding-start: calc(10px - 3px);
     padding: 5px;
     
-    color: rgb(66, 66, 66);
-    font-family: 'Open Sans', sans-serif;
-    font-size: 25px;
+    color: rgb(255, 255, 255);
+    background:rgba(66, 66, 66, 0);
+    font-family: 'Future', sans-serif;
+    font-size: 30px;
     font-weight: normal;
     cursor: pointer;
-    border-radius: 10px;
-    background-color: #c5c5c5;
-    border-top: 2px solid ;
-    border-bottom: 0px solid ;
-    border-left: 0px solid;
-    border-right: 2px solid ;
+
+
+    
+
 }
 
+
+
 .ui-widget.ui-widget-content {
-    border: 0px;
-    font-family: 'Open Sans', sans-serif;
+
+    font-family: 'Future', sans-serif;
     font-size: 25px;
     outline: none;
+    background-color: #444444;
+    border: 0px solid transparent;
+    padding: 2px;
+    border-image: url("images/frame1.png") 10 stretch;
+    
     }
     
 .ui-button {
@@ -119,7 +153,8 @@ input {
 .ui-slider.ui-slider-horizontal {
   margin: 0px 0px 5px 0px;
   height: 40px;
-  /* border: 1px solid #666666; */
+  border: 0px solid #666666;
+  border-radius: 0px;
   background: transparent url(images/slider2.png);
 }
 .ui-slider-range.ui-corner-all.ui-widget-header.ui-slider-range-max{
@@ -132,11 +167,7 @@ input {
 
 .ui-slider .ui-slider-handle {
 	/* position: absolute; */
-    border: 0px solid #666666;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
+
     top: -0em;
     left: -0.1em;
 	z-index: 2;

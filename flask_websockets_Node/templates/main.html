@@ -45,8 +45,8 @@
         <style>
             button {
                 width: 15%;
-                
-                font-weight: 700;
+                font-family: 'Venus', sans-serif;
+               
                 cursor: pointer;
                 box-sizing: border-box;
                 padding: 5px 2px;
@@ -79,8 +79,8 @@
     <template id="mcScrollBox-template" >
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
-        <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
-        <div id = 'box' name = 'box' style = 'width: 300px; height: 120px; overflow:auto; border-radius: 12px;  background-color: #adadad; display: inline-block; border-color: rgb(10, 24, 221); border-right: 2px solid ; border-top: 2px solid; border-left: 2px solid ; border-bottom: 2px solid'>
+        <div id = "label" class = "swagLabelSmall">TEXT</div>
+        <div id = 'box' name = 'box' class = 'swagBox' style = 'width: 300px; height: 120px; overflow:auto;display: inline-block; border-color: rgb(10, 24, 221);'>
         
         </div>
     </template>
@@ -90,8 +90,8 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/SwagStyle.css') }}">
 
-        <div id = "label" style = "font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700;">TEXT</div>
-        <input type="Text" id = "text">
+        <div id = "label" class = "swagLabelSmall">TEXT</div>
+        <input type="Text" id = "text" autocomplete="off">
     </template>
 
 
@@ -180,38 +180,41 @@
                         </ul>
 
                         <div id="tabs-1">
-                            <div id="projects-section">
+
+                            <div id="projects-section" class="swagLabel"> Project
                                
                                 <select id = 'projects' ></select>
                                     <script>
                                         initDropdown('projects', sessiondata["proj"],sessiondata["actPro"]);
                                     </script>
                                 <br><br>
-                                <div style = 'width: 200px; height: 300px; overflow:auto;   
-                                    background-color: #96969600; display: inline-block; border-color: rgb(50, 50, 50); padding: 10px; 
-                                    border: 2px dashed rgb(233, 233, 233);color:transparent' >
-                                 
+                                <div style = 'width: 300px; height: 450px;' class="swagBox">
+                               
+                      
+
+                                <div class="swagLabelSmall"> Layouts </div>
                                 <select id = 'layouts' ></select>
                                     <script>
                                         initDropdown('layouts',pdata["layouts"],pdata["layouts"][0]);
                                     </script>
-                                <br><br>
+                         
+                                <div class="swagLabelSmall"> node colors </div>
                                 <select id = 'nodecolors'></select>
                                     <script>
                                         initDropdown('nodecolors',pdata["layoutsRGB"],pdata["layoutsRGB"][0]);
                                     </script>
-                                <br><br>
+                                <div class="swagLabelSmall"> links </div>
                                 <select id = 'links'></select>
                                     <script>
                                         initDropdown('links',pdata["links"],pdata["links"][0]);
                                     </script>
-                                <br><br>
+                                <div class="swagLabelSmall"> link colors </div>
                                 <select id = 'linkcolors'></select>
                                     <script>
                                         initDropdown('linkcolors',pdata["linksRGB"],pdata["linksRGB"][0]);
                                     </script>
                                 </div>
-                                <mc-textbox id = 'color1' ></mc-textbox>
+                                <mc-textbox id = 'color' ></mc-textbox>
                                <!--
                                 <button id="RefreshProjects"><img src="{{ url_for('static', filename='img/refresh.png') }}"></button>
  
@@ -281,7 +284,10 @@
                             </div>
 
                             <div id="tabs-5">
-
+                                <h1>SQUARE somesmalltext</h1>
+                                <h2>FUTURE somesmalltext</h2>
+                                <h3>MODULAR somesmalltext</h3>
+                                <h4>VENUS somesmalltext</h4>
                             </div>
                             <div id="tabs-6">
 

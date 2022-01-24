@@ -157,10 +157,7 @@ def chat():
 
 @app.route('/Test')
 def test():
-    if 'username' in session:
-        username = session['username']
-        return 'Logged in as ' + username + '<br>' + "<b><a href = '/logout'>click here to log out</a></b>"
-    return "You are not logged in <br><a href = '/'>" + "click here to log in</a>"
+    return render_template('test.html')
 
 
 ###SocketIO ROUTES###
