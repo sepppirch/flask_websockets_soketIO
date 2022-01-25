@@ -44,10 +44,7 @@ def loadProjectInfo(name):
     linksRGBfolder = folder + "linksRGB"
     linkfolder = folder + "links"
 
-
-
     if os.path.exists(folder):
-
 
         layouts = [name for name in os.listdir(layoutfolder)]
         layoutsRGB = [name for name in os.listdir(layoutRGBfolder)]
@@ -62,8 +59,11 @@ def loadProjectInfo(name):
         )
     else:
         return 'no such project'
-
-
+def loadAnnotations(name):
+    namefile = 'static/projects/' + name + '/names.json'
+    f = open(namefile)
+    data = json.load(f)
+    return data
 
 def listProjects():
     folder = 'static/projects'

@@ -91,6 +91,10 @@ def loadAllProjectsR():
 def loadProjectInfoR(name):
     return loadProjectInfo(name)
 
+@app.route('/projectAnnotations/<name>', methods=['GET'])
+def loadProjectAnnotations(name):
+    return loadAnnotations(name)
+
 @app.route('/main', methods=['GET'])
 def main():
     username = request.args.get("usr")
