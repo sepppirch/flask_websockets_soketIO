@@ -27,6 +27,11 @@ function logger(message) {
 
 
 
+ue.interface.nodelabels = function (data) {
+    socket.emit('ex', {data});
+
+};
+
 
 
 function settextscroll(id, val) {
