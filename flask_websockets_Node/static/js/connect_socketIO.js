@@ -28,7 +28,12 @@ function logger(message) {
 
 
 ue.interface.nodelabels = function (data) {
-    socket.emit('ex', {data});
+    console.log(data);
+    var text = '{"id":"x", "data": [1,2,4]}';
+    var out = JSON.parse(text);
+    out.id = "nl";
+    out.data = data;
+    socket.emit('ex', out);
 
 };
 

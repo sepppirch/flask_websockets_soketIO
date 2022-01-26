@@ -171,7 +171,7 @@ def test():
 def join(message):
     room = session.get('room')
     join_room(room)
-    #print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
+    print(bcolors.WARNING + session.get('username') + ' has entered the room.' + bcolors.ENDC)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
 
 
@@ -204,6 +204,7 @@ def left(message):
     leave_room(room)
     session.clear()
     emit('status', {'msg': username + ' has left the room.'}, room=room)
+    print(bcolors.WARNING + session.get('username') + ' has left the room.' + bcolors.ENDC)
 
 
 if __name__ == '__main__':
