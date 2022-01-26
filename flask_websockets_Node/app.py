@@ -124,6 +124,12 @@ def main():
                 pfile = json.load(json_file)
                 print(pfile)
             json_file.close()
+
+            with open(folder + 'names.json', 'r') as json_file:
+                global names
+                names = json.load(json_file)
+                #print(names)
+            json_file.close()
         return render_template('main.html', session = session, sessionData = json.dumps(sessionData), pfile = json.dumps(pfile))
     else:
         return "error"    
@@ -184,6 +190,7 @@ def ex(message):
     if message['id'] == 'projects':
         global sessionData
         sessionData['actPro'] = message['opt']
+
         print("changed activ project " + message['opt'])
 
     if message['id'] == 'search':
@@ -194,7 +201,17 @@ def ex(message):
             
             emit('ex',results, room=room)
 
-    emit('ex', message, room=room)
+    if message['id'] == 'nl':
+        message['names'] = []
+        message['fn'] = 'cnl'
+        for id in message['data']:
+            message['names'].append(names['names'][id][0])
+            
+        print(message)
+        emit('ex', message, room=room)
+    
+    else:
+        emit('ex', message, room=room)
     #sendUE4('http://127.0.0.1:3000/in',  {'msg': session.get('username') + ' : ' + message['msg']})
 
 @socketio.on('left', namespace='/chat')
