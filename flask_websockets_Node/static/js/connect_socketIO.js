@@ -94,14 +94,17 @@ $(document).ready(function(){
                  $(box).find('#' + data.id).remove();
                 break;
 
+            case 'cnl':
+                    ue4("cnl", data);
+                    break;
+
             case 'sel':
                 // SPECIAL CASE: Refresh Page When loading new project
                 if (data.id == "projects"){
                     var url = window.location.href.split('?')[0] + "?usr="  + username + "&project=" + data.opt;
                     console.log(url);
                     window.location.href = url;
-                   
-                   
+
                 }
 
                 $('#'+ data.id).val(data.opt);
