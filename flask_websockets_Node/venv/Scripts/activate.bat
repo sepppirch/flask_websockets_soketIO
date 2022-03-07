@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\spirch\Documents\flask_multiplayerUI\flask_websockets_soketIO\flask_websockets_Node\venv
+set VIRTUAL_ENV=D:\UnrealProjects\websockets\serverSide\flask_websockets_soketIO\flask_websockets_Node\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

@@ -1,7 +1,7 @@
 from os import link
 
-
-f = open("cube2.obj", "r")
+name = "VRNetzer"
+f = open(name + ".obj", "r")
 lines = f.readlines()
 verticis = []
 polygons = []
@@ -79,8 +79,24 @@ for p in polygons:
     c = 0 
     for i in p:
         next = (c + 1) % len(p) 
-        thislink = [int(i), int(p[next])]
+        thislink = [int(i) - 1, int(p[next]) - 1]
         linklist.append(thislink)
         c = c + 1
 
 print(linklist)
+
+with open(name +'_links.csv', 'w') as f:
+    for l in linklist:
+        line = str(l[0]) + ',' + str(l[1]) +"\n"
+        f.write(line)
+f.close()
+
+i = 0
+with open(name +'nodes.csv', 'w') as f:
+    for l in normverts:
+        line = str(l[0]) + ',' + str(l[1])+ ',' + str(l[2]) + ",255,255,0,100,node" + str(i) +";vertex" +"\n"
+        f.write(line)
+        i = i + 1
+f.close()
+
+print(str(len(normverts)) + " verticies")
